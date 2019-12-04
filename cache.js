@@ -1,7 +1,7 @@
 const LRU = require('lru-cache');
 
-const listCacheSec = 2 * 60;
-const contentCacheSec = 60 * 60;
+const listCacheSec = 60;
+const contentCacheSec = 24 * 60;
 
 module.exports = (app) => {
     const listCache = new LRU({

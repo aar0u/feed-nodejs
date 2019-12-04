@@ -28,9 +28,9 @@ module.exports = async (ctx) => {
             }
             if (element.id == coverId) {
                 if (element.type === 'media--ooyala') {
-                    description = `<video width="100%" controls>
-                        <source src="${element.attributes.field_stream_file_name}" type="video/mp4"></video>
-                        ` + description;
+                    description = `<p><img src="${element.attributes.field_thumbnail}"/></p><video width="100%" controls>
+                    <source src="${element.attributes.field_stream_file_name}" type="video/mp4"></video>`
+                        + description;
                 } else {
                     description = `<p><img src="${element.attributes.uri.url}"/></p>` + description;
                 }
@@ -39,7 +39,7 @@ module.exports = async (ctx) => {
 
         const article = {
             title: e.attributes.title,
-            link: `${baseUrl}${e.attributes.field_path}`,
+            link: `${baseUrl}/news/singapore/article${e.attributes.field_path}`,
             description: description,
             pubDate: new Date(e.attributes.changed * 1000)
         };
