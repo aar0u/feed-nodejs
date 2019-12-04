@@ -1,6 +1,6 @@
 var express = require('express');
-var shaw = require('./shaw');
-var dysfz = require('./dysfz');
+const moduleAlias = require('module-alias');
+moduleAlias.addAlias('@', () => __dirname);
 
 var app = express();
 
@@ -30,7 +30,11 @@ app.get('/', function (req, res) {
     res.render('pages/index', { rows: dummy_rows });
 });
 
+var shaw = require('./shaw');
+// routes from separated file
+shaw.service(app);
 app.get('/shaw', function (req, res) {
+    
     shaw.getScore();
 
     shaw.feed(function (rows) {
@@ -39,6 +43,8 @@ app.get('/shaw', function (req, res) {
 });
 
 app.get('/dysfz', function (req, res) {
+    var dysfz = require('./dysfz');
+
     // get update
     dysfz(req);
 
@@ -46,13 +52,10 @@ app.get('/dysfz', function (req, res) {
     dysfz.feed(req, res);
 });
 
-app.get('/feed/:feedId', require('./rss'));
+app.get('/feed/:feedId/:params?', require('./rss'));
 
 // cache
 require('./cache')(app);
-
-// routes from separated file
-shaw.service(app);
 
 app.listen(app.get('port'), function () {
     console.log('Node app is running on port', app.get('port'));

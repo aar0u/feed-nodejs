@@ -1,5 +1,5 @@
 var request = require('request');
-var time = require('./util/time');
+var time = require('./utils/time');
 var db = require('./dbpg');
 
 module.exports = function (newNoti) {

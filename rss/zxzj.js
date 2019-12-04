@@ -17,7 +17,7 @@ module.exports = async () => {
             items.push({
                 title: match[2] + ' ' + match[4],
                 link: url + match[1],
-                date: new Date("01/01/2019"),
+                date: new Date(),
                 description: '<img src="' + match[3] + '"/>',
             });
         }
@@ -25,7 +25,8 @@ module.exports = async () => {
         return {
             title: title,
             link: url,
-            items: items
+            description: '',
+            item: items
         };
     } catch (error) {
         console.log(error);
