@@ -34,7 +34,7 @@ app.get('/shaw', function (req, res) {
     shaw.getScore();
 
     shaw.feed(function (rows) {
-        res.render('pages/index', {rows: rows});
+        res.render('pages/index', { rows: rows });
     });
 });
 
@@ -47,6 +47,9 @@ app.get('/dysfz', function (req, res) {
 });
 
 app.get('/feed/:feedId', require('./rss'));
+
+// cache
+require('./cache')(app);
 
 // routes from separated file
 shaw.service(app);
