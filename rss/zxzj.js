@@ -1,7 +1,7 @@
 const got = require('got');
 
 const title = '在线之家';
-const url = 'https://www.zxzjs.com/';
+const url = 'https://www.zxzjs.com';
 const regex = /<a class="stui-vodlist__thumb lazyload" href="(.+?)" title="(.+?)" data-original="(.+?)".+?<span class="pic-text text-right">(.+?)<\/span><\/a>/g;
 
 module.exports = async () => {
@@ -15,10 +15,12 @@ module.exports = async () => {
 
         while (match = regex.exec(response.body)) {
             items.push({
-                title: match[2] + ' ' + match[4],
+                title: `${match[2]} ${match[4]}`,
                 link: url + match[1],
                 date: new Date(),
-                description: '<img src="' + match[3] + '"/>',
+                description: `<img src="${match[3]}"/>
+                <p>在线: <a href="${url + match[1]}">${url + match[1]}</a></p>
+                <p>豆瓣: <a href="https://search.douban.com/movie/subject_search?search_text=${match[2]}">${match[2]}</a></p>`,
             });
         }
 
