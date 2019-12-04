@@ -4,23 +4,14 @@ module.exports = async (req, res) => {
     let feedId = req.params.feedId;
     let cacheId = feedId + '_' + (req.params.params || '');
 
-    let data = req.app.locals.cache.get(cacheId);
+    let data = req.app.locals.listCache.get(cacheId);
     if (!data) {
-        console.log(`getting from remote ${cacheId}`);
+        console.log(`${feedId}: Getting from remote`);
 
         //fake ctx to use rsshub source
         let ctx = {
-            state: {
-                data: null
-            },
-            params: req.params.params,
-            cache: {
-                get: () => null,
-                set: () => null,
-                tryGet: async (key, getValueFunc) => {
-                    return await getValueFunc();
-                }
-            }
+            state: { data: null }, params: req.params.params,
+            cache: req.app.locals.contentCache
         };
 
         data = await require('./rss/' + feedId)(ctx);
@@ -28,16 +19,16 @@ module.exports = async (req, res) => {
             data = ctx.state.data;
         }
 
-        req.app.locals.cache.set(cacheId, data);
+        req.app.locals.listCache.set(cacheId, data);
     }
 
     let userAgent = req.headers['user-agent'];
     let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
-    console.log('feedId: ' + req.params.feedId + ', item count: ' + data.item.length
-        + ', req: ' + ip + ' ' + userAgent);
+    console.log(`cacheId: ${cacheId}, item: ${data.item.length}, ua: ${userAgent}, ip: ${ip}`);
 
     let atom1 = await generate(data);
+    res.type('application/xml; charset=utf-8');
     res.send(atom1);
 }
 

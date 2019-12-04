@@ -8,7 +8,7 @@ module.exports = async () => {
     try {
         const response = await got(url);
 
-        console.log('statusCode:', response && response.statusCode);
+        console.log(`${url} statusCode:`, response && response.statusCode);
         // console.log('body:', response.body);
 
         let items = [];
