@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
     let userAgent = req.headers['user-agent'];
     let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
-    console.log('feedId: ' + req.params.feedId + 'item count ' + data.items.length
+    console.log('feedId: ' + req.params.feedId + ', item count: ' + data.items.length
         + ', req: ' + ip + ' ' + userAgent);
 
     let atom1 = await generate(data);
