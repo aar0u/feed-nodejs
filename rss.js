@@ -1,8 +1,6 @@
 const feed = require('feed');
 
-module.exports = rss;
-
-async function rss(req, res) {
+module.exports = async (req, res) => {
     let feedId = req.params.feedId;
 
     let data = req.app.locals.cache.get(feedId);
