@@ -1,7 +1,6 @@
 var express = require('express');
 var shaw = require('./shaw');
 var dysfz = require('./dysfz');
-var db = require('./dbpg');
 
 var app = express();
 
@@ -12,44 +11,42 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
+    dummy_rows = [{
+        name: 'Searching',
+        name_cn: '网络谜踪',
+        score: '8.9',
+        url: 'https://movie.douban.com/subject/27615441/',
+        updated: '2018-10-01T05:01:26.745Z',
+        code: '73 1 156 221 195 34 156 171 119 44 223 76 197 194 68 65'
+    }, {
+        name: 'Smallfoot',
+        name_cn: '雪怪大冒险',
+        score: '7.5',
+        url: 'https://movie.douban.com/subject/26944582/',
+        updated: '2018-10-01T05:01:26.745Z',
+        code: '203 160 147 221 66 185 25 239 141 28 233 73 73 128 55 29'
+    }];
+
+    res.render('pages/index', { rows: dummy_rows });
+});
+
+app.get('/shaw', function (req, res) {
+    shaw.getScore();
+
     shaw.feed(function (rows) {
         res.render('pages/index', {rows: rows});
     });
 });
 
-app.get('/get_dysfz', function (req, res) {
+app.get('/dysfz', function (req, res) {
     // get update
     dysfz(req);
 
     // atom feed
     dysfz.feed(req, res);
-
-    // get shaw
-    setTimeout(shaw.getScore, 1000);
 });
 
-app.get('/dysfz', function (req, res) {
-    // atom feed
-    dysfz.feed(req, res);
-});
-
-app.get('/noti', function (req, res) {
-    res.type('text');
-
-    db.notiList(function (notis) {
-        var text;
-        var now = new Date();
-        text = 'now ' + now + '\n';
-        if (notis[0]) {
-            var diffHours = (now - notis[0].date_added) / 3600000;
-            text += 'lastdate ' + notis[0].date_added +
-                '\ndiff ' + diffHours + '\n' + JSON.stringify(notis, null, 4);
-        } else {
-            text += JSON.stringify(notis, null, 4);
-        }
-        res.send(text);
-    });
-});
+app.get('/feed/:feedId', require('./rss'));
 
 // routes from separated file
 shaw.service(app);

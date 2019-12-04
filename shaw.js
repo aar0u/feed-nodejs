@@ -16,7 +16,12 @@ module.exports = {
     getScore: function () {
         var currentDate = new Date();
         request('http://shaw.sg/sw_movie.aspx', function (error, response, body) {
-            body = /<select name="FilmCode"[\s\S]+?<\/select>/g.exec(body)[0];
+            temp = /<select name="FilmCode"[\s\S]+?<\/select>/g.exec(body);
+            if (!temp) {
+                console.log('no match on shaw: ' + temp);
+                return;
+            }
+            body = temp[0];
 
             var matches = {};
             while (match = regexList.exec(body)) {
