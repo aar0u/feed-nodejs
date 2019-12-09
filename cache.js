@@ -54,7 +54,7 @@ module.exports = (app) => {
             let v = await contentCache.get(key);
             if (!v) {
                 v = await getValueFunc();
-                contentCache.set(key, v, maxAge);
+                app.locals.contentCache.set(key, v, maxAge);
             } else {
                 let parsed;
                 try {

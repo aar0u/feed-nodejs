@@ -51,7 +51,8 @@ async function generate(data) {
             title: obj.title,
             link: obj.link,
             date: obj.date ? obj.date : new Date(obj.pubDate),
-            description: obj.description
+            description: obj.description,
+            author: [{ name: obj.author }]
         });
     }
 
