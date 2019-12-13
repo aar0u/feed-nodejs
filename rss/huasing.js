@@ -35,7 +35,8 @@ module.exports = async (ctx) => {
 
             let description = '';
             while (contentMatch = contentRegex.exec(content)) {
-                description += `${contentMatch[1]}: ${contentMatch[2]} | ${contentMatch[3]}<hr>`;
+                description += `- ${contentMatch[1]}:<br>${contentMatch[2]} | ${contentMatch[3]}<br>
+                ------------------------------------------------------------------------<br>`;
             }
 
             items.push({
