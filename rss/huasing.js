@@ -5,7 +5,7 @@ var iconv = require('iconv-lite');
 const title = '华新';
 const url = 'http://bbs.huasing.org/sForum/zsbbs.php';
 const regex = /<div id="s-(.+?)".+?iv>(.+?)<\/(.+?\n){6}.+?,(.+?),(.*?\n){2}(.+?),/g;
-const contentRegex = /详细资料">(.+?)<\/.*?发表：(.+?:.{5}).*?subj-.+?>(.+?)<\/.+?fullc-">(.*)<\/div.+?ft12">/gs
+const contentRegex = /详细资料">(.+?)<\/.*?发表：(.+?:.{5}).*?subj-.+?>(.+?)<\/.+?fullc-">(.*?)<\/div><div class="mediate ft12">/gs
 const size = 20;
 
 module.exports = async (ctx) => {
