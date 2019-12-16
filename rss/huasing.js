@@ -22,8 +22,11 @@ module.exports = async (ctx) => {
         let list = iconv.decode(response.body, 'GBK');
 
         let items = [];
-        for (let i = 0; i < size; i++) {
-            match = regex.exec(list);
+        while (match = regex.exec(list)) {
+            if (match[2].indexOf('[置顶]') !== -1) {
+                continue;
+            }
+
             let link = `http://bbs.huasing.org/sForum/bbs.php?B=${match[1].replace('-', '_')}`;
             let content = await ctx.cache.tryGet(link, async () => {
                 let buf = await got(link, {
@@ -34,18 +37,24 @@ module.exports = async (ctx) => {
             });
 
             let description = '';
+            let commentTime;
             while (contentMatch = contentRegex.exec(content)) {
-                description += `- ${contentMatch[2]}@${contentMatch[1]}:<br>${contentMatch[3]} | ${contentMatch[4]}<br>
+                commentTime = contentMatch[2];
+                description += `- ${commentTime}@${contentMatch[1]}:<br>${contentMatch[3]} | ${contentMatch[4]}<br>
                 ----------------------------------<br>`;
             }
 
             items.push({
                 title: match[2],
                 link,
-                date: new Date(match[6]),
+                date: new Date(commentTime),
                 description,
                 author: match[4]
             });
+
+            if (items.length === size) {
+                break;
+            }
         }
 
         return {
