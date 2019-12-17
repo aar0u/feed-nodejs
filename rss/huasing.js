@@ -1,11 +1,13 @@
 const { promisify } = require('util');
 const got = require('got');
-var iconv = require('iconv-lite');
+const iconv = require('iconv-lite');
 
-const title = '华新';
+const title = '华新 - 华新鲜事';
 const url = 'http://bbs.huasing.org/sForum/zsbbs.php';
 const regex = /<div id="s-(.+?)".+?iv>(.+?)<\/(.+?\n){6}.+?,(.+?),(.*?\n){2}(.+?),/g;
-const contentRegex = /详细资料">(.+?)<\/.*?发表：(.+?:.{5}).*?subj-.+?>(.+?)<\/.+?fullc-">(.*?)<\/div><div class="mediate ft12">/gs
+// match for http://bbs.huasing.org/sForum/bbs.php?B=
+// const contentRegex = /详细资料">(.+?)<\/.*?发表：(.+?:.{5}).*?subj-.+?>(.+?)<\/.+?fullc-">(.*?)<\/div><div class="mediate ft12">/gs
+const contentRegex = /zt\(\d+,(\d+),\d+,(\d+),'(.*?)',(\d+),'(.+?)'/gs
 const size = 20;
 
 module.exports = async (ctx) => {
@@ -15,20 +17,21 @@ module.exports = async (ctx) => {
         const setCookie = promisify(cookieJar.setCookie.bind(cookieJar));
         await setCookie('PHPSESSID=2a837c65baba27b4efcc833825be3bdf; PHPTYPE=A; PHPTIMEOUT=1575877130; SIGNATURE=8f502031a869ae59e152113daa6d5dc0', 'https://bbs.huasing.org');
 
-        let response = await got(url, {
+        const response = await got(url, {
             cookieJar,
             encoding: 'binary'
         });
-        let list = iconv.decode(response.body, 'GBK');
+        const list = iconv.decode(response.body, 'GBK');
 
-        let items = [];
+        const items = [];
         while (match = regex.exec(list)) {
             if (match[2].indexOf('[置顶]') !== -1) {
                 continue;
             }
 
-            let link = `http://bbs.huasing.org/sForum/bbs.php?B=${match[1].replace('-', '_')}`;
-            let content = await ctx.cache.tryGet(link, async () => {
+            const boardId = match[1].slice(0, match[1].indexOf('-'));
+            const link = `http://bbs.huasing.org/sForum/ztree.php?B=${match[1].replace('-', '_')}`;
+            const content = await ctx.cache.tryGet(link, async () => {
                 let buf = await got(link, {
                     cookieJar,
                     encoding: 'binary'
@@ -36,18 +39,40 @@ module.exports = async (ctx) => {
                 return iconv.decode(buf.body, 'GBK');
             });
 
-            let description = '';
-            let commentTime;
+            const commentList = [];
             while (contentMatch = contentRegex.exec(content)) {
-                commentTime = contentMatch[2];
-                description += `- ${commentTime}@${contentMatch[1]}:<br>${contentMatch[3]} | ${contentMatch[4]}<br>
-                ----------------------------------<br>`;
+                const id = contentMatch[1];
+                let detail = [...content.matchAll(new RegExp(`zc\\(${id},'(.+?)'`))];
+                detail = detail[0] ? detail[0][1] : '';
+
+                commentList.push({
+                    id: `${boardId}_${id}`,
+                    time: new Date(contentMatch[2] * 1000),
+                    title: contentMatch[3],
+                    userId: contentMatch[4],
+                    user: contentMatch[5],
+                    detail: detail.replace(/\u3000\u3000/g, '<br><br>')
+                });
+            }
+
+            // shift out the first element - the topic
+            const topic = commentList.shift();
+            let description = constructComment(topic);
+            let lastUpdate = topic.time;
+
+            if (commentList.length) {
+                commentList.sort((e1, e2) => e2.time > e1.time ? 1 : -1);
+                lastUpdate = commentList[0].time;
+                for (let i = 0; i < commentList.length; i++) {
+                    const element = commentList[i];
+                    description += constructComment(element);
+                }
             }
 
             items.push({
-                title: match[2],
+                title: `${match[2]} - ${lastUpdate.toLocaleString('en-US', dateOption)}`,
                 link,
-                date: new Date(commentTime),
+                date: lastUpdate,
                 description,
                 author: match[4]
             });
@@ -58,9 +83,9 @@ module.exports = async (ctx) => {
         }
 
         return {
-            title: title,
+            title,
             link: url,
-            description: '华新 - 华新鲜事',
+            description: title,
             item: items
         };
     } catch (error) {
@@ -68,4 +93,15 @@ module.exports = async (ctx) => {
         // console.log(error.response.body);
         //=> 'Internal server error ...'
     }
+}
+
+function constructComment(element) {
+    const dateOption = {
+        year: "2-digit", month: "numeric", day: "numeric",
+        hour12: false, hour: "numeric", minute: "numeric"
+    };
+    return `- <a href="http://bbs.huasing.org/sForum/bbs.php?B=${element.id}">${element.time.toLocaleString('en-US', dateOption)}</a>
+    @<a href="http://bbs.huasing.org/sForum/user.php?B=${element.userId}">${element.user}</a><br>
+    <b>${element.title}</b><br>${element.detail}<br>
+    ----------------------------------<br>`;
 }
