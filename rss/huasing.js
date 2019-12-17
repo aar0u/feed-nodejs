@@ -6,8 +6,12 @@ const title = '华新 - 华新鲜事';
 const url = 'http://bbs.huasing.org/sForum/zsbbs.php';
 const regex = /<div id="s-(.+?)".+?iv>(.+?)<\/(.+?\n){6}.+?,(.+?),(.*?\n){2}(.+?),/g;
 // match for http://bbs.huasing.org/sForum/bbs.php?B=
-// const contentRegex = /详细资料">(.+?)<\/.*?发表：(.+?:.{5}).*?subj-.+?>(.+?)<\/.+?fullc-">(.*?)<\/div><div class="mediate ft12">/gs
-const contentRegex = /zt\(\d+,(\d+),\d+,(\d+),'(.*?)',(\d+),'(.+?)'/gs
+// const contentRegex = /详细资料">(.+?)<\/.*?发表：(.+?:.{5}).*?subj-.+?>(.+?)<\/.+?fullc-">(.*?)<\/div><div class="mediate ft12">/gs;
+const contentRegex = /zt\(\d+,(\d+),\d+,(\d+),'(.*?)',(\d+),'(.+?)'/gs;
+const dateOption = {
+    year: "2-digit", month: "numeric", day: "numeric",
+    hour12: false, hour: "numeric", minute: "numeric"
+};
 const size = 20;
 
 module.exports = async (ctx) => {
@@ -96,10 +100,6 @@ module.exports = async (ctx) => {
 }
 
 function constructComment(element) {
-    const dateOption = {
-        year: "2-digit", month: "numeric", day: "numeric",
-        hour12: false, hour: "numeric", minute: "numeric"
-    };
     return `- <a href="http://bbs.huasing.org/sForum/bbs.php?B=${element.id}">${element.time.toLocaleString('en-US', dateOption)}</a>
     @<a href="http://bbs.huasing.org/sForum/user.php?B=${element.userId}">${element.user}</a><br>
     <b>${element.title}</b><br>${element.detail}<br>
