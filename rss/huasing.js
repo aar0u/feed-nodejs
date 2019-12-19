@@ -34,9 +34,9 @@ module.exports = async (ctx) => {
             }
 
             const boardId = match[1].slice(0, match[1].indexOf('-'));
-            const link = `http://bbs.huasing.org/sForum/ztree.php?B=${match[1].replace('-', '_')}`;
+            const bId = match[1].replace('-', '_');
             const content = await ctx.cache.tryGet(link, async () => {
-                let buf = await got(link, {
+                let buf = await got(`http://bbs.huasing.org/sForum/ztree.php?B=${bId}`, {
                     cookieJar,
                     encoding: 'binary'
                 });
@@ -75,7 +75,7 @@ module.exports = async (ctx) => {
 
             items.push({
                 title: `${match[2]} - ${lastUpdate.toLocaleString('en-US', dateOption)}`,
-                link,
+                link: `http://bbs.huasing.org/sForum/bbs.php?B=${bId}`,
                 date: lastUpdate,
                 description,
                 author: match[4]
