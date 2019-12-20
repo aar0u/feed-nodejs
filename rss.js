@@ -1,4 +1,4 @@
-const feed = require('feed');
+const Feed = require('feed').Feed;
 
 module.exports = async (req, res) => {
     let feedId = req.params.feedId;
@@ -27,27 +27,26 @@ module.exports = async (req, res) => {
 
     console.log(`cacheId: ${cacheId}, item: ${data.item.length}, ua: ${userAgent}, ip: ${ip}`);
 
-    let atom1 = await generate(data);
+    let rssOut = await generate(data);
     res.type('application/xml; charset=utf-8');
-    res.send(atom1);
+    res.send(rssOut);
 }
 
 async function generate(data) {
-    let feedOut = new feed({
-        generator: "awesome",
+    let feed = new Feed({
         title: data.title,
-        author: {
-            name: "qapla"
-        },
+        description: data.description,
         link: data.link,
+        author: { name: data.author },
         updated: new Date(),
-        favicon: 'favicon.ico'
+        favicon: 'favicon.ico',
+        generator: "Spotjoy"
     });
 
     for (let i = 0; i < data.item.length; i++) {
         let obj = data.item[i];
         // refers to https://www.npmjs.com/package/feed
-        feedOut.addItem({
+        feed.addItem({
             title: obj.title,
             link: obj.link,
             date: obj.date ? obj.date : new Date(obj.pubDate),
@@ -56,5 +55,5 @@ async function generate(data) {
         });
     }
 
-    return feedOut.atom1();
+    return feed.rss2();
 };

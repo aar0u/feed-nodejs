@@ -35,8 +35,9 @@ module.exports = async (ctx) => {
 
             const boardId = match[1].slice(0, match[1].indexOf('-'));
             const bId = match[1].replace('-', '_');
-            const content = await ctx.cache.tryGet(link, async () => {
-                let buf = await got(`http://bbs.huasing.org/sForum/ztree.php?B=${bId}`, {
+            const treeUrl = `http://bbs.huasing.org/sForum/ztree.php?B=${bId}`;
+            const content = await ctx.cache.tryGet(treeUrl, async () => {
+                let buf = await got(treeUrl, {
                     cookieJar,
                     encoding: 'binary'
                 });
