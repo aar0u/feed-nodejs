@@ -1,4 +1,5 @@
 const Feed = require('feed').Feed;
+const he = require('he');
 
 module.exports = async (req, res) => {
     let feedId = req.params.feedId;
@@ -50,7 +51,7 @@ async function generate(data) {
             title: obj.title,
             link: obj.link,
             date: obj.date ? obj.date : new Date(obj.pubDate),
-            description: obj.description,
+            description: obj.description && he.decode(obj.description),
             author: [{ name: obj.author }]
         });
     }
