@@ -1,7 +1,7 @@
 const got = require('got');
 
 const title = '在线之家';
-const url = 'https://www.zxzjs.com';
+const url = 'https://www.zxzj.me';
 const regex = /<a class="stui-vodlist__thumb lazyload" href="(.+?)" title="(.+?)" data-original="(.+?)".+?<span class="pic-text text-right">(.+?)<\/span><\/a>/g;
 
 module.exports = async () => {
@@ -25,9 +25,9 @@ module.exports = async () => {
         }
 
         return {
-            title: title,
+            title,
             link: url,
-            description: '',
+            description: title,
             item: items
         };
     } catch (error) {
