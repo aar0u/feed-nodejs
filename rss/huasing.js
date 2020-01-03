@@ -66,7 +66,7 @@ module.exports = async (ctx) => {
             let lastUpdate = topic.time;
 
             if (commentList.length) {
-                commentList.sort((e1, e2) => e2.time > e1.time ? 1 : -1);
+                commentList.sort((e1, e2) => e2.time < e1.time ? 1 : -1);
                 lastUpdate = commentList[0].time;
                 for (let i = 0; i < commentList.length; i++) {
                     const element = commentList[i];
