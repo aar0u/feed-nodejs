@@ -116,8 +116,8 @@ module.exports = async (ctx) => {
 
 function constructComment(element) {
     const link = `http://bbs.huasing.org/sForum/bbs.php?B=${element.id}`;
-    return `<p><font face="Microsoft Yahei"><b><font size="3"><a href="${link}">${element.title}</a></font></b><br>
-    <font size="1">- <a href="http://bbs.huasing.org/sForum/user.php?B=${element.userId}">${element.user}</a>
-    @ ${element.time.toLocaleString('en-US', dateOption)}</font><br>
-    ${element.detail.replace('(more...)',`(<a href="${link}">more...</a>)`)}</font></p>`;
+    return `<p><b><a href="${link}">${element.title}</a></b><br>
+    - <a href="http://bbs.huasing.org/sForum/user.php?B=${element.userId}">${element.user}</a>
+    @ ${element.time.toLocaleString('en-US', dateOption)}<br>
+    ${element.detail.replace('(more...)',`(<a href="${link}">more...</a>)`)}<hr></p>`;
 }
