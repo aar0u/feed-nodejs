@@ -10,6 +10,10 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
+// art-template with express https://aui.github.io/art-template/express/
+app.engine('art', require('express-art-template'));
+app.set('view engine', 'art');
+
 app.get('/', function (req, res) {
     dummy_rows = [{
         name: 'Searching',
@@ -27,7 +31,7 @@ app.get('/', function (req, res) {
         code: '203 160 147 221 66 185 25 239 141 28 233 73 73 128 55 29'
     }];
 
-    res.render('pages/index', { rows: dummy_rows });
+    res.render('pages/index.ejs', { rows: dummy_rows });
 });
 
 var shaw = require('./shaw');

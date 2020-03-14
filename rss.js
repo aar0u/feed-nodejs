@@ -28,9 +28,20 @@ module.exports = async (req, res) => {
 
     console.log(`cacheId: ${cacheId}, item: ${data.item.length}, ua: ${userAgent}, ip: ${ip}`);
 
-    let rssOut = await generate(data);
-    res.type('application/xml; charset=utf-8');
-    res.send(rssOut);
+    // render by https://www.npmjs.com/package/feed
+    // let rssOut = await generate(data);
+    // res.type('application/xml; charset=utf-8');
+    // res.send(rssOut);
+
+    // render by template
+    const feed = {
+        lastBuildDate: new Date().toUTCString(),
+        updated: new Date().toISOString(),
+        ttl: 60, //mins
+        atomlink: data.link,
+        ...data,
+    };
+    res.render('rss.art', feed);
 }
 
 async function generate(data) {

@@ -78,7 +78,48 @@ module.exports = async (ctx) => {
                 title: `${match[2]} - ${lastUpdate.toLocaleString('en-US', dateOption)}`,
                 link: `http://bbs.huasing.org/sForum/bbs.php?B=${bId}`,
                 date: lastUpdate,
-                description,
+                description: `<style>
+                p {
+                    margin: 0;
+                  }
+                  
+                  a {
+                    color: #006bb8;
+                    text-decoration: none;
+                  }
+                  
+                  a:hover {
+                    text-decoration: underline;
+                  }
+                  
+                  .entry-wrapper {
+                    background: #e7e7e7;
+                    border: 3px solid #f1f1f1;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-family: "Microsoft Yahei",Tahoma, Helvetica, Arial;
+                    margin: .25em;
+                    padding: 10px;
+                    width: 90%;
+                  }
+                  
+                  .entry-wrapper:hover {
+                    border: 3px solid #f4f4f4;
+                    background: #edfdff;
+                  }
+                  
+                  .entry-title a {
+                    color: #333;
+                    font-size: 1.5em;
+                    font-weight: bold;
+                  }
+                  
+                  .entry-date {
+                    color: #999;
+                    padding-bottom: .75em;
+                    font-size: .75em;
+                  }
+                </style>${description}`,
                 author: match[4]
             });
 
@@ -102,8 +143,8 @@ module.exports = async (ctx) => {
 
 function constructComment(element) {
     const link = `http://bbs.huasing.org/sForum/bbs.php?B=${element.id}`;
-    return `- <a href="${link}">${element.time.toLocaleString('en-US', dateOption)}</a>
-    @<a href="http://bbs.huasing.org/sForum/user.php?B=${element.userId}">${element.user}</a><br>
-    <b>${element.title}</b><br>${element.detail.replace('(more...)',`(<a href="${link}">more...</a>)`)}<br>
-    ----------------------------------<br>`;
+    return `<div class="entry-wrapper"><p class="entry-title"><a href="${link}">${element.title}</a></p>
+    <p class="entry-date">- <a href="http://bbs.huasing.org/sForum/user.php?B=${element.userId}">${element.user}</a>
+    @ ${element.time.toLocaleString('en-US', dateOption)}</p>
+    ${element.detail.replace('(more...)',`(<a href="${link}">more...</a>)`)}</div>`;
 }
