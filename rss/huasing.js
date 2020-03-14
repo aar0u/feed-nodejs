@@ -2,10 +2,8 @@ const { promisify } = require('util');
 const got = require('got');
 const iconv = require('iconv-lite');
 
-const title = '华新 - 华新鲜事';
-const url = 'http://bbs.huasing.org/sForum/zsbbs.php';
 const regex = /<div id="s-(.+?)".+?iv>(.+?)<\/(.+?\n){6}.+?,(.+?),(.*?\n){2}(.+?),/g;
-// match for http://bbs.huasing.org/sForum/bbs.php?B=
+// match for http://bbs.huasing.org/sForum/bbs.php?B= for content
 // const contentRegex = /详细资料">(.+?)<\/.*?发表：(.+?:.{5}).*?subj-.+?>(.+?)<\/.+?fullc-">(.*?)<\/div><div class="mediate ft12">/gs;
 const contentRegex = /zt\(\d+,(\d+),\d+,(\d+),'(.*?)',(\d+),'(.+?)'/gs;
 const dateOption = {
@@ -16,6 +14,19 @@ const size = 20;
 
 module.exports = async (ctx) => {
     try {
+        console.log('request bId', ctx.params);
+
+        let info = '华新鲜事';
+        let url = 'http://bbs.huasing.org/sForum/zsbbs.php';
+
+        if (ctx.params) {
+            url = 'http://bbs.huasing.org/sForum/bbs.php?B=' + ctx.params;
+            info = ctx.params;
+        }
+        if (179 == ctx.params) {
+            info = '家有儿女';
+        }
+        
         const { CookieJar } = require('tough-cookie');
         const cookieJar = new CookieJar();
         const setCookie = promisify(cookieJar.setCookie.bind(cookieJar));
@@ -67,7 +78,7 @@ module.exports = async (ctx) => {
 
             if (commentList.length) {
                 commentList.sort((e1, e2) => e2.time < e1.time ? 1 : -1);
-                lastUpdate = commentList[0].time;
+                lastUpdate = commentList[commentList.length - 1].time;
                 for (let i = 0; i < commentList.length; i++) {
                     const element = commentList[i];
                     description += constructComment(element);
@@ -129,9 +140,9 @@ module.exports = async (ctx) => {
         }
 
         return {
-            title,
+            title: `华新 - ${info}`,
             link: url,
-            description: title,
+            description: `华新 - ${info}`,
             item: items
         };
     } catch (error) {
