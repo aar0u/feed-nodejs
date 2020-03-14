@@ -92,48 +92,7 @@ module.exports = async (ctx) => {
                 title: `${match[2]} - ${lastUpdate.toLocaleString('en-US', dateOption)}`,
                 link: `http://bbs.huasing.org/sForum/bbs.php?B=${bId}`,
                 date: lastUpdate,
-                description: `<style>
-                p {
-                    margin: 0;
-                  }
-                  
-                  a {
-                    color: #006bb8;
-                    text-decoration: none;
-                  }
-                  
-                  a:hover {
-                    text-decoration: underline;
-                  }
-                  
-                  .entry-wrapper {
-                    background: #e7e7e7;
-                    border: 3px solid #f1f1f1;
-                    border-radius: 5px;
-                    display: inline-block;
-                    font-family: "Microsoft Yahei",Tahoma, Helvetica, Arial;
-                    margin: .25em;
-                    padding: 10px;
-                    width: 90%;
-                  }
-                  
-                  .entry-wrapper:hover {
-                    border: 3px solid #f4f4f4;
-                    background: #edfdff;
-                  }
-                  
-                  .entry-title a {
-                    color: #333;
-                    font-size: 1.5em;
-                    font-weight: bold;
-                  }
-                  
-                  .entry-date {
-                    color: #999;
-                    padding-bottom: .75em;
-                    font-size: .75em;
-                  }
-                </style>${description}`,
+                description,
                 author: match[4]
             });
 
@@ -157,9 +116,8 @@ module.exports = async (ctx) => {
 
 function constructComment(element) {
     const link = `http://bbs.huasing.org/sForum/bbs.php?B=${element.id}`;
-    return `<p class="entry-wrapper"><a href="${link}" style="color: #333; font-size: 1.5em; font-weight: bold;">${element.title}</a><br>
-    <span style="color: #999; padding-bottom: .75em; font-size: .75em;">
-    - <a href="http://bbs.huasing.org/sForum/user.php?B=${element.userId}">${element.user}</a>
-    @ ${element.time.toLocaleString('en-US', dateOption)}</span><br>
-    ${element.detail.replace('(more...)',`(<a href="${link}">more...</a>)`)}</p>`;
+    return `<p><font face="Microsoft Yahei"><b><font size="3"><a href="${link}">${element.title}</a></font></b><br>
+    <font size="1">- <a href="http://bbs.huasing.org/sForum/user.php?B=${element.userId}">${element.user}</a>
+    @ ${element.time.toLocaleString('en-US', dateOption)}</font><br>
+    ${element.detail.replace('(more...)',`(<a href="${link}">more...</a>)`)}</font></p>`;
 }
