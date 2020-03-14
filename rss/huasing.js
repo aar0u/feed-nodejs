@@ -26,6 +26,9 @@ module.exports = async (ctx) => {
         if (179 == ctx.params) {
             info = '家有儿女';
         }
+        if (172 == ctx.params) {
+            info = '房产车市';
+        }
         
         const { CookieJar } = require('tough-cookie');
         const cookieJar = new CookieJar();
@@ -154,8 +157,9 @@ module.exports = async (ctx) => {
 
 function constructComment(element) {
     const link = `http://bbs.huasing.org/sForum/bbs.php?B=${element.id}`;
-    return `<div class="entry-wrapper"><p class="entry-title"><a href="${link}">${element.title}</a></p>
-    <p class="entry-date">- <a href="http://bbs.huasing.org/sForum/user.php?B=${element.userId}">${element.user}</a>
-    @ ${element.time.toLocaleString('en-US', dateOption)}</p>
-    ${element.detail.replace('(more...)',`(<a href="${link}">more...</a>)`)}</div>`;
+    return `<p class="entry-wrapper"><a href="${link}" style="color: #333; font-size: 1.5em; font-weight: bold;">${element.title}</a><br>
+    <span style="color: #999; padding-bottom: .75em; font-size: .75em;">
+    - <a href="http://bbs.huasing.org/sForum/user.php?B=${element.userId}">${element.user}</a>
+    @ ${element.time.toLocaleString('en-US', dateOption)}</span><br>
+    ${element.detail.replace('(more...)',`(<a href="${link}">more...</a>)`)}</p>`;
 }
