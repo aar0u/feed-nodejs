@@ -61,7 +61,7 @@ module.exports = async (ctx) => {
             const commentList = [];
             while (contentMatch = contentRegex.exec(content)) {
                 const id = contentMatch[1];
-                let detail = [...content.matchAll(new RegExp(`zc\\(${id},'(.+?)'`))];
+                let detail = [...content.matchAll(`/zc\\(${id},'(.+?)/g'`)];
                 detail = detail[0] ? detail[0][1] : '';
 
                 commentList.push({
