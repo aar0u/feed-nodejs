@@ -61,7 +61,8 @@ module.exports = async (ctx) => {
             const commentList = [];
             while (contentMatch = contentRegex.exec(content)) {
                 const id = contentMatch[1];
-                let detail = [...content.matchAll(`/zc\\(${id},'(.+?)/g'`)];
+                const commentRegex = new RegExp(`zc\\(${id},'((.|\\n)+?)'\\);`, 'g'); 
+                let detail = [...content.matchAll(commentRegex)];
                 detail = detail[0] ? detail[0][1] : '';
 
                 commentList.push({
@@ -90,7 +91,7 @@ module.exports = async (ctx) => {
 
             items.push({
                 title: `${match[2]} - ${lastUpdate.toLocaleString('en-US', dateOption)}`,
-                link: `http://bbs.huasing.org/sForum/bbs.php?B=${bId}`,
+                link: `http://bbs.huasing.org/wap/xbbs.php?B=${bId}`,
                 date: lastUpdate,
                 description,
                 author: match[4]
@@ -115,7 +116,7 @@ module.exports = async (ctx) => {
 }
 
 function constructComment(element) {
-    const link = `http://bbs.huasing.org/sForum/bbs.php?B=${element.id}`;
+    const link = `http://bbs.huasing.org/wap/xbbs.php?B=${element.id}`;
     return `<p><b><a href="${link}">${element.title}</a></b><br>
     - <a href="http://bbs.huasing.org/sForum/user.php?B=${element.userId}">${element.user}</a>
     @ ${element.time.toLocaleString('en-US', dateOption)}<br>
