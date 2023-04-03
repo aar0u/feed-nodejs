@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Timer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 50px;
+    }
+
+    input[type=number] {
+      width: 100px;
+      padding: 10px;
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:disabled {
+      opacity: 0.5; /* reduce opacity for disabled button */
+      cursor: not-allowed; /* set cursor to not-allowed for disabled button */
+    }
+
+    #countdown {
+      font-size: 48px;
+      margin-top: 50px;
+    }
+
+    #message {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Timer</h1>
+  <label for="countdown-time">Enter countdown time (in minutes):</label>
+  <br>
+  <input type="number" id="countdown-time" name="countdown-time" min="1" max="3600" step="1">
+  <br>
+  <button id="start-button">Start</button>
+  <button id="stop-button" disabled>Stop</button>
+  <br>
+  <div id="countdown"></div>
+  <div id="message"></div>
+
+  <script>
+    let countdownInterval;
+    let audioCtx;
+    let oscillator;
+    const startButton = document.getElementById("start-button");
+    const stopButton = document.getElementById("stop-button");
+
+    startButton.addEventListener("click", startCountdown);
+    stopButton.addEventListener("click", stopTimer);
+
+    function startCountdown() {
+      const countdownTime = 60 * document.getElementById("countdown-time").value;
+
+      if (!countdownTime) {
+        document.getElementById("message").innerHTML = "Please enter a countdown time.";
+        return;
+      }
+
+      const countdownElement = document.getElementById("countdown");
+      const messageElement = document.getElementById("message");
+      let remainingTime = countdownTime;
+
+      startButton.disabled = true;
+      stopButton.disabled = false;
+
+      countdownInterval = setInterval(() => {
+        remainingTime--;
+
+        if (remainingTime === 0) {
+          clearInterval(countdownInterval);
+          countdownElement.innerHTML = "Time's up!";
+          messageElement.innerHTML = "";
+          playSound();
+          showNotification("Time's up!");
+        } else {
+          const minutes = Math.floor(remainingTime / 60);
+          const seconds = remainingTime % 60;
+          countdownElement.innerHTML = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+          messageElement.innerHTML = "";
+        }
+      }, 1000);
+    }
+
+    function playSound() {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      oscillator = audioCtx.createOscillator();
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(440, audioCtx.currentTime);
+      oscillator.connect(audioCtx.destination);
+      oscillator.start();
+    }
+
+    function stopSound() {
+      if (oscillator) {
+        oscillator.stop();
+        oscillator.disconnect();
+        audioCtx.close();
+      }
+    }
+
+    function stopTimer() {
+      clearInterval(countdownInterval);
+      document.getElementById("countdown").innerHTML = "";
+      document.getElementById("message").innerHTML = "";
+      stopSound();
+      startButton.disabled = false;
+      stopButton.disabled = true;
+    }
+
+    function showNotification(text) {
+      if (!("Notification" in window)) {
+        alert("This browser does not support desktop notification");
+      } else if (Notification.permission === "granted") {
+        new Notification(text);
+      } else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then(function (permission) {
+          if (permission === "granted") {
+            new Notification(text);
+          }
+        });
+      }
+    }
+  </script>
+</body>
+</html>
