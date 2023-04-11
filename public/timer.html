@@ -53,7 +53,7 @@
   <h1>Timer</h1>
   <label for="countdown-time">Enter countdown time (in minutes):</label>
   <br>
-  <input type="number" id="countdown-time" name="countdown-time" min="1" max="3600" step="1">
+  <input type="number" id="countdown-time" name="countdown-time" min="1" max="3600" step="1" value="1" autofocus>
   <br>
   <button id="start-button">Start</button>
   <button id="stop-button" disabled>Stop</button>
@@ -71,6 +71,16 @@
     startButton.addEventListener("click", startCountdown);
     stopButton.addEventListener("click", stopTimer);
 
+    document.addEventListener("keydown", function(event) {
+      if (event.code === "Space") {
+        if (startButton.disabled) {
+          stopTimer();
+        } else {
+          startCountdown();
+        }
+      }
+    });
+
     function startCountdown() {
       const countdownTime = 60 * document.getElementById("countdown-time").value;
 
@@ -79,9 +89,8 @@
         return;
       }
 
-      const countdownElement = document.getElementById("countdown");
-      const messageElement = document.getElementById("message");
       let remainingTime = countdownTime;
+      let remainingText;
 
       startButton.disabled = true;
       stopButton.disabled = false;
@@ -91,16 +100,17 @@
 
         if (remainingTime === 0) {
           clearInterval(countdownInterval);
-          countdownElement.innerHTML = "Time's up!";
-          messageElement.innerHTML = "";
+          remainingText = "Time's up!";
           playSound();
           showNotification("Time's up!");
         } else {
           const minutes = Math.floor(remainingTime / 60);
           const seconds = remainingTime % 60;
-          countdownElement.innerHTML = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-          messageElement.innerHTML = "";
+          remainingText = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
         }
+        document.title = remainingText;
+        document.getElementById("countdown").innerHTML = remainingText;
+        document.getElementById("message").innerHTML = "";
       }, 1000);
     }
 
@@ -123,6 +133,7 @@
 
     function stopTimer() {
       clearInterval(countdownInterval);
+      document.title = "Timer";
       document.getElementById("countdown").innerHTML = "";
       document.getElementById("message").innerHTML = "";
       stopSound();
