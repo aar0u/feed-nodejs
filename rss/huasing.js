@@ -1,6 +1,7 @@
-const { promisify } = require('util');
-const got = require('got');
-const iconv = require('iconv-lite');
+import { promisify } from 'util';
+import got from 'got';
+import iconv from 'iconv-lite';
+import { CookieJar } from 'tough-cookie';
 
 const regex = /<div id="s-(.+?)".+?iv>(.+?)<\/(.+?\n){6}.+?,(.+?),(.*?\n){2}(.+?),/g;
 // match for http://bbs.huasing.org/sForum/bbs.php?B= for content
@@ -12,7 +13,7 @@ const dateOption = {
 };
 const size = 20;
 
-module.exports = async (ctx) => {
+export default async function(ctx) {
     try {
         console.log('request bId', ctx.params);
 
@@ -30,19 +31,19 @@ module.exports = async (ctx) => {
             info = '房产车市';
         }
         
-        const { CookieJar } = require('tough-cookie');
         const cookieJar = new CookieJar();
         const setCookie = promisify(cookieJar.setCookie.bind(cookieJar));
         await setCookie('PHPSESSID=2a837c65baba27b4efcc833825be3bdf; PHPTYPE=A; PHPTIMEOUT=1575877130; SIGNATURE=8f502031a869ae59e152113daa6d5dc0', 'https://bbs.huasing.org');
 
         const response = await got(url, {
             cookieJar,
-            encoding: 'binary'
+            responseType: 'buffer'
         });
         const list = iconv.decode(response.body, 'GBK');
 
         const items = [];
-        while (match = regex.exec(list)) {
+        let match;
+        while ((match = regex.exec(list))) {
             if (match[2].indexOf('[置顶]') !== -1) {
                 continue;
             }
@@ -53,13 +54,14 @@ module.exports = async (ctx) => {
             const content = await ctx.cache.tryGet(treeUrl, async () => {
                 let buf = await got(treeUrl, {
                     cookieJar,
-                    encoding: 'binary'
+                    responseType: 'buffer'
                 });
                 return iconv.decode(buf.body, 'GBK');
             });
 
             const commentList = [];
-            while (contentMatch = contentRegex.exec(content)) {
+            let contentMatch;
+            while ((contentMatch = contentRegex.exec(content))) {
                 const id = contentMatch[1];
                 const commentRegex = new RegExp(`zc\\(${id},'((.|\\n)+?)'\\);`, 'g'); 
                 let detail = [...content.matchAll(commentRegex)];

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <% include ../partials/header.ejs %>
+    <%- include('../partials/header.ejs') %>
 </head>
 <body>
-<% include ../partials/nav.ejs %>
+<%- include('../partials/nav.ejs') %>
 <table class="pure-table">
     <thead>
     <tr>
@@ -17,18 +17,11 @@
     <% rows.forEach(function(row){ %>
     <tr>
         <td><a target="_blank" href="http://shaw.sg/sw_moviedetails.aspx?filmCode=<%= row.code %>"><%= row.name %></a></td>
-        <% var color;
-            if (row.score >= 7)
-                color = 'rgb(28, 184, 65)';
-            else if (row.score >= 6)
-                color = 'rgb(66, 184, 221)';
-            else if (row.score >= 5)
-                color = 'rgb(223, 117, 20)';
-            else if (row.score < 5)
-                color = 'rgb(202, 60, 60)';
-        %>
-        <td><%= row.name_cn %> <a class="pure-button" target="_blank" href="<%= row.url %>"
-                                  style="padding: 0em .5em; background: <%= color %>"><%= row.score %></a></td>
+        <td><%= row.name_cn %> 
+            <a class="pure-button <%= row.score >= 7 ? 'score-high' : row.score >= 6 ? 'score-good' : row.score >= 5 ? 'score-medium' : 'score-low' %>" 
+               target="_blank" 
+               href="<%= row.url %>"><%= row.score %></a>
+        </td>
         <td><%= new Date(row.updated).toLocaleString('en-US', {timeZone: 'Asia/Singapore'}) %></td>
     </tr>
     <% }); %>

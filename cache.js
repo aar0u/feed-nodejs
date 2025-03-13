@@ -1,9 +1,9 @@
-const LRU = require('lru-cache');
+import LRU from 'lru-cache';
 
 const listCacheSec = 60;
 const contentCacheSec = 24 * 60;
 
-module.exports = (app) => {
+export default function (app) {
     const listCache = new LRU({
         maxAge: listCacheSec * 60 * 1000,
         max: 100,

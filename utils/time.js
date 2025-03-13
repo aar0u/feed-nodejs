@@ -1,10 +1,6 @@
-exports.local = function (dateStr) {
-    var date;
-    if (dateStr) {
-        date = new Date(dateStr);
-    } else {
-        date = new Date();
-    }
+export const local = (dateStr) => {
+    const date = dateStr ? new Date(dateStr) : new Date();
+    
     return date.toLocaleString('en-US', {
         timeZone: 'Asia/Singapore',
         year: 'numeric',

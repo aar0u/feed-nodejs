@@ -1,26 +1,40 @@
-const Feed = require('feed').Feed;
-const he = require('he');
+import { Feed } from 'feed';
+import he from 'he';
 
-module.exports = async (req, res) => {
+export default async function(req, res) {
     let feedId = req.params.feedId;
     let cacheId = feedId + '_' + (req.params.params || '');
 
     let data = req.app.locals.listCache.get(cacheId);
     if (!data) {
         console.log(`${feedId}: Getting from remote`);
+        try {
+            //fake ctx to use rsshub source
+            let ctx = {
+                state: { data: null }, params: req.params.params,
+                cache: req.app.locals.contentCache
+            };
 
-        //fake ctx to use rsshub source
-        let ctx = {
-            state: { data: null }, params: req.params.params,
-            cache: req.app.locals.contentCache
-        };
+            let module;
+            try {
+                module = await import('./rss/' + feedId + '.js');
+            } catch (error) {
+                console.log(`未找到 ${feedId}.js (${ error.message})，尝试加载 ${feedId}.ts`);
+                module = await import('./rss/' + feedId + '.ts');
+            }
+            data = await module.default(ctx);
+            if (ctx.state.data) {
+                data = ctx.state.data;
+            }
 
-        data = await require('./rss/' + feedId)(ctx);
-        if (ctx.state.data) {
-            data = ctx.state.data;
+            req.app.locals.listCache.set(cacheId, data);
+        } catch (error) {
+            console.error(`处理 ${feedId} 时发生错误:`, error);
+            return res.status(500).json({
+                error: '获取数据失败',
+                message: error.message
+            });
         }
-
-        req.app.locals.listCache.set(cacheId, data);
     }
 
     let userAgent = req.headers['user-agent'];

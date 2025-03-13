@@ -1,11 +1,11 @@
-const { parseList } = require('./zaobao/util');
-const baseUrl = 'https://www.zaobao.com';
+import { parseList } from './zaobao/util.js';
+const baseUrl = 'https://www.zaobao.com.sg';
 
-module.exports = async (ctx) => {
+export default async (ctx) => {
     const section = ctx.params;
 
     let info = '中国';
-    let sectionLink = '/news/china';
+    let sectionLink = '/';
 
     if (section === 'singapore') {
         info = '新加坡';

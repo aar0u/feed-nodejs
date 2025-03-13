@@ -1,4 +1,4 @@
-const got = require('got');
+import got from 'got';
 
 const custom = got.extend({
     hooks: {
@@ -15,6 +15,7 @@ const custom = got.extend({
         ]
     }
 });
+
 custom.all = (list) => Promise.all(list);
 
-module.exports = custom;
+export default custom;
