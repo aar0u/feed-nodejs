@@ -71,7 +71,7 @@ export default async (ctx) => {
                     }
                     description = `<div class="article-media">${mediaHtml}</div>` + description;
                 } else if (imgSrc) {
-                    description = `<p><img src="${imgSrc}"/></p>` + description;
+                    description = `<img src="${imgSrc}"/>` + description;
                 }
                 
                 // 处理时间格式
@@ -88,7 +88,7 @@ export default async (ctx) => {
                     link,
                     description: description || '暂无内容',
                     pubDate: pubDate.toUTCString(),
-                    category: categories,  // 所有标签都放在 category 中
+                    category: categories,
                 };
             } catch (error) {
                 console.log('Error fetching article:', link, error.message);
