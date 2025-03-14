@@ -1,8 +1,8 @@
-const got = require('@/utils/got');
-const cheerio = require('cheerio');
-const date = require('@/utils/date');
+import got from '../utils/got.js';
+import * as cheerio from 'cheerio';
+import date from '.../utils/date.js';
 
-module.exports = async (ctx) => {
+export default async (ctx) => {
     const id = ctx.params;
 
     const response = await got.get(`https://v2.sohu.com/author-page-api/author-articles/pc/${id}`);

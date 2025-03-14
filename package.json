@@ -5,14 +5,14 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "tsx watch index.js",
-    "build": "tsx --build index.js --outDir dist"
+    "copy-assets": "copyfiles -u 0 \"views/**/*\" \"public/**/*\" dist/",
+    "esbuild": "node build.js && npm run copy-assets",
+    "tsc": "tsc && npm run copy-assets"
   },
   "dependencies": {
-    "art-template": "^4.1.0",
     "cheerio": "^1.0.0-rc.3",
-    "ejs": "^3.1.10",
     "express": "^4.17.1",
-    "express-art-template": "^1.0.1",
+    "ejs": "^3.1.10",
     "feed": "^4.0.0",
     "got": "^14.4.6",
     "he": "^1.2.0",
@@ -22,7 +22,12 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "tsx": "^4.19.3"
+    "@types/node": "^22.13.10",
+    "copyfiles": "^2.4.1",
+    "esbuild": "^0.25.1",
+    "glob": "^11.0.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
   },
   "type": "module"
 }

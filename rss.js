@@ -8,33 +8,34 @@ export default async function(req, res) {
     let data = req.app.locals.listCache.get(cacheId);
     if (!data) {
         console.log(`${feedId}: Getting from remote`);
+        //fake ctx to use rsshub source
+        let ctx = {
+            state: { data: null }, params: req.params.params,
+            cache: req.app.locals.contentCache
+        };
+
+        let module;
         try {
-            //fake ctx to use rsshub source
-            let ctx = {
-                state: { data: null }, params: req.params.params,
-                cache: req.app.locals.contentCache
-            };
-
-            let module;
+            module = await import('./rss/' + feedId + '.js');
+        } catch (jsError) {
+            console.log(`${feedId}.js error: (${jsError.message})，尝试加载 ${feedId}.ts`);
             try {
-                module = await import('./rss/' + feedId + '.js');
-            } catch (error) {
-                console.log(`未找到 ${feedId}.js (${ error.message})，尝试加载 ${feedId}.ts`);
                 module = await import('./rss/' + feedId + '.ts');
+            } catch (tsError) {
+                return res.status(404).json({
+                    error: '获取数据失败',
+                    jsError: jsError.message,
+                    tsError: tsError.message
+                });
             }
-            data = await module.default(ctx);
-            if (ctx.state.data) {
-                data = ctx.state.data;
-            }
-
-            req.app.locals.listCache.set(cacheId, data);
-        } catch (error) {
-            console.error(`处理 ${feedId} 时发生错误:`, error);
-            return res.status(500).json({
-                error: '获取数据失败',
-                message: error.message
-            });
         }
+        
+        data = await module.default(ctx);
+        if (ctx.state.data) {
+            data = ctx.state.data;
+        }
+
+        req.app.locals.listCache.set(cacheId, data);
     }
 
     let userAgent = req.headers['user-agent'];
@@ -53,9 +54,10 @@ export default async function(req, res) {
         updated: new Date().toISOString(),
         ttl: 60, //mins
         atomlink: data.link,
+        language: 'zh-cn',  // 添加默认语言
         ...data,
     };
-    res.render('rss.art', feed);
+    res.render('rss.ejs', feed);
 }
 
 async function generate(data) {

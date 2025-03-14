@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[<%= locals.title || '' %>]]></title>
+        <link><%= locals.link || '' %></link>
+        <atom:link href="<%= locals.atomlink || '' %>" rel="self" type="application/rss+xml" />
+        <description><![CDATA[<%= locals.description || locals.title || '' %>]]></description>
+        <generator></generator>
+        <webMaster></webMaster>
+        <language><%= locals.language || 'zh-cn' %></language>
+        
+        <% if (locals.image) { %>
+        <image>
+            <url><%= locals.image %></url>
+            <title><![CDATA[<%= locals.title || '' %>]]></title>
+            <link><%= locals.link || '' %></link>
+        </image>
+        <% } %>
+        
+        <lastBuildDate><%= locals.lastBuildDate || new Date().toUTCString() %></lastBuildDate>
+        <ttl><%= locals.ttl || 60 %></ttl>
+        
+        <% if (locals.item && Array.isArray(locals.item)) { %>
+        <% locals.item.forEach(function(value) { %>
+        <item>
+            <title><![CDATA[<%= value.title || '' %>]]></title>
+            <description><![CDATA[<%= value.description || value.title || '' %>]]></description>
+            <% if (value.pubDate) { %><pubDate><%= value.pubDate %></pubDate><% } %>
+            <guid isPermaLink="false"><%= value.guid || value.link || value.title || '' %></guid>
+            <link><%= value.link || '' %></link>
+            <% if (value.itunes_item_image) { %><itunes:image href="<%= value.itunes_item_image %>"/><% } %>
+            
+            <% if (value.enclosure_url) { %><enclosure url="<%= value.enclosure_url %>" <% if (value.enclosure_length) { %>length="<%= value.enclosure_length %>"<% } %> <% if (value.enclosure_type) { %>type="<%= value.enclosure_type %>"<% } %> /><% } %>
+            
+            <% if (locals.itunes_author && value.itunes_duration) { %><itunes:duration><%= value.itunes_duration %></itunes:duration><% } %>
+            
+            <% if (value.author) { %><author><![CDATA[<%= value.author %>]]></author><% } %>
+            
+            <% if (typeof value.category === 'string') { %>
+            <category><%= value.category %></category>
+            <% } else if (Array.isArray(value.category)) { %>
+                <% value.category.forEach(function(cat) { %>
+                <category><%= cat || '' %></category>
+                <% }); %>
+            <% } %>
+            
+            <% if (value.media) { %>
+                <% Object.entries(value.media).forEach(function([index, mediaValue]) { %>
+                <media:<%= index %>
+                <% Object.entries(mediaValue).forEach(function([key, val]) { %>
+                <%= key %>="<%= val || '' %>"
+                <% }); %>
+                ></media:<%= index %>>
+                <% }); %>
+            <% } %>
+        </item>
+        <% }); %>
+        <% } %>
+    </channel>
+</rss>

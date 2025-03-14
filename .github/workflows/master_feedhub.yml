@@ -21,12 +21,12 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
-          node-version: '22'
+          node-version: '22.x'
 
       - name: npm install, build, and test
         run: |
           npm install
-          npm run build --if-present
+          npm run esbuild --if-present
           npm run test --if-present
 
       - name: Zip artifact for deployment

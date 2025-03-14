@@ -5,7 +5,6 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-import expressArtTemplate from 'express-art-template';
 import rss from './rss.js';
 import initCache from './cache.js';
 
@@ -16,10 +15,6 @@ app.use(express.static(__dirname + '/public'));
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-
-// art-template with express https://aui.github.io/art-template/express/
-app.engine('art', expressArtTemplate);
-app.set('view engine', 'art');
 
 app.get('/', function (req, res) {
     const dummy_rows = [{

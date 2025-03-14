@@ -1,5 +1,5 @@
-import got from '@/utils/got.js';
-import cheerio from 'cheerio';
+import got from '../utils/got.js';
+import * as cheerio from 'cheerio';
 
 const baseUrl = 'https://www.8world.com';
 

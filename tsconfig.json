@@ -4,10 +4,16 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "baseUrl": "./",
-    "paths": {
-      "@/*": ["./*"]
-    }
+    "allowJs": true,
+    "outDir": "dist",
   },
-  "include": ["**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "**/*.js",
+    "**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "deprecated"
+  ]
 }
