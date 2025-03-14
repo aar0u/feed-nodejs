@@ -1,265 +1,332 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Timer</title>
-  <style>
-    :root {
-      --primary-color: #ff6b6b;
-      --secondary-color: #4ecdc4;
-      --background-color: #f7f7f7;
-      --text-color: #2d3436;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Timer</title>
+    <style>
+      :root {
+        --primary-color: #ff6b6b;
+        --background-color: #f7f7f7;
+        --text-color: #2d3436;
+      }
 
-    body {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      text-align: center;
-      background-color: var(--background-color);
-      color: var(--text-color);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 20px;
-    }
+      body {
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        text-align: center;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+      }
 
-    .container {
-      max-width: 600px;
-      width: 100%;
-      padding: 2rem;
-      box-sizing: border-box;
-    }
+      .container {
+        max-width: 600px;
+        width: 100%;
+        padding: 2rem;
+        box-sizing: border-box;
+      }
 
-    h1 {
-      color: var(--primary-color);
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-    }
+      .timer-circle {
+        width: min(300px, 80vw);
+        height: min(300px, 80vw);
+        border-radius: 50%;
+        background: white;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 2rem auto;
+        position: relative;
+        border: 8px solid var(--primary-color);
+      }
 
-    .timer-circle {
-      width: min(300px, 80vw);
-      height: min(300px, 80vw);
-      border-radius: 50%;
-      background: white;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 2rem auto;
-      position: relative;
-      border: 8px solid var(--primary-color);
-    }
+      #countdown {
+        font-size: min(4rem, 10vw);
+        font-weight: bold;
+        color: var(--primary-color);
+      }
 
-    #countdown {
-      font-size: min(4rem, 10vw);
-      font-weight: bold;
-      color: var(--primary-color);
-    }
+      input[type="number"] {
+        width: min(120px, 30vw);
+        padding: 12px;
+        border: 2px solid var(--primary-color);
+        border-radius: 8px;
+        font-size: min(1.1rem, 4vw);
+        text-align: center;
+        background: white;
+        transition: all 0.3s ease;
+        outline: none; /* 移除默认的焦点轮廓 */
+      }
 
-    input[type=number] {
-      width: min(120px, 30vw);
-      padding: 12px;
-      border: 2px solid var(--primary-color);
-      border-radius: 8px;
-      font-size: min(1.1rem, 4vw);
-      text-align: center;
-      background: white;
-      transition: all 0.3s ease;
-    }
+      input[type="number"]:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2); /* 使用主色调的淡化版本 */
+        background-color: #fff; /* 确保背景为纯白 */
+      }
 
-    button {
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      font-size: min(1.1rem, 4vw);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 600;
-    }
+      /* 移除数字输入框的上下箭头 */
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
 
-    h1 {
-      color: var(--primary-color);
-      font-size: min(2.5rem, 8vw);
-      margin-bottom: 2rem;
-    }
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
 
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-size: min(1.1rem, 4vw);
-      color: var(--text-color);
-    }
+      button {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        font-size: min(1.1rem, 4vw);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 600;
+      }
 
-    #message {
-      font-size: min(1.2rem, 4vw);
-      color: var(--primary-color);
-      margin-top: 1rem;
-      min-height: 1.5rem;
-    }
+      h1 {
+        color: var(--primary-color);
+        font-size: min(2.5rem, 8vw);
+        margin: 1rem;
+      }
 
-    .input-group {
-      margin-bottom: 1.5rem;
-    }
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: min(1.1rem, 4vw);
+        color: var(--text-color);
+      }
 
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-size: 1.1rem;
-      color: var(--text-color);
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Timer</h1>
-    <div class="input-group">
-      <label for="countdown-time">Set Focus Time (Minutes)</label>
-      <input type="number" id="countdown-time" name="countdown-time" min="1" max="60" step="1" value="25" autofocus>
+      .input-group {
+        margin-bottom: 1.5rem;
+      }
+
+      /* 删除重复的 label 选择器 */
+
+      /* 删除重复的 h1 选择器 */
+
+      .shortcut-hint {
+        font-size: 0.9rem;
+        color: var(--text-color);
+        opacity: 0.8;
+        margin-top: 1rem;
+      }
+
+      .shortcut-key {
+        display: inline-block;
+        padding: 2px 6px;
+        background-color: #fff;
+        border: 1px solid var(--primary-color);
+        border-radius: 4px;
+        font-family: monospace;
+        margin: 0 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Timer</h1>
+      <div class="input-group">
+        <label for="countdown-time">Set Focus Time (Minutes)</label>
+        <input
+          type="number"
+          id="countdown-time"
+          name="countdown-time"
+          min="1"
+          max="60"
+          step="1"
+          value="25"
+          autofocus
+        />
+      </div>
+
+      <div class="timer-circle">
+        <div id="countdown"></div>
+      </div>
+
+      <div class="controls">
+        <button id="start-button">Start Focus</button>
+        <button id="stop-button" disabled>Stop</button>
+      </div>
+
+      <div id="message" class="shortcut-hint">
+        Press <span class="shortcut-key">Alt</span> +
+        <span class="shortcut-key">S</span> to Start/Stop timer
+      </div>
     </div>
-    
-    <div class="timer-circle">
-      <div id="countdown"></div>
-    </div>
 
-    <div class="controls">
-      <button id="start-button">Start Focus</button>
-      <button id="stop-button" disabled>Stop</button>
-    </div>
-    
-    <div id="message"></div>
-  </div>
+    <script>
+      let countdownInterval;
+      let audioCtx;
+      let oscillator;
+      const defaultMsg = document.getElementById("message").innerHTML;
+      const startButton = document.getElementById("start-button");
+      const stopButton = document.getElementById("stop-button");
+      const countdownTimeInput = document.getElementById("countdown-time");
 
-  <script>
-    let countdownInterval;
-    let audioCtx;
-    let oscillator;
-    const startButton = document.getElementById("start-button");
-    const stopButton = document.getElementById("stop-button");
-
-    startButton.addEventListener("click", startCountdown);
-    stopButton.addEventListener("click", stopTimer);
-
-    document.addEventListener("keydown", function(event) {
-      if (event.code === "Space") {
-        if (startButton.disabled) {
-          stopTimer();
-        } else {
-          startCountdown();
+      startButton.addEventListener("click", startCountdown);
+      stopButton.addEventListener("click", stopTimer);
+      countdownTimeInput.addEventListener("input", function () {
+        if (!startButton.disabled) {
+          const minutes = parseFloat(this.value) || 0;
+          const minutesInt = Math.floor(minutes);
+          const seconds = Math.round((minutes - minutesInt) * 60);
+          document.getElementById("countdown").innerHTML = `${minutesInt
+            .toString()
+            .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
         }
-      }
-    });
+      });
 
-    function startCountdown() {
-      const countdownTime = 60 * document.getElementById("countdown-time").value;
+      // 触发一次输入事件来显示默认值
+      countdownTimeInput.dispatchEvent(new Event("input"));
 
-      if (!countdownTime) {
-        document.getElementById("message").innerHTML = "Please enter a countdown time.";
-        return;
-      }
-
-      let remainingTime = countdownTime;
-      let remainingText;
-
-      startButton.disabled = true;
-      stopButton.disabled = false;
-
-      countdownInterval = setInterval(() => {
-        remainingTime--;
-
-        if (remainingTime === 0) {
-          clearInterval(countdownInterval);
-          remainingText = "Time's up!";
-          playSound();
-          showNotification("Time's up!");
-        } else {
-          const minutes = Math.floor(remainingTime / 60);
-          const seconds = remainingTime % 60;
-          remainingText = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-        }
-        document.title = remainingText;
-        document.getElementById("countdown").innerHTML = remainingText;
-        document.getElementById("message").innerHTML = "";
-      }, 1000);
-    }
-
-    function playSound() {
-      if (audioCtx) {
-        audioCtx.close();
-      }
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      const notes = [
-        { frequency: 523.25, duration: 0.1 }, // C5
-        { frequency: 659.25, duration: 0.1 }, // E5
-        { frequency: 783.99, duration: 0.2 }, // G5
-        { frequency: 1046.50, duration: 0.3 }, // C6
-      ];
-      
-      let startTime = audioCtx.currentTime;
-      let totalDuration = notes.reduce((sum, note) => sum + note.duration, 0);
-      
-      function playNotes() {
-        notes.forEach(note => {
-          oscillator = audioCtx.createOscillator();
-          const gainNode = audioCtx.createGain();
-          
-          oscillator.type = "sine";
-          oscillator.frequency.setValueAtTime(note.frequency, startTime);
-          
-          gainNode.gain.setValueAtTime(0, startTime);
-          gainNode.gain.linearRampToValueAtTime(0.5, startTime + 0.01);
-          gainNode.gain.linearRampToValueAtTime(0, startTime + note.duration);
-          
-          oscillator.connect(gainNode);
-          gainNode.connect(audioCtx.destination);
-          
-          oscillator.start(startTime);
-          oscillator.stop(startTime + note.duration);
-          
-          startTime += note.duration;
-        });
-        
-        // 循环播放
-        startTime = audioCtx.currentTime + totalDuration;
-        if (!stopButton.disabled) {
-          setTimeout(playNotes, totalDuration * 1000);
-        }
-      }
-      
-      playNotes();
-    }
-
-    function stopSound() {
-      if (audioCtx) {
-        audioCtx.close();
-        audioCtx = null;
-      }
-    }
-
-    function stopTimer() {
-      clearInterval(countdownInterval);
-      document.title = "Timer";
-      document.getElementById("countdown").innerHTML = "";
-      document.getElementById("message").innerHTML = "";
-      stopSound();
-      startButton.disabled = false;
-      stopButton.disabled = true;
-    }
-
-    function showNotification(text) {
-      if (!("Notification" in window)) {
-        alert("This browser does not support desktop notification");
-      } else if (Notification.permission === "granted") {
-        new Notification(text);
-      } else if (Notification.permission !== "denied") {
-        Notification.requestPermission().then(function (permission) {
-          if (permission === "granted") {
-            new Notification(text);
+      document.addEventListener("keydown", function (event) {
+        // Alt + S 开始/停止
+        if (event.altKey && event.code === "KeyS") {
+          event.preventDefault(); // 防止触发浏览器默认行为
+          if (startButton.disabled) {
+            stopTimer();
+          } else {
+            startCountdown();
           }
-        });
+        }
+      });
+
+      function startCountdown() {
+        const countdownTime =
+          60 * document.getElementById("countdown-time").value;
+
+        if (!countdownTime) {
+          document.getElementById("message").innerHTML =
+            "Please enter a countdown time.";
+          return;
+        }
+
+        let remainingText;
+        const startTime = Date.now();
+        const endTime = startTime + countdownTime * 1000;
+
+        startButton.disabled = true;
+        stopButton.disabled = false;
+
+        updateDisplay();
+        countdownInterval = setInterval(updateDisplay, 1000);
+
+        function updateDisplay() {
+          const currentTime = Date.now();
+          const remainingTime = Math.ceil((endTime - currentTime) / 1000);
+
+          if (remainingTime <= 0) {
+            clearInterval(countdownInterval);
+            remainingText = "Time's up!";
+            playSound();
+            showNotification("Time's up!");
+          } else {
+            const minutes = Math.floor(remainingTime / 60);
+            const seconds = remainingTime % 60;
+            remainingText = `${minutes.toString().padStart(2, "0")}:${seconds
+              .toString()
+              .padStart(2, "0")}`;
+          }
+          document.title = remainingText;
+          document.getElementById("countdown").innerHTML = remainingText;
+          document.getElementById("message").innerHTML = defaultMsg;
+        }
       }
-    }
-  </script>
-</body>
+
+      function playSound() {
+        if (audioCtx) {
+          audioCtx.close();
+        }
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const notes = [
+          { frequency: 523.25, duration: 0.1 }, // C5
+          { frequency: 659.25, duration: 0.1 }, // E5
+          { frequency: 783.99, duration: 0.2 }, // G5
+          { frequency: 1046.5, duration: 0.3 }, // C6
+        ];
+
+        let startTime = audioCtx.currentTime;
+        let totalDuration = notes.reduce((sum, note) => sum + note.duration, 0);
+        const loopInterval = 1.0;
+
+        function playNotes() {
+          if (!audioCtx) {
+            return;
+          }
+
+          notes.forEach((note) => {
+            oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            oscillator.type = "sine";
+            oscillator.frequency.setValueAtTime(note.frequency, startTime);
+
+            gainNode.gain.setValueAtTime(0, startTime);
+            gainNode.gain.linearRampToValueAtTime(0.5, startTime + 0.01);
+            gainNode.gain.linearRampToValueAtTime(0, startTime + note.duration);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            oscillator.start(startTime);
+            oscillator.stop(startTime + note.duration);
+
+            startTime += note.duration;
+          });
+
+          // 循环播放（加入间隔时间）
+          startTime = audioCtx.currentTime + totalDuration + loopInterval;
+          if (!stopButton.disabled && audioCtx) {
+            // 添加 audioCtx 检查
+            setTimeout(playNotes, (totalDuration + loopInterval) * 1000);
+          }
+        }
+
+        playNotes();
+      }
+
+      function stopSound() {
+        if (audioCtx) {
+          audioCtx.close();
+          audioCtx = null;
+        }
+      }
+
+      function stopTimer() {
+        clearInterval(countdownInterval);
+        document.title = "Timer";
+        document.getElementById("countdown").innerHTML = "";
+        document.getElementById("message").innerHTML = defaultMsg;
+        stopSound();
+        startButton.disabled = false;
+        stopButton.disabled = true;
+        // 重新显示输入框的值
+        countdownTimeInput.dispatchEvent(new Event("input"));
+      }
+
+      function showNotification(text) {
+        if (!("Notification" in window)) {
+          alert("This browser does not support desktop notification");
+        } else if (Notification.permission === "granted") {
+          new Notification(text);
+        } else if (Notification.permission !== "denied") {
+          Notification.requestPermission().then(function (permission) {
+            if (permission === "granted") {
+              new Notification(text);
+            }
+          });
+        }
+      }
+    </script>
+  </body>
 </html>
