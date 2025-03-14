@@ -46,19 +46,32 @@ export default async (ctx) => {
                 const $article = cheerio.load(article.data);
                 
                 // 获取文章内容
-                let description = '';
-                const contentBlocks = $article('.article-body .field--name-field-body, .article-content .field--name-field-body, .video-content .field--name-field-body');
-                contentBlocks.each((_, el) => {
-                    description += $(el).html() || '';
-                });
-                
-                if (!description) {
-                    // 备用选择器
-                    description = $article('.article-body p, .article-content p, .video-content p').map((_, el) => $(el).html()).get().join('');
-                }
-                
-                if (imgSrc) {
-                    description = `<p><img src="${imgSrc}"/></p>` + (description || '');
+                let description = $article('.article-body p, .article-content p, .video-content p').map((_, el) => $(el).html()).get().join('');
+
+                // 获取文章题图或视频封面
+                let mediaHtml = '';
+                const articleMedia = $article('figure.article-media');
+                if (articleMedia.length > 0) {
+                    mediaHtml = articleMedia.html() || '';
+                    mediaHtml = mediaHtml.replace(/<figcaption/g, '<p class="media-caption"')
+                                       .replace(/<\/figcaption>/g, '</p>');
+
+                                       // if picture then change to use img tag
+                    const articleImage = articleMedia.find('.article-image');
+                    const caption = articleMedia.find('figcaption p').text().trim();
+                    if (articleImage.length > 0) {
+                        const bgImage = articleImage.attr('style');
+                        const imgUrl = bgImage?.match(/url\('([^']+)'\)/)?.[1];
+                        if (imgUrl) {
+                            mediaHtml = `<img src="${imgUrl}"/>`;
+                            if (caption) {
+                                mediaHtml += `<p style="text-align: center; color: #666;">${caption}</p>`;
+                            }
+                        }
+                    }
+                    description = `<div class="article-media">${mediaHtml}</div>` + description;
+                } else if (imgSrc) {
+                    description = `<p><img src="${imgSrc}"/></p>` + description;
                 }
                 
                 // 处理时间格式

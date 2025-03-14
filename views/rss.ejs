@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title><![CDATA[<%= locals.title || '' %>]]></title>
+        <title><![CDATA[<%- locals.title || '' %>]]></title>
         <link><%= locals.link || '' %></link>
         <atom:link href="<%= locals.atomlink || '' %>" rel="self" type="application/rss+xml" />
-        <description><![CDATA[<%= locals.description || locals.title || '' %>]]></description>
+        <description><![CDATA[<%- locals.description || locals.title || '' %>]]></description>
         <generator></generator>
         <webMaster></webMaster>
         <language><%= locals.language || 'zh-cn' %></language>
@@ -12,7 +12,7 @@
         <% if (locals.image) { %>
         <image>
             <url><%= locals.image %></url>
-            <title><![CDATA[<%= locals.title || '' %>]]></title>
+            <title><![CDATA[<%- locals.title || '' %>]]></title>
             <link><%= locals.link || '' %></link>
         </image>
         <% } %>
@@ -23,8 +23,8 @@
         <% if (locals.item && Array.isArray(locals.item)) { %>
         <% locals.item.forEach(function(value) { %>
         <item>
-            <title><![CDATA[<%= value.title || '' %>]]></title>
-            <description><![CDATA[<%= value.description || value.title || '' %>]]></description>
+            <title><![CDATA[<%- value.title || '' %>]]></title>
+            <description><![CDATA[<%- value.description || value.title || '' %>]]></description>
             <% if (value.pubDate) { %><pubDate><%= value.pubDate %></pubDate><% } %>
             <guid isPermaLink="false"><%= value.guid || value.link || value.title || '' %></guid>
             <link><%= value.link || '' %></link>
@@ -34,7 +34,7 @@
             
             <% if (locals.itunes_author && value.itunes_duration) { %><itunes:duration><%= value.itunes_duration %></itunes:duration><% } %>
             
-            <% if (value.author) { %><author><![CDATA[<%= value.author %>]]></author><% } %>
+            <% if (value.author) { %><author><![CDATA[<%- value.author %>]]></author><% } %>
             
             <% if (typeof value.category === 'string') { %>
             <category><%= value.category %></category>
