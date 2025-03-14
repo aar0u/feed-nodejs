@@ -98,9 +98,9 @@ export default async (ctx) => {
     ).then(items => items.filter(Boolean));
 
     ctx.state.data = {
-        title: '8视界 - 热门新闻',
+        title: '8视界',
         link: baseUrl,
-        description: '8视界首页热门新闻',
+        description: '8视界首页',
         item: items,
     };
 };
