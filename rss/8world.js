@@ -1,5 +1,6 @@
 import got from "../utils/got.js";
 import * as cheerio from "cheerio";
+import { log } from "../utils/logger.js";
 
 const baseUrl = "https://www.8world.com";
 
@@ -14,26 +15,24 @@ export default async (ctx) => {
   if (list.length === 0) {
     list = targetSection.find("article.article");
   }
-  console.log("Found items:", list.length);
+  log("Found items:", list.length);
 
   const items = await Promise.all(
     list.toArray().map(async (item) => {
       const $item = $(item);
       const href = $item.find("a.article-link").first().attr("href");
-      console.log("Found href:", href);
+      log("Found href:", href);
 
       if (!href) {
-        console.log("Skip invalid href $helf");
+        log("Skip invalid href $helf");
         return null;
       }
 
       const link = href.startsWith("http") ? href : baseUrl + href;
       const itemTitle = $item.find(".article-title a").text().trim();
       const timeStr = $item.find("time.time").attr("datetime");
-      // 获取列表页的图片URL作为备用
       const listPageImg = $item.find("img.image").attr("src");
 
-      // 提取所有分类和主题标签到一个数组中
       const categories = [];
       $item.find(".article-meta-ul li").each((_, el) => {
         const text = $(el).find("span").text().trim();
@@ -42,83 +41,27 @@ export default async (ctx) => {
         }
       });
 
-      try {
-        const article = await got.get(link);
-        const $article = cheerio.load(article.data);
-
-        // 获取文章内容
-        let description = $article(
-          ".article-body p, .article-content p, .video-content p"
-        )
-          .map((_, el) => $(el).html())
-          .get()
-          .join("");
-
-        let imgUrl;
-        // 尝试从 ld-json 获取图片
-        try {
-          const ldJson = JSON.parse(
-            $article('script[type="application/ld+json"]').html()
-          );
-          const newsArticle = ldJson["@graph"]?.find(
-            (item) => item["@type"] === "NewsArticle"
-          );
-          if (newsArticle?.image?.length > 0) {
-            // 获取最后一个图片URL（通常是最大尺寸的）
-            imgUrl = newsArticle.image[newsArticle.image.length - 1];
-          }
-        } catch (e) {
-          console.log("Error parsing ld-json:", e.message);
-        }
-
-        let caption;
-        const articleMedia = $article("figure.article-media");
-        if (articleMedia.length > 0) {
-          let mediaHtml = articleMedia.html() || "";
-          description =
-            `<div class="article-media">${mediaHtml}</div>` + description;
-
-          const articleImage = articleMedia.find(".article-image");
-          // 如果 ld-json 中没有图片，则尝试从 style 属性中获取
-          if (!imgUrl && articleImage.length > 0) {
-            const bgImage = articleImage.attr("style");
-            imgUrl = bgImage?.match(/url\('([^']+)'\)/)?.[1];
-          }
-          caption = articleMedia.find("figcaption p").text().trim();
-        }
-
-        // 如果文章页面没有图片，使用列表页的图片
-        if (!imgUrl && listPageImg) {
-          imgUrl = listPageImg;
-        }
-
-        if (imgUrl) {
-          description = `<img src="${imgUrl}"/>` + description;
-          if (caption) {
-            description = `<p style="text-align: center; color: #666;">${caption}</p>` + description;
-          }
-        }
-
-        // 处理时间格式
-        let pubDate = new Date();
-        if (timeStr) {
-          const [date, time] = timeStr.split(" ");
-          const [day, month, year] = date.split("/");
-          const [hour, minute] = time.split(":");
-          pubDate = new Date(year, month - 1, day, hour, minute);
-        }
-
-        return {
-          title: itemTitle,
-          link,
-          description: description || "暂无内容",
-          pubDate: pubDate.toUTCString(),
-          category: categories,
-        };
-      } catch (error) {
-        console.log("Error fetching article:", link, error.message);
+      const description = await processArticle(link, listPageImg);
+      if (!description) {
         return null;
       }
+
+      // 处理时间格式
+      let pubDate = new Date();
+      if (timeStr) {
+        const [date, time] = timeStr.split(" ");
+        const [day, month, year] = date.split("/");
+        const [hour, minute] = time.split(":");
+        pubDate = new Date(year, month - 1, day, hour, minute);
+      }
+
+      return {
+        title: itemTitle,
+        link,
+        description: description || "暂无内容",
+        pubDate: pubDate.toUTCString(),
+        category: categories,
+      };
     })
   ).then((items) => items.filter(Boolean));
 
@@ -129,3 +72,72 @@ export default async (ctx) => {
     item: items,
   };
 };
+
+export async function processArticle(link, listPageImg) {
+  try {
+    const article = await got.get(link);
+    const $ = cheerio.load(article.data);
+
+    // 获取文章内容
+    let description = $(
+      ".article-content .text-long:not(:has(.stories-sns)), .article-image-custom, .paragraph-gallery"
+    )
+      .map((_, el) => $(el).html())
+      .get()
+      .join("");
+
+    let imgUrl;
+    // 尝试从 ld-json 获取图片
+    try {
+      const ldJson = JSON.parse($('script[type="application/ld+json"]').html());
+      const newsArticle = ldJson["@graph"]?.find(
+        (item) => item["@type"] === "NewsArticle"
+      );
+      if (newsArticle?.image?.length > 0) {
+        imgUrl = newsArticle.image[newsArticle.image.length - 1];
+      }
+    } catch (e) {
+      log("Error parsing ld-json:", e.message);
+    }
+
+    let caption;
+    const articleMedia = $(
+      "figure.article-media:has(.article-image, .article-video)"
+    );
+    if (articleMedia.length > 0) {
+      articleMedia.find(".article-image, figcaption").remove();
+      let media = articleMedia.html() || "";
+
+      const articleImage = articleMedia.find(".article-image");
+      if (!imgUrl && articleImage.length > 0) {
+        const bgImage = articleImage.attr("style");
+        imgUrl = bgImage?.match(/url\('([^']+)'\)/)?.[1];
+      }
+      caption = articleMedia.find("figcaption p").text().trim();
+      description = `<div class="article-media">${media}</div>` + description;
+    }
+
+    if (!imgUrl && listPageImg) {
+      imgUrl = listPageImg;
+    }
+
+    if (imgUrl) {
+      if (caption) {
+        description =
+          `<p style="text-align: center; color: #666;">${caption}</p>` +
+          description;
+      }
+      description = `<img src="${imgUrl}"/>` + description;
+    }
+
+    return description;
+  } catch (error) {
+    // 获取错误堆栈信息
+    const errorLocation = error.stack ? `\nStack: ${error.stack}` : "";
+    log(
+      `Error processing article: ${link}`,
+      `${error.message}${errorLocation}`
+    );
+    return null;
+  }
+}

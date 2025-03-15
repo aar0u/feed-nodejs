@@ -4,12 +4,22 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Dev Server TSX",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "runtimeExecutable": "npm",
             "runtimeArgs": ["run", "dev"]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Execute JavaScript Files in Test Directory",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "args": ["${workspaceFolder}/test/*.js"],
+            "runtimeArgs": ["--test"]
         }
     ]
 }
