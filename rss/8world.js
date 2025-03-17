@@ -86,6 +86,11 @@ export async function processArticle(link, listPageImg) {
       .get()
       .join("");
 
+    // 检查是否存在视频内容
+    if ($(".video-wrapper").length > 0) {
+      description = `<p style="text-align: center; color: #666;">本文包含视频内容，请<a href="${link}" target="_blank">点击这里</a>前往原网页观看。</p>` + description;
+    }
+
     let imgUrl;
     // 尝试从 ld-json 获取图片
     try {
@@ -105,15 +110,15 @@ export async function processArticle(link, listPageImg) {
       "figure.article-media:has(.article-image, .article-video)"
     );
     if (articleMedia.length > 0) {
-      articleMedia.find(".article-image, figcaption").remove();
-      let media = articleMedia.html() || "";
-
       const articleImage = articleMedia.find(".article-image");
       if (!imgUrl && articleImage.length > 0) {
         const bgImage = articleImage.attr("style");
         imgUrl = bgImage?.match(/url\('([^']+)'\)/)?.[1];
       }
       caption = articleMedia.find("figcaption p").text().trim();
+
+      articleMedia.find(".article-image, figcaption").remove();
+      let media = articleMedia.html() || "";
       description = `<div class="article-media">${media}</div>` + description;
     }
 
