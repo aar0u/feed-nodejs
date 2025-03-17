@@ -88,7 +88,7 @@ export async function processArticle(link, listPageImg) {
 
     // 检查是否存在视频内容
     if ($(".video-wrapper").length > 0) {
-      description = `<p style="text-align: center; color: #666;">本文包含视频内容，请<a href="${link}" target="_blank">点击这里</a>前往原网页观看。</p>` + description;
+      description = `<p>本文包含视频内容 ➡️ <strong><a href="${link}" target="_blank">点击这里观看视频</a></strong></p>` + description;
     }
 
     let imgUrl;
@@ -129,7 +129,7 @@ export async function processArticle(link, listPageImg) {
     if (imgUrl) {
       if (caption) {
         description =
-          `<p style="text-align: center; color: #666;">${caption}</p>` +
+          `<p><i>${caption}</i></p>` +
           description;
       }
       description = `<img src="${imgUrl}"/>` + description;
