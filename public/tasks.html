@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Checklist</title>
+    <style>
+      :root {
+        --primary-color: #ff6b6b;
+        --background-color: #f7f7f7;
+        --text-color: #2d3436;
+      }
+      body {
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        text-align: center;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+      }
+      .container {
+        max-width: 600px;
+        width: 100%;
+        padding: 2rem;
+        box-sizing: border-box;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        margin-top: 2rem;
+        overflow-x: auto;
+      }
+      h1 {
+        color: var(--primary-color);
+        font-size: min(2.5rem, 8vw);
+        margin: 1rem 0 2rem 0;
+      }
+      table {
+        width: 100%;
+        max-width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+        table-layout: fixed;
+      }
+      th, td {
+        padding: 1rem;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+        font-size: min(1.1rem, 4vw);
+      }
+      th {
+        background: var(--background-color);
+        color: var(--primary-color);
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      .task-label {
+        margin-left: 0.5rem;
+      }
+      input[type="checkbox"] {
+        accent-color: var(--primary-color);
+        width: 2em;
+        height: 2em;
+        vertical-align: middle;
+        cursor: pointer;
+        margin: 0 0.5em 0 0;
+      }
+      .row-title {
+        font-weight: bold;
+        color: var(--primary-color);
+        font-size: min(1.2rem, 4vw);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Checklist</h1>
+      <table>
+        <tr>
+          <th>Task</th>
+          <th>Bryan</th>
+          <th>Chloe</th>
+        </tr>
+        <tr>
+          <td>Language 1</td>
+          <td><input type="checkbox" id="boy-lang1"><label class="task-label" for="boy-lang1"></label></td>
+          <td><input type="checkbox" id="girl-lang1"><label class="task-label" for="girl-lang1"></label></td>
+        </tr>
+        <tr>
+          <td>Language 2</td>
+          <td><input type="checkbox" id="boy-lang2"><label class="task-label" for="boy-lang2"></label></td>
+          <td><input type="checkbox" id="girl-lang2"><label class="task-label" for="girl-lang2"></label></td>
+        </tr>
+        <tr>
+          <td>Language 3</td>
+          <td><input type="checkbox" id="boy-lang3"><label class="task-label" for="boy-lang3"></label></td>
+          <td><input type="checkbox" id="girl-lang3"><label class="task-label" for="girl-lang3"></label></td>
+        </tr>
+        <tr>
+          <td>Math 1</td>
+          <td><input type="checkbox" id="boy-math1"><label class="task-label" for="boy-math1"></label></td>
+          <td><input type="checkbox" id="girl-math1"><label class="task-label" for="girl-math1"></label></td>
+        </tr>
+        <tr>
+          <td>Math 2</td>
+          <td><input type="checkbox" id="boy-math2"><label class="task-label" for="boy-math2"></label></td>
+          <td><input type="checkbox" id="girl-math2"><label class="task-label" for="girl-math2"></label></td>
+        </tr>
+        <tr>
+          <td>Math 3</td>
+          <td><input type="checkbox" id="boy-math3"><label class="task-label" for="boy-math3"></label></td>
+          <td><input type="checkbox" id="girl-math3"><label class="task-label" for="girl-math3"></label></td>
+        </tr>
+      </table>
+      <button id="reset-btn" style="padding: 12px 24px; border: none; border-radius: 8px; font-size: min(1.1rem, 4vw); cursor: pointer; background: var(--primary-color); color: #fff; font-weight: 600; margin-top: 1rem;">Reset</button>
+    </div>
+  </body>
+    <script>
+      // Save and restore checkbox states using localStorage
+      const checkboxIds = [
+        "boy-lang1", "boy-lang2", "boy-lang3",
+        "boy-math1", "boy-math2", "boy-math3",
+        "girl-lang1", "girl-lang2", "girl-lang3",
+        "girl-math1", "girl-math2", "girl-math3"
+      ];
+
+      function saveCheckboxStates() {
+        const states = {};
+        checkboxIds.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) states[id] = el.checked;
+        });
+        localStorage.setItem("tasksCheckboxStates", JSON.stringify(states));
+      }
+
+      function restoreCheckboxStates() {
+        const states = JSON.parse(localStorage.getItem("tasksCheckboxStates") || "{}");
+        checkboxIds.forEach(id => {
+          const el = document.getElementById(id);
+          if (el && typeof states[id] === "boolean") {
+            el.checked = states[id];
+          }
+        });
+      }
+
+      function resetCheckboxStates() {
+        checkboxIds.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.checked = false;
+        });
+        saveCheckboxStates();
+      }
+
+      // Add event listeners
+      window.addEventListener("DOMContentLoaded", function() {
+        restoreCheckboxStates();
+        checkboxIds.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.addEventListener("change", saveCheckboxStates);
+          }
+        });
+        document.getElementById("reset-btn").addEventListener("click", resetCheckboxStates);
+      });
+    </script>
+</html>
