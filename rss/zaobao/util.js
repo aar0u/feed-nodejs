@@ -30,7 +30,7 @@ const parseList = async (ctx, sectionUrl) => {
 
   // 获取指定区域的新闻，包括今日要闻和推荐新闻，排除即时新闻
   const newsFeature = $(".news-feature-card").filter((_, el) => $(el).find("h2").length > 0);
-  const recommendedNews = $("#today-recommended-news-finance ul li");
+  const recommendedNews = $(".homepage-today-recommended-3-col-layout li");
 
   let data = $([...newsFeature.toArray(), ...recommendedNews.toArray()]).filter(
     (_, el) => {
@@ -61,20 +61,20 @@ const parseList = async (ctx, sectionUrl) => {
       continue;
     }
 
-    const description = await processArticle(link, listPageImg);
-    if (!description) {
-      continue;
-    }
+      const articleData = await processArticle(link, listPageImg);
+      if (!articleData || !articleData.description) {
+        continue;
+      }
 
-    const resultItem = {
-      title: itemTitle,
-      description: description,
-      pubDate: time.toUTCString(),
-      link: link,
-    };
+      const resultItem = {
+        title: itemTitle,
+        description: articleData.description,
+        pubDate: articleData.time ? articleData.time.toUTCString() : undefined,
+        link: link,
+      };
 
-    await ctx.cache.set(link, JSON.stringify(resultItem));
-    resultList.push(resultItem);
+      await ctx.cache.set(link, JSON.stringify(resultItem));
+      resultList.push(resultItem);
   }
 
   return {
@@ -122,7 +122,7 @@ export async function processArticle(link, listPageImg) {
       description = `<img src="${imgUrl}" />` + (description || "");
     }
 
-    return description;
+    return { description, time };
   } catch (error) {
     console.log("Error fetching article:", link, error.message);
     return null;

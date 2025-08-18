@@ -36,6 +36,28 @@ app.get('/', function (req, res) {
     res.render('pages/index.ejs', { rows: dummy_rows });
 });
 
+app.get('/feed', async (req, res) => {
+    const fs = await import('fs/promises');
+    const path = await import('path');
+    const rssDir = path.join(__dirname, 'rss');
+    let files = await fs.readdir(rssDir, { withFileTypes: true });
+    let feeds = [];
+
+    for (const file of files) {
+        if (file.isFile() && file.name.endsWith('.js')) {
+            feeds.push(file.name.replace(/\.js$/, ''));
+        }
+    }
+
+    let html = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Available Feeds</title></head><body>`;
+    html += `<h1>Available Feeds</h1><ul>`;
+    for (const feed of feeds) {
+        html += `<li><a href="/feed/${feed}">${feed}</a></li>`;
+    }
+    html += `</ul></body></html>`;
+    res.type('html').send(html);
+});
+
 app.get('/feed/:feedId/:params?', rss);
 
 // cache
