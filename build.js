@@ -31,7 +31,8 @@ async function build() {
     },
     entryPoints: ["index.js"],
     bundle: true,
-    external: ["./rss.js", "./rss/*", "./node_modules/*"],
+    packages: "external",
+    external: ["./rss.js", "./rss/*"],
   });
 
   // Copy and modify package.json
