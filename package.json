@@ -5,9 +5,8 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "tsx watch index.js",
-    "copy-assets": "copyfiles -u 0 \"views/**/*\" \"public/**/*\" dist/",
-    "esbuild": "node build.js && npm run copy-assets",
-    "tsc": "tsc && npm run copy-assets"
+    "esbuild": "node build.js",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
@@ -23,7 +22,6 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.13.10",
-    "copyfiles": "^2.4.1",
     "esbuild": "^0.25.1",
     "glob": "^11.0.1",
     "tsx": "^4.19.3",
