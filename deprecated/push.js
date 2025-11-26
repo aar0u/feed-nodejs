@@ -33,11 +33,11 @@ module.exports = function (newNoti) {
     db.notiLast(sendNoti);
 };
 
-function pushBullet (title, content) {
+function pushBullet(title, content) {
     var options = {
         url: 'https://api.pushbullet.com/v2/pushes',
         headers: {
-            'Access-Token': 'o.5DKAmyvLxIB5oSrgx5BqXGFmlWdHUaiR',
+            'Access-Token': '',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({

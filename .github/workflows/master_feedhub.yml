@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - feedhub
+name: Build and deploy to Azure Web App
 
 on:
   push:
@@ -28,6 +28,11 @@ jobs:
           npm install
           npm run esbuild --if-present
           npm run test --if-present
+
+      - name: Install production dependencies
+        run: |
+          cd dist
+          npm ci --omit=dev
 
       - name: Zip artifact for deployment
         run: |
