@@ -1,8 +1,10 @@
-name: Generate and deploy RSS
+name: Build and deploy
+
+env:
+  # Override with a repository variable when GitHub Pages uses a custom domain.
+  FEED_BASE_URL: ${{ vars.FEED_BASE_URL || format('https://{0}.github.io/{1}', github.repository_owner, github.event.repository.name) }}
 
 on:
-  schedule:
-    - cron: "*/25 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -18,16 +20,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 20
           cache: npm
+      - id: playwright
+        run: node -p "'version=' + require('./package.json').dependencies.playwright" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v5
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.playwright.outputs.version }}
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run build
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: ./public
 
@@ -39,4 +47,16 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
+      - name: Notify WebSub hub
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          feeds=$(curl --fail --retry 3 --retry-all-errors --silent --show-error "$PAGE_URL/websub-feeds.txt")
+          while IFS= read -r feed; do
+            feed_url="${PAGE_URL%/}/$feed"
+            echo "Notifying WebSub hub: $feed_url"
+            curl --fail --retry 3 --retry-all-errors --silent --show-error --write-out '\nWebSub response: %{http_code}\n' -X POST https://pubsubhubbub.superfeedr.com/ \
+              --data-urlencode 'hub.mode=publish' \
+              --data-urlencode "hub.url=$feed_url"
+          done <<< "$feeds"

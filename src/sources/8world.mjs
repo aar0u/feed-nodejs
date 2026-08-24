@@ -38,13 +38,14 @@ const source = {
       const notice = document.createElement("p");
       const link = document.createElement("a");
       link.href = videoUrl;
-      link.textContent = "点击这里观看视频";
+      link.textContent = "跳转原文";
       link.setAttribute("target", "_blank");
-      notice.textContent = "本文包含视频内容 ➡️ ";
+      notice.textContent = "文中含视频 ➡️ ";
       const strong = document.createElement("strong");
       strong.append(link);
       notice.append(strong);
-      first.insertBefore(notice, first.firstChild);
+      const image = first.querySelector("img");
+      first.insertBefore(notice, image?.nextSibling || first.firstChild);
     }
     return {
       content: targets.map((target) => target.innerHTML).join(""),

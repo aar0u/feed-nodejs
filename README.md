@@ -24,6 +24,6 @@ npm run build
 
 1. 推送此项目到 GitHub。
 2. 在仓库 **Settings → Pages → Build and deployment** 选择 **GitHub Actions**。
-3. 在 **Actions** 运行 `Generate and deploy RSS`，或等待每 30 分钟的计划任务。
+3. 由 Cloudflare Worker 触发 `Build and deploy`，也可在 **Actions** 手动运行。
 
 工作流使用 `actions/upload-pages-artifact@v3` 和 `actions/deploy-pages@v4`，不会创建 Git commit 或 `gh-pages` 分支。部署后可从 Pages URL 访问 `/index.html`。

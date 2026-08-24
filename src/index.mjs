@@ -9,6 +9,8 @@ const sourcePaths = (await readdir(sourceDirectory, { withFileTypes: true }))
 const sources = (await Promise.all(sourcePaths.map(async (path) => (await import(new URL(path, sourceDirectory).href)).default)))
   .flatMap((source) => Array.isArray(source) ? source : [source]);
 const limit = 20;
+const feedBaseUrl = process.env.FEED_BASE_URL;
+const webSubHub = "https://pubsubhubbub.superfeedr.com/";
 
 function validDate(value) {
   const date = value && new Date(value);
@@ -16,11 +18,14 @@ function validDate(value) {
 }
 
 async function generate(source) {
+  const feedUrl = feedBaseUrl && new URL(`${source.id}.xml`, `${feedBaseUrl}/`).href;
   const feed = new Feed({
     title: source.title,
     description: source.description,
     id: source.link,
     link: source.link,
+    ...(feedUrl && { feed: feedUrl, hub: webSubHub }),
+    copyright: "",
     language: "zh-CN",
     updated: new Date(),
   });
@@ -71,3 +76,4 @@ for (const result of results) {
   if (result.status === "rejected") console.warn("Failed to write feed:", result.reason.message);
 }
 await writeFile("public/index.html", `<!doctype html><meta charset="utf-8"><title>RSS feeds</title><ul>${sources.map((source) => `<li><a href="${source.id}.xml">${source.title}</a></li>`).join("")}</ul>`);
+await writeFile("public/websub-feeds.txt", sources.map((source) => `${source.id}.xml`).join("\n"));

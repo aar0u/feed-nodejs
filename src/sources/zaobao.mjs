@@ -1,5 +1,11 @@
 const baseUrl = "https://www.zaobao.com.sg";
 
+function withoutRef(link) {
+  const url = new URL(link, baseUrl);
+  url.searchParams.delete("ref");
+  return url.href;
+}
+
 function publishedDate(document) {
   for (const node of document.querySelectorAll('script[type="application/ld+json"]')) {
     try {
@@ -60,10 +66,10 @@ const source = {
       ...document.querySelectorAll(".homepage-today-recommended-3-col-layout li"),
     ]
       .filter((item) => item.querySelector("h2") && !item.querySelector('[data-testid^="test-realtime-article-card"]'))
-      .map((item) => ({
-        link: item.querySelector("a")?.getAttribute("href"),
-        title: item.querySelector("h2")?.textContent.trim(),
-      }));
+      .map((item) => {
+        const link = item.querySelector("a")?.getAttribute("href") ?? undefined;
+        return { link: link && withoutRef(link), title: item.querySelector("h2")?.textContent.trim() };
+      });
   },
 };
 

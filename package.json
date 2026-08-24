@@ -9,9 +9,9 @@
     "build": "node src/index.mjs"
   },
   "dependencies": {
-    "@mozilla/readability": "^0.6.0",
-    "feed": "^5.1.0",
-    "linkedom": "^0.18.12",
-    "playwright": "^1.62.1"
+    "@mozilla/readability": "0.6.0",
+    "feed": "6.0.0",
+    "linkedom": "0.18.13",
+    "playwright": "1.62.1"
   }
 }
