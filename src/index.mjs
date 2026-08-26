@@ -29,6 +29,7 @@ const sources = (
   )
 ).flatMap((source) => (Array.isArray(source) ? source : [source]));
 const limit = 20;
+const defaultConcurrency = 5;
 const feedBaseUrl = process.env.FEED_BASE_URL;
 const webSubHub = "https://pubsubhubbub.superfeedr.com/";
 
@@ -45,6 +46,7 @@ function hasLinkAndTitle(item) {
 
 /** @param {Source} source */
 async function generate(source) {
+  console.log(`[${source.id}] generating`);
   const feedUrl =
     feedBaseUrl && new URL(`${source.id}.xml`, `${feedBaseUrl}/`).href;
   const feed = new Feed({
@@ -58,6 +60,7 @@ async function generate(source) {
     updated: new Date(),
   });
 
+  let itemCount = 0;
   try {
     const document = source.fetchItems
       ? await source.fetchItems()
@@ -78,42 +81,46 @@ async function generate(source) {
       .filter((item) => !seen.has(item.link) && seen.add(item.link))
       .slice(0, limit);
 
-    const results = await Promise.allSettled(
-      listed.map(async (item) => {
-        if (!item.link || !item.title)
-          throw new Error("missing item link or title");
-        if (item.content !== undefined)
-          return {
-            item,
-            article: {
-              ...item,
-              content: absoluteUrls(item.content, item.link),
-            },
-          };
-        const url = item.articleUrl || item.link;
-        const document = await fetchDocument(url, source.encoding);
-        return { item, article: await extractArticle(document, url, source) };
-      }),
-    );
-    for (const result of results) {
-      if (result.status !== "fulfilled" || !result.value.article) {
-        if (result.status === "rejected")
-          console.warn(
-            `[${source.id}] skipped article:`,
-            result.reason.message,
-          );
-        continue;
+    const concurrency = source.concurrency ?? defaultConcurrency;
+    for (let index = 0; index < listed.length; index += concurrency) {
+      const results = await Promise.allSettled(
+        listed.slice(index, index + concurrency).map(async (item) => {
+          if (!item.link || !item.title)
+            throw new Error("missing item link or title");
+          if (item.content !== undefined)
+            return {
+              item,
+              article: {
+                ...item,
+                content: absoluteUrls(item.content, item.link),
+              },
+            };
+          const url = item.articleUrl || item.link;
+          const document = await fetchDocument(url, source.encoding);
+          return { item, article: await extractArticle(document, url, source) };
+        }),
+      );
+      for (const result of results) {
+        if (result.status !== "fulfilled" || !result.value.article) {
+          if (result.status === "rejected")
+            console.warn(
+              `[${source.id}] skipped article:`,
+              result.reason.message,
+            );
+          continue;
+        }
+        const { item, article } = result.value;
+        if (!item.link || !item.title) continue;
+        const date = validDate(article.date || item.date) || new Date();
+        feed.addItem({
+          title: article.title || item.title,
+          id: item.link,
+          link: item.link,
+          content: article.content,
+          date,
+        });
+        itemCount += 1;
       }
-      const { item, article } = result.value;
-      if (!item.link || !item.title) continue;
-      const date = validDate(article.date || item.date) || new Date();
-      feed.addItem({
-        title: article.title || item.title,
-        id: item.link,
-        link: item.link,
-        content: article.content,
-        date,
-      });
     }
   } catch (error) {
     console.warn(
@@ -123,6 +130,7 @@ async function generate(source) {
   }
 
   await writeFile(`public/${source.id}.xml`, feed.rss2());
+  console.log(`[${source.id}] wrote ${itemCount} items`);
 }
 
 await mkdir("public", { recursive: true });

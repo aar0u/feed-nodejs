@@ -18,6 +18,7 @@ export interface Source {
   link: string;
   description: string;
   encoding?: string;
+  concurrency?: number;
   extractItems?(document: Document): ListItem[];
   fetchItems?(): Promise<ListItem[]>;
   extract?(
