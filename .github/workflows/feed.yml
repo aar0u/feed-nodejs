@@ -1,4 +1,4 @@
-name: Build and deploy
+name: Generate Static
 
 env:
   # Override with a repository variable when GitHub Pages uses a custom domain.
@@ -21,19 +21,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: pnpm/setup@v2
         with:
-          node-version: 20
-          cache: npm
+          version: latest
+          runtime: node@24
+          install: false
+          cache: true
       - id: playwright
         run: node -p "'version=' + require('./package.json').dependencies.playwright" >> "$GITHUB_OUTPUT"
       - uses: actions/cache@v5
         with:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ steps.playwright.outputs.version }}
-      - run: npm ci
-      - run: npx playwright install --with-deps chromium
-      - run: npm run build
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install chromium
+      - run: pnpm run generate
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
         with:

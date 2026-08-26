@@ -1,8 +1,15 @@
 const baseUrl = "https://wallstreetcn.com";
 const apiUrl = "https://api-one.wallstcn.com";
 
+/** @typedef {{ id: string | number, uri?: string, title?: string }} Resource */
+/** @typedef {{ resource_type: string, resource: Resource }} FlowItem */
+
+/** @param {Resource} resource */
 async function article(resource) {
-  const response = await fetch(`${apiUrl}/apiv1/content/articles/${resource.id}?extract=0`, { signal: AbortSignal.timeout(10_000) });
+  const response = await fetch(
+    `${apiUrl}/apiv1/content/articles/${resource.id}?extract=0`,
+    { signal: AbortSignal.timeout(10_000) },
+  );
   const { data } = await response.json();
   const content = [data.content, data.content_more].filter(Boolean).join("");
   return {
@@ -14,11 +21,18 @@ async function article(resource) {
 }
 
 async function shares() {
-  const response = await fetch(`${apiUrl}/apiv1/content/information-flow?channel=shares&accept=article&limit=20`, { signal: AbortSignal.timeout(10_000) });
+  const response = await fetch(
+    `${apiUrl}/apiv1/content/information-flow?channel=shares&accept=article&limit=20`,
+    { signal: AbortSignal.timeout(10_000) },
+  );
   const { data } = await response.json();
-  return Promise.all(data.items
-    .filter((item) => item.resource_type === "article")
-    .map((item) => article(item.resource)));
+  /** @type {FlowItem[]} */
+  const items = data.items;
+  return Promise.all(
+    items
+      .filter((item) => item.resource_type === "article")
+      .map((item) => article(item.resource)),
+  );
 }
 
 /** @type {import("../source.d.ts").Source} */

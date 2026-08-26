@@ -5,7 +5,8 @@
     "target": "ESNext",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "lib": ["ESNext", "DOM", "DOM.Iterable"]
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "types": ["node"]
   },
   "include": ["src/**/*.mjs", "src/**/*.d.ts"]
 }

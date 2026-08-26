@@ -20,5 +20,8 @@ export interface Source {
   encoding?: string;
   extractItems?(document: Document): ListItem[];
   fetchItems?(): Promise<ListItem[]>;
-  extract?(document: Document, url: string): Article | null | Promise<Article | null>;
+  extract?(
+    document: Document,
+    url: string,
+  ): Article | null | Promise<Article | null>;
 }

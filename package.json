@@ -6,12 +6,19 @@
     "node": ">=20.19.0"
   },
   "scripts": {
-    "build": "node src/index.mjs"
+    "generate": "node src/index.mjs",
+    "check": "tsc -p jsconfig.json",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@mozilla/readability": "0.6.0",
     "feed": "6.0.0",
     "linkedom": "0.18.13",
     "playwright": "1.62.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.19.43",
+    "prettier": "3.9.6",
+    "typescript": "5.9.3"
   }
 }

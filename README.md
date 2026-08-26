@@ -7,9 +7,9 @@
 需要 Node.js 20.19+（Actions 使用 Node.js 20）：
 
 ```bash
-npm install
-npx playwright install chromium
-npm run build
+pnpm install --frozen-lockfile
+pnpm exec playwright install chromium
+pnpm run generate
 ```
 
 生成的文件位于 `public/`.
