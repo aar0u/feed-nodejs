@@ -74,85 +74,132 @@ async function imagesByPost(boardAndThread) {
   return images;
 }
 
-/** @type {import("../source.d.ts").Source} */
-const source = {
-  id: "huasing",
-  title: "华新鲜事",
-  link: `${baseUrl}/sForum/zsbbs.php`,
-  description: "华新论坛最新帖子",
-  encoding: "gbk",
-  async extract(document, url) {
-    const boardAndThread = new URL(url).searchParams.get("B");
-    const boardId = boardAndThread?.split("_")[0];
-    const scripts = [...document.querySelectorAll("script")]
-      .map((node) => node.textContent)
-      .join("\n");
-    const bodies = new Map(
-      [...scripts.matchAll(/zc\((\d+),'((?:\\.|[^'])*)'\);/gs)].map(
-        ([, id, body]) => [id, body],
-      ),
-    );
-    const posts = [
-      ...scripts.matchAll(/zt\(\d+,(\d+),\d+,(\d+),'(.*?)',(\d+),'(.*?)'/gs),
-    ]
-      .map(([, id, timestamp, title, userId, author]) => ({
-        id,
-        title,
-        userId,
-        author,
-        date: new Date(Number(timestamp) * 1000),
-      }))
-      .sort((left, right) => left.date.valueOf() - right.date.valueOf());
-    if (!posts.length) return null;
-    const images = boardAndThread
-      ? await imagesByPost(boardAndThread)
-      : new Map();
-
-    return {
-      title: decode(posts[0].title),
-      date: posts.at(-1)?.date,
-      content: posts
-        .map((post) => {
-          const link =
-            boardId && `${baseUrl}/wap/xbbs.php?B=${boardId}_${post.id}`;
-          const bodyText = bodies.get(post.id);
-          const body = bodyText
-            ? text(bodyText).replace(
-                "(more...)",
-                link ? `(<a href="${link}">more...</a>)` : "(more...)",
-              )
-            : "";
-          const media =
-            images
-              .get(post.id)
-              ?.map(
-                /** @param {string} image */ (image) => `<img src="${image}">`,
-              )
-              .join("") || "";
-          return `<article><h3>${text(post.title)}</h3>${body && `<p>${body}</p>`}${media}<p><small><a href="${baseUrl}/sForum/user.php?B=${post.userId}">${text(post.author)}</a> · ${post.date.toUTCString()}</small></p></article>`;
-        })
-        .join(""),
-    };
-  },
-  extractItems(document) {
-    return [...document.querySelectorAll('[id^="s-"]')]
-      .map((item) => {
-        const id = item.id.slice(2);
-        const separator = id.indexOf("-");
-        const boardAndThread = separator === -1 ? "" : id.replace("-", "_");
-        const title = item.textContent.trim();
-        return {
-          link: boardAndThread
-            ? `${baseUrl}/wap/xbbs.php?B=${boardAndThread}`
-            : "",
-          articleUrl: boardAndThread
-            ? `${baseUrl}/sForum/ztree.php?B=${boardAndThread}`
-            : "",
+/** @param {string} id @param {string} title @param {string} link @param {string} description @returns {import("../source.d.ts").Source} */
+function createSource(id, title, link, description) {
+  return {
+    id,
+    title,
+    link,
+    description,
+    encoding: "gbk",
+    buildChangeEntries(capturedContent, candidate, history) {
+      const publishedPostIds = new Set(
+        history.contents.flatMap((content) =>
+          [...content.matchAll(/data-post-id="(\d+)"/g)].map(([, id]) => id),
+        ),
+      );
+      const changeCandidates = (capturedContent.changeCandidates || []).filter(
+        (update) => !publishedPostIds.has(update.id.split("#post-")[1]),
+      );
+      if (!changeCandidates.length) return [];
+      const threadLink = candidate.link || link;
+      return [
+        {
+          id: `${threadLink}#posts-${changeCandidates.map((update) => update.id.split("#post-")[1]).join("-")}`,
+          title: changeCandidates[0].title,
+          link: threadLink,
+          content: `<p><a href="${threadLink}">View thread</a></p><hr><h3>New Posts</h3>${changeCandidates.map((update) => update.content).join("<hr>")}`,
+          date: changeCandidates.at(-1)?.date,
+        },
+      ];
+    },
+    async extract(document, url) {
+      const boardAndThread = new URL(url).searchParams.get("B");
+      const boardId = boardAndThread?.split("_")[0];
+      const scripts = [...document.querySelectorAll("script")]
+        .map((node) => node.textContent)
+        .join("\n");
+      const bodies = new Map(
+        [...scripts.matchAll(/zc\((\d+),'((?:\\.|[^'])*)'\);/gs)].map(
+          ([, id, body]) => [id, body],
+        ),
+      );
+      const posts = [
+        ...scripts.matchAll(/zt\(\d+,(\d+),\d+,(\d+),'(.*?)',(\d+),'(.*?)'/gs),
+      ]
+        .map(([, id, timestamp, title, userId, author]) => ({
+          id,
           title,
-        };
-      })
-      .filter((item) => item.title && !item.title.includes("[置顶]"));
-  },
-};
+          userId,
+          author,
+          date: new Date(Number(timestamp) * 1000),
+        }))
+        .sort((left, right) => left.date.valueOf() - right.date.valueOf());
+      if (!posts.length) return null;
+      const images = boardAndThread
+        ? await imagesByPost(boardAndThread)
+        : new Map();
 
-export default source;
+      const threadLink = boardAndThread
+        ? `${baseUrl}/wap/xbbs.php?B=${boardAndThread}`
+        : url;
+      const postContent = (post) => {
+        const link =
+          boardId && `${baseUrl}/wap/xbbs.php?B=${boardId}_${post.id}`;
+        const bodyText = bodies.get(post.id);
+        const body = bodyText
+          ? text(bodyText).replace(
+              "(more...)",
+              link ? `(<a href="${link}">more...</a>)` : "(more...)",
+            )
+          : "";
+        const media =
+          images
+            .get(post.id)
+            ?.map(
+              /** @param {string} image */ (image) => `<img src="${image}">`,
+            )
+            .join("") || "";
+        return `<article data-post-id="${post.id}"><h3>${text(post.title)}</h3>${body && `<p>${body}</p>`}${media}<p><small><a href="${baseUrl}/sForum/user.php?B=${post.userId}">${text(post.author)}</a> · ${post.date.toUTCString()}</small></p></article>`;
+      };
+      return {
+        title: decode(posts[0].title),
+        date: posts.at(-1)?.date,
+        content: posts.map(postContent).join(""),
+        changeCandidates: posts.map((post) => ({
+          id: `${threadLink}#post-${post.id}`,
+          title: `💬 ${decode(posts[0].title)}`,
+          link: boardId
+            ? `${baseUrl}/wap/xbbs.php?B=${boardId}_${post.id}`
+            : threadLink,
+          content: postContent(post),
+          date: post.date,
+        })),
+      };
+    },
+    extractItems(document) {
+      return [...document.querySelectorAll('[id^="s-"]')]
+        .map((item) => {
+          const id = item.id.slice(2);
+          const separator = id.indexOf("-");
+          const boardAndThread = separator === -1 ? "" : id.replace("-", "_");
+          const title = item.textContent.trim();
+          return {
+            link: boardAndThread
+              ? `${baseUrl}/wap/xbbs.php?B=${boardAndThread}`
+              : "",
+            contentUrl: boardAndThread
+              ? `${baseUrl}/sForum/ztree.php?B=${boardAndThread}`
+              : "",
+            title,
+          };
+        })
+        .filter((item) => item.title && !item.title.includes("[置顶]"));
+    },
+  };
+}
+
+export default [
+  createSource(
+    "huasing",
+    "华新鲜事",
+    `${baseUrl}/sForum/zsbbs.php`,
+    "华新论坛最新帖子",
+  ),
+  createSource(
+    "huasing-family",
+    "华新 · 家有儿女",
+    `${baseUrl}/sForum/bbs.php?B=179`,
+    "华新论坛家有儿女版最新帖子",
+  ),
+];

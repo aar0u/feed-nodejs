@@ -1,12 +1,15 @@
 import { mkdir, readdir, writeFile } from "node:fs/promises";
+import { join } from "node:path";
 import { Feed } from "feed";
+import { log } from "./utils/log.mjs";
+import { readPublishedFeed } from "./utils/published-feed.mjs";
 import {
   absoluteUrls,
-  extractArticle,
+  extractContent,
   fetchDocument,
 } from "./utils/parser.mjs";
 
-/** @typedef {import("./source.d.ts").ListItem} ListItem */
+/** @typedef {import("./source.d.ts").FeedEntryCandidate} FeedEntryCandidate */
 /** @typedef {import("./source.d.ts").Source} Source */
 
 const sourceDirectory = new URL("./sources/", import.meta.url);
@@ -28,8 +31,10 @@ const sources = (
     ),
   )
 ).flatMap((source) => (Array.isArray(source) ? source : [source]));
-const limit = 20;
-const defaultConcurrency = 5;
+const feedEntryCandidateLimit = 20;
+const entryHistoryLimit = 100;
+const defaultContentFetchConcurrency = 5;
+const publishedFeedDirectory = process.env.PUBLISHED_FEED_DIRECTORY;
 const feedBaseUrl = process.env.FEED_BASE_URL;
 const webSubHub = "https://pubsubhubbub.superfeedr.com/";
 
@@ -39,14 +44,37 @@ function validDate(value) {
   return date && !Number.isNaN(date.valueOf()) ? date : undefined;
 }
 
-/** @param {ListItem} item @returns {item is ListItem & { link: string, title: string }} */
-function hasLinkAndTitle(item) {
-  return Boolean(item.link && item.title);
+/** @param {FeedEntryCandidate} candidate @returns {candidate is FeedEntryCandidate & { link: string, title: string }} */
+function isFeedEntryCandidate(candidate) {
+  return Boolean(candidate.link && candidate.title);
+}
+
+/** @param {Feed} feed @param {{ title: string, id: string, link: string, content: string, date?: string | Date }} entry */
+function appendFeedEntry(feed, entry) {
+  feed.addItem({
+    title: entry.title,
+    id: entry.id,
+    link: entry.link,
+    content: entry.content,
+    date: validDate(entry.date) || new Date(),
+  });
 }
 
 /** @param {Source} source */
-async function generate(source) {
-  console.log(`[${source.id}] generating`);
+async function generateFeed(source) {
+  const startedAt = Date.now();
+  const contentFetchConcurrency =
+    source.contentFetchConcurrency ?? defaultContentFetchConcurrency;
+  const requestDelay = source.requestDelay ?? 0;
+  log(
+    "INFO",
+    `[${source.id}] generating (content fetch concurrency: ${contentFetchConcurrency}, request delay: ${requestDelay}ms)`,
+  );
+  const publishedFeed = await readPublishedFeed(
+    publishedFeedDirectory
+      ? join(publishedFeedDirectory, `${source.id}.xml`)
+      : undefined,
+  );
   const feedUrl =
     feedBaseUrl && new URL(`${source.id}.xml`, `${feedBaseUrl}/`).href;
   const feed = new Feed({
@@ -60,90 +88,179 @@ async function generate(source) {
     updated: new Date(),
   });
 
-  let itemCount = 0;
+  /** @type {import("./source.d.ts").FeedEntry[]} */
+  const newEntries = [];
+  let checkedCandidateCount = 0;
+  let failed = false;
   try {
-    const document = source.fetchItems
+    const sourceDocument = source.fetchItems
       ? await source.fetchItems()
       : await fetchDocument(source.link, source.encoding);
-    const seen = new Set();
-    const listed = (
+    const candidateLinks = new Set();
+    const candidates = (
       source.extractItems
-        ? source.extractItems(/** @type {Document} */ (document))
-        : /** @type {ListItem[]} */ (document)
+        ? source.extractItems(/** @type {Document} */ (sourceDocument))
+        : /** @type {FeedEntryCandidate[]} */ (sourceDocument)
     )
-      .map((item) => ({
-        ...item,
-        link: item.link && new URL(item.link, source.link).href,
-        articleUrl:
-          item.articleUrl && new URL(item.articleUrl, source.link).href,
+      .map((candidate) => ({
+        ...candidate,
+        link: candidate.link && new URL(candidate.link, source.link).href,
+        contentUrl:
+          candidate.contentUrl &&
+          new URL(candidate.contentUrl, source.link).href,
       }))
-      .filter(hasLinkAndTitle)
-      .filter((item) => !seen.has(item.link) && seen.add(item.link))
-      .slice(0, limit);
+      .filter(isFeedEntryCandidate)
+      .filter(
+        (candidate) =>
+          !candidateLinks.has(candidate.link) &&
+          candidateLinks.add(candidate.link),
+      )
+      .slice(0, feedEntryCandidateLimit);
+    checkedCandidateCount = candidates.length;
 
-    const concurrency = source.concurrency ?? defaultConcurrency;
-    for (let index = 0; index < listed.length; index += concurrency) {
-      const results = await Promise.allSettled(
-        listed.slice(index, index + concurrency).map(async (item) => {
-          if (!item.link || !item.title)
-            throw new Error("missing item link or title");
-          if (item.content !== undefined)
-            return {
-              item,
-              article: {
-                ...item,
-                content: absoluteUrls(item.content, item.link),
-              },
-            };
-          const url = item.articleUrl || item.link;
-          const document = await fetchDocument(url, source.encoding);
-          return { item, article: await extractArticle(document, url, source) };
-        }),
-      );
-      for (const result of results) {
-        if (result.status !== "fulfilled" || !result.value.article) {
-          if (result.status === "rejected")
-            console.warn(
-              `[${source.id}] skipped article:`,
-              result.reason.message,
-            );
-          continue;
+    let nextCandidateIndex = 0;
+    let nextRequestAt = 0;
+    async function captureCandidateContent(candidate) {
+      if (!candidate.link || !candidate.title)
+        throw new Error("missing candidate link or title");
+      if (candidate.content !== undefined)
+        return {
+          candidate,
+          capturedContent: {
+            ...candidate,
+            content: absoluteUrls(candidate.content, candidate.link),
+          },
+        };
+      const now = Date.now();
+      const requestAt = Math.max(now, nextRequestAt);
+      nextRequestAt = requestAt + requestDelay;
+      if (requestAt > now)
+        await new Promise((resolve) => setTimeout(resolve, requestAt - now));
+      const contentUrl = candidate.contentUrl || candidate.link;
+      const contentDocument = await fetchDocument(contentUrl, source.encoding);
+      return {
+        candidate,
+        capturedContent: await extractContent(
+          contentDocument,
+          contentUrl,
+          source,
+        ),
+      };
+    }
+    async function worker() {
+      /** @type {PromiseSettledResult<{ candidate: FeedEntryCandidate, capturedContent: import("./source.d.ts").CapturedContent | null }>[] } */
+      const results = [];
+      while (nextCandidateIndex < candidates.length) {
+        const candidate = candidates[nextCandidateIndex++];
+        try {
+          results.push({
+            status: "fulfilled",
+            value: await captureCandidateContent(candidate),
+          });
+        } catch (reason) {
+          const url = candidate.contentUrl || candidate.link || "unknown URL";
+          const message =
+            reason instanceof Error ? reason.message : String(reason);
+          results.push({
+            status: "rejected",
+            reason: new Error(`${url}: ${message}`),
+          });
         }
-        const { item, article } = result.value;
-        if (!item.link || !item.title) continue;
-        const date = validDate(article.date || item.date) || new Date();
-        feed.addItem({
-          title: article.title || item.title,
-          id: item.link,
-          link: item.link,
-          content: article.content,
-          date,
+      }
+      return results;
+    }
+    const results = (
+      await Promise.all(
+        Array.from(
+          { length: Math.min(contentFetchConcurrency, candidates.length) },
+          worker,
+        ),
+      )
+    ).flat();
+    for (const result of results) {
+      if (result.status !== "fulfilled" || !result.value.capturedContent) {
+        if (result.status === "rejected")
+          log(
+            "ERROR",
+            `[${source.id}] skipped article: ${result.reason.message}`,
+          );
+        continue;
+      }
+      const { candidate, capturedContent } = result.value;
+      if (!candidate.link || !candidate.title) continue;
+      const publishedPrimaryEntry = publishedFeed.entries.find(
+        (entry) => entry.link === candidate.link,
+      );
+      if (!publishedPrimaryEntry) {
+        newEntries.push({
+          id: candidate.link,
+          title: capturedContent.title || candidate.title,
+          link: candidate.link,
+          content: capturedContent.content,
+          date: capturedContent.date || candidate.date,
         });
-        itemCount += 1;
+        continue;
+      }
+      if (source.buildChangeEntries) {
+        const publishedChangeEntries = publishedFeed.entries.filter(({ id }) =>
+          id.startsWith(`${candidate.link}#`),
+        );
+        newEntries.push(
+          ...source.buildChangeEntries(capturedContent, candidate, {
+            contents: [
+              publishedPrimaryEntry.content,
+              ...publishedChangeEntries.map(({ content }) => content),
+            ],
+          }),
+        );
       }
     }
   } catch (error) {
-    console.warn(
-      `[${source.id}] skipped source:`,
-      error instanceof Error ? error.message : String(error),
+    failed = true;
+    log(
+      "ERROR",
+      `[${source.id}] skipped source: ${error instanceof Error ? error.message : String(error)}`,
     );
   }
 
+  if (failed && publishedFeed.xml) {
+    await writeFile(`public/${source.id}.xml`, publishedFeed.xml);
+    return { id: source.id, changed: false };
+  }
+
+  newEntries.sort(
+    (left, right) =>
+      (validDate(right.date)?.valueOf() || 0) -
+      (validDate(left.date)?.valueOf() || 0),
+  );
+  const feedEntries = [...newEntries, ...publishedFeed.entries]
+    .filter(
+      (entry, index, all) =>
+        all.findIndex(({ id }) => id === entry.id) === index,
+    )
+    .slice(0, entryHistoryLimit);
+  for (const entry of feedEntries) appendFeedEntry(feed, entry);
   await writeFile(`public/${source.id}.xml`, feed.rss2());
-  console.log(`[${source.id}] wrote ${itemCount} items`);
+  log(
+    "INFO",
+    `[${source.id}] checked ${checkedCandidateCount} candidates; ${newEntries.length ? `wrote ${newEntries.length} new entries` : "no new entries"} in ${((Date.now() - startedAt) / 1000).toFixed(3)}s`,
+  );
+  return {
+    id: source.id,
+    changed: !publishedFeed.xml || newEntries.length > 0,
+  };
 }
 
 await mkdir("public", { recursive: true });
-const results = await Promise.allSettled(sources.map(generate));
+const results = await Promise.allSettled(sources.map(generateFeed));
+const changedFeeds = [];
 for (const result of results) {
   if (result.status === "rejected")
-    console.warn("Failed to write feed:", result.reason.message);
+    log("ERROR", `Failed to write feed: ${result.reason.message}`);
+  else if (result.value.changed) changedFeeds.push(`${result.value.id}.xml`);
 }
 await writeFile(
   "public/index.html",
   `<!doctype html><meta charset="utf-8"><title>RSS feeds</title><ul>${sources.map((source) => `<li><a href="${source.id}.xml">${source.title}</a></li>`).join("")}</ul>`,
 );
-await writeFile(
-  "public/websub-feeds.txt",
-  sources.map((source) => `${source.id}.xml`).join("\n"),
-);
+await writeFile("public/changed-feeds.txt", changedFeeds.join("\n"));

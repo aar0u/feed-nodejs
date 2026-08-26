@@ -122,7 +122,13 @@ async function news() {
   const { items, token } = await getNews();
   const symbols = [...new Set(items.flatMap((item) => item.symbols || []))];
   const details = await quotes(symbols, token).catch(() => new Map());
-  return Promise.all(items.map((item) => article(item, details)));
+  const articles = [];
+  for (const item of items) {
+    articles.push(await article(item, details));
+    if (articles.length < items.length)
+      await new Promise((resolve) => setTimeout(resolve, source.requestDelay));
+  }
+  return articles;
 }
 
 /** @type {import("../source.d.ts").Source} */
@@ -131,6 +137,7 @@ const source = {
   title: "老虎社区 · 要闻",
   link: newsUrl,
   description: "老虎社区热门资讯",
+  requestDelay: 500,
   fetchItems: news,
 };
 

@@ -1,15 +1,28 @@
-export interface ListItem {
+export interface FeedEntryCandidate {
   link?: string;
-  articleUrl?: string;
+  contentUrl?: string;
   title?: string;
   date?: string | Date;
   content?: string;
 }
 
-export interface Article {
+export interface CapturedContent {
   title?: string;
   content: string;
   date?: string | Date;
+  changeCandidates?: FeedEntry[];
+}
+
+export interface FeedEntry {
+  id: string;
+  title: string;
+  link: string;
+  content: string;
+  date?: string | Date;
+}
+
+export interface EntryHistory {
+  contents: string[];
 }
 
 export interface Source {
@@ -18,11 +31,17 @@ export interface Source {
   link: string;
   description: string;
   encoding?: string;
-  concurrency?: number;
-  extractItems?(document: Document): ListItem[];
-  fetchItems?(): Promise<ListItem[]>;
+  contentFetchConcurrency?: number;
+  requestDelay?: number;
+  buildChangeEntries?(
+    capturedContent: CapturedContent,
+    candidate: FeedEntryCandidate,
+    history: EntryHistory,
+  ): FeedEntry[];
+  extractItems?(document: Document): FeedEntryCandidate[];
+  fetchItems?(): Promise<FeedEntryCandidate[]>;
   extract?(
     document: Document,
     url: string,
-  ): Article | null | Promise<Article | null>;
+  ): CapturedContent | null | Promise<CapturedContent | null>;
 }

@@ -8,19 +8,22 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: Fetch published feeds
+        run: |
+          git fetch --depth=5 origin gh-pages:refs/remotes/origin/gh-pages || true
+          mkdir previous
+          git show-ref --verify --quiet refs/remotes/origin/gh-pages && git archive origin/gh-pages | tar -x -C previous || true
       - uses: pnpm/setup@v2
         with:
           version: latest
@@ -35,30 +38,75 @@ jobs:
           key: ${{ runner.os }}-playwright-${{ steps.playwright.outputs.version }}
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install chromium
-      - run: pnpm run generate
-      - uses: actions/configure-pages@v6
-      - uses: actions/upload-pages-artifact@v5
-        with:
-          path: ./public
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v5
-      - name: Notify WebSub hub
-        env:
-          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+      - id: generate
+        name: Generate feeds
         run: |
-          feeds=$(curl --fail --retry 3 --retry-all-errors --silent --show-error "$PAGE_URL/websub-feeds.txt")
+          set -o pipefail
+          PUBLISHED_FEED_DIRECTORY=previous pnpm run generate 2>&1 | tee /tmp/feed-generation.log
+          sed -r 's/\x1B\[[0-?]*[ -/]*[@-~]//g' /tmp/feed-generation.log > /tmp/feed-summary.log
+          {
+            echo "## Feed generation"
+            echo '```text'
+            cat /tmp/feed-summary.log
+            echo '```'
+            if grep -q ' ERROR:' /tmp/feed-summary.log; then
+              echo '### Errors'
+              echo '> [!CAUTION]'
+              grep ' ERROR:' /tmp/feed-summary.log | while IFS= read -r error; do
+                printf '> %s\n' "$error"
+              done
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ -s public/changed-feeds.txt ]; then
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Publish changed feeds
+        if: steps.generate.outputs.changed == 'true'
+        run: |
+          export GIT_AUTHOR_NAME=github-actions[bot]
+          export GIT_AUTHOR_EMAIL=41898282+github-actions[bot]@users.noreply.github.com
+          export GIT_COMMITTER_NAME=$GIT_AUTHOR_NAME
+          export GIT_COMMITTER_EMAIL=$GIT_AUTHOR_EMAIL
+          pages=$(mktemp -d)
+          if git show-ref --verify --quiet refs/remotes/origin/gh-pages; then
+            git worktree add --detach "$pages" origin/gh-pages
+          else
+            git worktree add --detach "$pages" HEAD
+            git -C "$pages" checkout --orphan gh-pages
+            git -C "$pages" rm -rf .
+          fi
+          rsync -a --checksum --delete --exclude=.git public/ "$pages/"
+          git -C "$pages" add -A
+          git -C "$pages" -c user.name=github-actions[bot] -c user.email=41898282+github-actions[bot] commit -m 'Publish feeds'
+
+          parent=
+          if git -C "$pages" rev-parse --verify --quiet HEAD^; then
+            while IFS= read -r commit; do
+              tree=$(git -C "$pages" rev-parse "$commit^{tree}")
+              if [ -n "$parent" ]; then
+                parent=$(git -C "$pages" log -1 --format=%B "$commit" | git -C "$pages" commit-tree "$tree" -p "$parent")
+              else
+                parent=$(git -C "$pages" log -1 --format=%B "$commit" | git -C "$pages" commit-tree "$tree")
+              fi
+            done < <(git -C "$pages" rev-list --reverse --max-count=4 HEAD^)
+          fi
+          tree=$(git -C "$pages" rev-parse HEAD^{tree})
+          if [ -n "$parent" ]; then
+            head=$(printf 'Publish feeds\n' | git -C "$pages" commit-tree "$tree" -p "$parent")
+          else
+            head=$(printf 'Publish feeds\n' | git -C "$pages" commit-tree "$tree")
+          fi
+          git -C "$pages" update-ref refs/heads/gh-pages "$head"
+          git -C "$pages" push --force origin refs/heads/gh-pages:gh-pages
+      - name: Notify WebSub hub
+        if: steps.generate.outputs.changed == 'true'
+        run: |
           while IFS= read -r feed; do
-            feed_url="${PAGE_URL%/}/$feed"
+            feed_url="${FEED_BASE_URL%/}/$feed"
             echo "Notifying WebSub hub: $feed_url"
             curl --fail --retry 3 --retry-all-errors --silent --show-error --write-out '\nWebSub response: %{http_code}\n' -X POST https://pubsubhubbub.superfeedr.com/ \
               --data-urlencode 'hub.mode=publish' \
               --data-urlencode "hub.url=$feed_url"
-          done <<< "$feeds"
+          done < public/changed-feeds.txt

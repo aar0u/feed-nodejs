@@ -1,3 +1,5 @@
+import { brightcovePlayer } from "../utils/brightcove.mjs";
+
 const baseUrl = "https://www.zaobao.com.sg";
 
 /** @param {string} link */
@@ -76,26 +78,46 @@ const source = {
         target.insertBefore(image, target.firstChild);
       }
     }
+    const video = target?.querySelector("video-js[data-video-id]");
+    const player = video && brightcovePlayer(document, video);
+    if (player) video.replaceWith(player);
+    const hasVideo = Boolean(
+      player ||
+      document.querySelector(
+        ".brightcove-container, meta[name='contentType'][content='video'], .articleBody video, .articleBody iframe[src*='youtube'], .articleBody iframe[src*='brightcove']",
+      ),
+    );
+    if (target && hasVideo) {
+      const notice = document.createElement("p");
+      const link = document.createElement("a");
+      link.href = url;
+      link.textContent = "跳转原文";
+      link.setAttribute("target", "_blank");
+      notice.textContent = "文中含视频 ➡️ ";
+      const strong = document.createElement("strong");
+      strong.append(link);
+      notice.append(strong);
+      target.insertBefore(notice, target.firstChild);
+    }
     const content = target?.innerHTML;
     return content?.trim() ? { content, date: publishedDate(document) } : null;
   },
   extractItems(document) {
     return [
-      ...document.querySelectorAll(".news-feature-card"),
       ...document.querySelectorAll(
-        ".homepage-today-recommended-3-col-layout li",
+        ".news-feature-card, .homepage-today-recommended-3-col-layout li",
       ),
     ]
       .filter(
         (item) =>
-          item.querySelector("h2") &&
+          item.querySelector("h2, h3") &&
           !item.querySelector('[data-testid^="test-realtime-article-card"]'),
       )
       .map((item) => {
         const link = item.querySelector("a")?.getAttribute("href") ?? undefined;
         return {
           link: link && withoutRef(link),
-          title: item.querySelector("h2")?.textContent.trim(),
+          title: item.querySelector("h2, h3")?.textContent.trim(),
         };
       });
   },

@@ -1,3 +1,5 @@
+import { brightcovePlayer } from "../utils/brightcove.mjs";
+
 const baseUrl = "https://www.8world.com";
 
 /** @typedef {{ "@type"?: string, image?: string[], datePublished?: string }} ArticleData */
@@ -28,12 +30,21 @@ const source = {
     const caption = document
       .querySelector("figure.article-media figcaption")
       ?.textContent.trim();
-    const videoUrl = document.querySelector(".video-wrapper video-js") && url;
+    const video = document.querySelector("video-js[data-video-id]");
+
     document
       .querySelectorAll(
-        "header[role='banner'], #playerlist, [data-column='One-Third'], #block-remenremen, .google-preferred-source, .mc-text-to-speech-wrapper, .article-edm, .nav-menu-tools-wrapper, .mc-fast-button-block, .video-wrapper",
+        "header[role='banner'], #playerlist, [data-column='One-Third'], #block-remenremen, .google-preferred-source, .mc-text-to-speech-wrapper, .article-edm, .nav-menu-tools-wrapper, .mc-fast-button-block, .video-wrapper, .stories-sns",
       )
-      .forEach((node) => node.remove());
+      .forEach((node) => {
+        (node.matches(".stories-sns")
+          ? node.closest(".embedded-entity") || node
+          : node
+        ).remove();
+      });
+    document.querySelectorAll("style").forEach((node) => {
+      if (node.textContent.includes(".stories-sns")) node.remove();
+    });
     const targets = [
       ...document.querySelectorAll(".article-content .text-long"),
     ];
@@ -61,18 +72,21 @@ const source = {
         first.insertBefore(text, image.nextSibling);
       }
     }
-    if (videoUrl) {
+    const player = video && brightcovePlayer(document, video);
+    if (player) {
+      const image = first.querySelector("img");
+      first.insertBefore(player, image?.nextSibling || first.firstChild);
+
       const notice = document.createElement("p");
       const link = document.createElement("a");
-      link.href = videoUrl;
+      link.href = url;
       link.textContent = "跳转原文";
       link.setAttribute("target", "_blank");
       notice.textContent = "文中含视频 ➡️ ";
       const strong = document.createElement("strong");
       strong.append(link);
       notice.append(strong);
-      const image = first.querySelector("img");
-      first.insertBefore(notice, image?.nextSibling || first.firstChild);
+      first.insertBefore(notice, player.nextSibling);
     }
     return {
       content: targets.map((target) => target.innerHTML).join(""),

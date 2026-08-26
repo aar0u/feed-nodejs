@@ -60,7 +60,7 @@ export function absoluteUrls(html, url) {
 }
 
 /** @param {Document} document @param {string} url @param {import("../source.d.ts").Source} [source] */
-export async function extractArticle(document, url, source) {
+export async function extractContent(document, url, source) {
   const published =
     document
       .querySelector('meta[property="article:published_time"], time[datetime]')
