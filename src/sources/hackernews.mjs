@@ -4,7 +4,7 @@ import { formatTimestamp } from "../utils/time.mjs";
 const siteUrl = "https://news.ycombinator.com/";
 const newsUrl = new URL("news", siteUrl).href;
 const minPoints = 50;
-const storyCount = 18;
+const storyCount = 15;
 const rootCommentCount = 3;
 const replyCount = 2;
 
@@ -94,19 +94,24 @@ function commentMeta(comment) {
   return `<a href="${userUrl(comment.author)}">${comment.author}</a> · <a href="${discussionUrl(comment.id)}">${timestamp || "View comment"}</a>`;
 }
 
-/** @param {{ id: string, author: string, content: string, date?: string }} comment */
-function commentContent(comment) {
-  return `<article data-comment-id="${comment.id}"><div>${comment.content}</div><p><small>— ${commentMeta(comment)}</small></p></article>`;
+/** @param {{ id: string, author: string, content: string, date?: string }} comment @param {string} [prefix] */
+function commentContent(comment, prefix = "") {
+  return `<article data-comment-id="${comment.id}"><div>${prefix}${comment.content}</div><p><small>— ${commentMeta(comment)}</small></p></article>`;
 }
 
 /** @param {{ id: string, author: string, content: string, date?: string }} reply @param {{ id: string, author: string, content: string, date?: string }} parent */
-function replyHtml(reply, parent) {
+function replyContent(reply, parent) {
   return `<p><small><strong>↳ Reply to <a href="${userUrl(parent.author)}">${parent.author}</a></strong></small></p>${commentContent(reply)}`;
+}
+
+/** @param {{ id: string, author: string, content: string, date?: string }} reply @param {{ id: string, author: string, content: string, date?: string }} parent */
+function changeHtml(reply, parent) {
+  return `<p>💬 <small>${commentMeta(parent)}</small></p><blockquote>${replyContent(reply, parent)}</blockquote>`;
 }
 
 /** @param {{ id: string, author: string, content: string, date?: string }} comment @param {{ id: string, author: string, content: string, date?: string }[]} replies */
 function threadHtml(comment, replies) {
-  return `<blockquote>${commentContent(comment)}${replies.map((reply) => `<blockquote>${replyHtml(reply, comment)}</blockquote>`).join("")}</blockquote>`;
+  return `${commentContent(comment, "💬 ")}${replies.map((reply) => `<blockquote>${replyContent(reply, comment)}</blockquote>`).join("")}`;
 }
 
 /** @param {string[]} comments @param {string} [heading] */
@@ -122,9 +127,10 @@ const source = {
   title: "Hacker News Top Stories",
   link: newsUrl,
   description: "Hacker News stories with at least 50 points and top comments",
-  contentFetchConcurrency: 2,
-  requestDelay: 800,
-  buildChangeEntries(capturedContent, candidate, history) {
+  contentFetchConcurrency: 1,
+  changeBatchSize: 10,
+  changeBatchDelay: 4 * 60 * 60 * 1000,
+  filterChangeCandidates(capturedContent, history) {
     const publishedCommentIds = new Set(
       history.contents.flatMap((content) =>
         [...content.matchAll(/data-comment-id="(\d+)"|item\?id=(\d+)/g)].map(
@@ -132,9 +138,11 @@ const source = {
         ),
       ),
     );
-    const changeCandidates = (capturedContent.changeCandidates || []).filter(
+    return (capturedContent.changeCandidates || []).filter(
       (update) => !publishedCommentIds.has(update.id.split("#comment-")[1]),
     );
+  },
+  buildChangeEntries(capturedContent, candidate, changeCandidates) {
     if (!changeCandidates.length) return [];
     const mainLink = candidate.link || newsUrl;
     const discussionLink = candidate.contentUrl || mainLink;
@@ -175,7 +183,7 @@ const source = {
       { comment, content: threadHtml(comment, []) },
       ...replies.map((reply) => ({
         comment: reply,
-        content: `<blockquote><p><small>${commentMeta(comment)}</small></p><blockquote>${replyHtml(reply, comment)}</blockquote></blockquote>`,
+        content: changeHtml(reply, comment),
       })),
     ]);
     const dates = commentChanges.flatMap(({ comment }) =>

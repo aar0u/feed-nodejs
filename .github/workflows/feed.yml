@@ -62,8 +62,13 @@ jobs:
           else
             echo 'changed=false' >> "$GITHUB_OUTPUT"
           fi
-      - name: Publish changed feeds
-        if: steps.generate.outputs.changed == 'true'
+          if [ -s public/changed-feeds.txt ] || [ -s public/state-changed.txt ]; then
+            echo 'publish=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'publish=false' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Publish feeds and pending state
+        if: steps.generate.outputs.publish == 'true'
         run: |
           export GIT_AUTHOR_NAME=github-actions[bot]
           export GIT_AUTHOR_EMAIL=41898282+github-actions[bot]@users.noreply.github.com

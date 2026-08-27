@@ -28,7 +28,7 @@ function text(value) {
 }
 
 /** @param {string} boardAndThread */
-async function imagesByPost(boardAndThread) {
+async function imagesByComment(boardAndThread) {
   const firstPage = `${baseUrl}/wap/xbbs.php?B=${boardAndThread}`;
   const pages = [firstPage];
   const visited = new Set();
@@ -48,13 +48,13 @@ async function imagesByPost(boardAndThread) {
     }
 
     for (const article of document.querySelectorAll(".article p")) {
-      const postId = article
+      const commentId = article
         .querySelector('a[href*="/sForum/bbs.php?B="]')
         ?.getAttribute("href")
         ?.match(/B=\d+_(\d+)/)?.[1];
-      if (!postId) continue;
+      if (!commentId) continue;
       images.set(
-        postId,
+        commentId,
         [...article.querySelectorAll("img[src]")].flatMap((image) => {
           const src = image.getAttribute("src");
           return src ? [new URL(src, pageUrl).href] : [];
@@ -82,23 +82,29 @@ function createSource(id, title, link, description) {
     link,
     description,
     encoding: "gbk",
-    buildChangeEntries(capturedContent, candidate, history) {
-      const publishedPostIds = new Set(
+    changeBatchSize: 5,
+    changeBatchDelay: 4 * 60 * 60 * 1000,
+    filterChangeCandidates(capturedContent, history) {
+      const publishedCommentIds = new Set(
         history.contents.flatMap((content) =>
-          [...content.matchAll(/data-post-id="(\d+)"/g)].map(([, id]) => id),
+          [...content.matchAll(/data-comment-id="(\d+)"/g)].map(([, id]) => id),
         ),
       );
-      const changeCandidates = (capturedContent.changeCandidates || []).filter(
-        (update) => !publishedPostIds.has(update.id.split("#post-")[1]),
+      return (capturedContent.changeCandidates || []).filter(
+        (update, index) =>
+          index > 0 &&
+          !publishedCommentIds.has(update.id.split("#comment-")[1]),
       );
+    },
+    buildChangeEntries(capturedContent, candidate, changeCandidates) {
       if (!changeCandidates.length) return [];
       const threadLink = candidate.link || link;
       return [
         {
-          id: `${threadLink}#posts-${changeCandidates.map((update) => update.id.split("#post-")[1]).join("-")}`,
+          id: `${threadLink}#comments-${changeCandidates.map((update) => update.id.split("#comment-")[1]).join("-")}`,
           title: changeCandidates[0].title,
           link: threadLink,
-          content: `<p><a href="${threadLink}">View thread</a></p><hr><h3>New Posts</h3>${changeCandidates.map((update) => update.content).join("<hr>")}`,
+          content: `<p><a href="${threadLink}">View thread</a></p><hr><h3>New Comments</h3>${changeCandidates.map((update) => update.content).join("<hr>")}`,
           date: changeCandidates.at(-1)?.date,
         },
       ];
@@ -114,7 +120,7 @@ function createSource(id, title, link, description) {
           ([, id, body]) => [id, body],
         ),
       );
-      const posts = [
+      const comments = [
         ...scripts.matchAll(/zt\(\d+,(\d+),\d+,(\d+),'(.*?)',(\d+),'(.*?)'/gs),
       ]
         .map(([, id, timestamp, title, userId, author]) => ({
@@ -125,18 +131,18 @@ function createSource(id, title, link, description) {
           date: new Date(Number(timestamp) * 1000),
         }))
         .sort((left, right) => left.date.valueOf() - right.date.valueOf());
-      if (!posts.length) return null;
+      if (!comments.length) return null;
       const images = boardAndThread
-        ? await imagesByPost(boardAndThread)
+        ? await imagesByComment(boardAndThread)
         : new Map();
 
       const threadLink = boardAndThread
         ? `${baseUrl}/wap/xbbs.php?B=${boardAndThread}`
         : url;
-      const postContent = (post) => {
+      const commentContent = (comment) => {
         const link =
-          boardId && `${baseUrl}/wap/xbbs.php?B=${boardId}_${post.id}`;
-        const bodyText = bodies.get(post.id);
+          boardId && `${baseUrl}/wap/xbbs.php?B=${boardId}_${comment.id}`;
+        const bodyText = bodies.get(comment.id);
         const body = bodyText
           ? text(bodyText).replace(
               "(more...)",
@@ -145,25 +151,25 @@ function createSource(id, title, link, description) {
           : "";
         const media =
           images
-            .get(post.id)
+            .get(comment.id)
             ?.map(
               /** @param {string} image */ (image) => `<img src="${image}">`,
             )
             .join("") || "";
-        return `<article data-post-id="${post.id}"><h3>${text(post.title)}</h3>${body && `<p>${body}</p>`}${media}<p><small><a href="${baseUrl}/sForum/user.php?B=${post.userId}">${text(post.author)}</a> · ${post.date.toUTCString()}</small></p></article>`;
+        return `<article data-comment-id="${comment.id}"><h3>${text(comment.title)}</h3>${body && `<p>${body}</p>`}${media}<p><small><a href="${baseUrl}/sForum/user.php?B=${comment.userId}">${text(comment.author)}</a> · ${comment.date.toUTCString()}</small></p></article>`;
       };
       return {
-        title: decode(posts[0].title),
-        date: posts.at(-1)?.date,
-        content: posts.map(postContent).join(""),
-        changeCandidates: posts.map((post) => ({
-          id: `${threadLink}#post-${post.id}`,
-          title: `💬 ${decode(posts[0].title)}`,
+        title: decode(comments[0].title),
+        date: comments.at(-1)?.date,
+        content: comments.map(commentContent).join(""),
+        changeCandidates: comments.map((comment) => ({
+          id: `${threadLink}#comment-${comment.id}`,
+          title: `💬 ${decode(comments[0].title)}`,
           link: boardId
-            ? `${baseUrl}/wap/xbbs.php?B=${boardId}_${post.id}`
+            ? `${baseUrl}/wap/xbbs.php?B=${boardId}_${comment.id}`
             : threadLink,
-          content: postContent(post),
-          date: post.date,
+          content: commentContent(comment),
+          date: comment.date,
         })),
       };
     },

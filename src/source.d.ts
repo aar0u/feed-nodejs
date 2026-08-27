@@ -33,10 +33,16 @@ export interface Source {
   encoding?: string;
   contentFetchConcurrency?: number;
   requestDelay?: number;
+  changeBatchSize?: number;
+  changeBatchDelay?: number;
+  filterChangeCandidates?(
+    capturedContent: CapturedContent,
+    history: EntryHistory,
+  ): FeedEntry[];
   buildChangeEntries?(
     capturedContent: CapturedContent,
     candidate: FeedEntryCandidate,
-    history: EntryHistory,
+    changeCandidates: FeedEntry[],
   ): FeedEntry[];
   extractItems?(document: Document): FeedEntryCandidate[];
   fetchItems?(): Promise<FeedEntryCandidate[]>;
