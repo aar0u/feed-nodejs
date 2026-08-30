@@ -118,17 +118,26 @@ async function article(item, quotes) {
   };
 }
 
+/** @returns {Promise<(import("../source.d.ts").FeedEntryCandidate & { item: NewsItem, details: Map<string, Quote> })[]>} */
 async function news() {
   const { items, token } = await getNews();
   const symbols = [...new Set(items.flatMap((item) => item.symbols || []))];
   const details = await quotes(symbols, token).catch(() => new Map());
-  const articles = [];
-  for (const item of items) {
-    articles.push(await article(item, details));
-    if (articles.length < items.length)
-      await new Promise((resolve) => setTimeout(resolve, source.requestDelay));
-  }
-  return articles;
+  return items.map((item) => ({
+    link: `https://www.laohu8.com/news/${item.id}`,
+    contentUrl: item.url,
+    title: item.title,
+    date: new Date(item.pubTimestamp * 1000),
+    item,
+    details,
+  }));
+}
+
+/** @param {import("../source.d.ts").FeedEntryCandidate & { item?: NewsItem, details?: Map<string, Quote> }} candidate */
+async function articleContent(candidate) {
+  if (!candidate.item || !candidate.details)
+    throw new Error("missing news item or quote details");
+  return article(candidate.item, candidate.details);
 }
 
 /** @type {import("../source.d.ts").Source} */
@@ -139,6 +148,7 @@ const source = {
   description: "老虎社区热门资讯",
   requestDelay: 500,
   fetchItems: news,
+  fetchContent: articleContent,
 };
 
 export default source;

@@ -5,6 +5,7 @@ const timestampFormatter = new Intl.DateTimeFormat("en-US", {
   day: "2-digit",
   hour: "2-digit",
   minute: "2-digit",
+  second: "2-digit",
   hourCycle: "h23",
 });
 
@@ -15,5 +16,5 @@ export function formatTimestamp(date) {
       .formatToParts(date)
       .map(({ type, value }) => [type, value]),
   );
-  return `${parts.year}${parts.month}${parts.day}T${parts.hour}:${parts.minute}`;
+  return `${parts.year}${parts.month}${parts.day}T${parts.hour}:${parts.minute}:${parts.second}`;
 }

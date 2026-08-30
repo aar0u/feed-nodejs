@@ -46,6 +46,9 @@ export interface Source {
   ): FeedEntry[];
   extractItems?(document: Document): FeedEntryCandidate[];
   fetchItems?(): Promise<FeedEntryCandidate[]>;
+  fetchContent?(
+    candidate: FeedEntryCandidate,
+  ): CapturedContent | null | Promise<CapturedContent | null>;
   extract?(
     document: Document,
     url: string,

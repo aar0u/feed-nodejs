@@ -128,6 +128,7 @@ const source = {
   link: newsUrl,
   description: "Hacker News stories with at least 50 points and top comments",
   contentFetchConcurrency: 1,
+  requestDelay: 1500,
   changeBatchSize: 10,
   changeBatchDelay: 4 * 60 * 60 * 1000,
   filterChangeCandidates(capturedContent, history) {

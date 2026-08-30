@@ -1,7 +1,7 @@
 import { mkdir, readdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { Feed } from "feed";
-import { log, pending, success } from "./utils/log.mjs";
+import { duration, log, pending, success } from "./utils/log.mjs";
 import {
   readPendingChanges,
   writePendingChanges,
@@ -71,14 +71,6 @@ async function generateFeed(source) {
   const contentFetchConcurrency =
     source.contentFetchConcurrency ?? defaultContentFetchConcurrency;
   const requestDelay = source.requestDelay ?? 0;
-  const batchConfig =
-    source.changeBatchSize && source.changeBatchDelay
-      ? `; batch: ${source.changeBatchSize} changes / ${source.changeBatchDelay / 3_600_000}h`
-      : "";
-  log(
-    "INFO",
-    `[${source.id}] generating (fetch ×${contentFetchConcurrency}; delay: ${requestDelay}ms${batchConfig})`,
-  );
   const publishedFeed = await readPublishedFeed(
     publishedFeedDirectory
       ? join(publishedFeedDirectory, `${source.id}.xml`)
@@ -86,11 +78,11 @@ async function generateFeed(source) {
   );
   const changeBatchSize = source.changeBatchSize || 0;
   const changeBatchDelay = source.changeBatchDelay || 0;
+  const checksExistingContent = Boolean(
+    source.filterChangeCandidates && source.buildChangeEntries,
+  );
   const batchesChanges = Boolean(
-    changeBatchSize &&
-    changeBatchDelay &&
-    source.filterChangeCandidates &&
-    source.buildChangeEntries,
+    changeBatchSize && changeBatchDelay && checksExistingContent,
   );
   /** @type {Record<string, PendingChange>} */
   const pendingChanges = batchesChanges
@@ -103,15 +95,19 @@ async function generateFeed(source) {
       (count, pendingChange) => count + pendingChange.changeCandidates.length,
       0,
     );
-  log(
-    "INFO",
-    `[${source.id}] loaded ${publishedFeed.entries.length} published entries`,
-  );
-  if (batchesChanges)
-    log(
-      "INFO",
-      `[${source.id}] loaded ${Object.keys(pendingChanges).length} pending threads (${pendingChangeCount()} changes; threshold: ${changeBatchSize} changes or ${changeBatchDelay / 3_600_000}h)`,
-    );
+  const startDetails = [
+    `fetch ×${contentFetchConcurrency}`,
+    ...(requestDelay ? [`delay ${requestDelay}ms`] : []),
+    ...(batchesChanges
+      ? [`batch ${changeBatchSize} / ${changeBatchDelay / 3_600_000}h`]
+      : []),
+    ...(pendingChangeCount()
+      ? [
+          `${pendingChangeCount()} pending / ${Object.keys(pendingChanges).length} threads`,
+        ]
+      : []),
+  ].join("; ");
+  log("INFO", `[${source.id}] start (${startDetails})`);
   const feedUrl =
     feedBaseUrl && new URL(`${source.id}.xml`, `${feedBaseUrl}/`).href;
   const feed = new Feed({
@@ -136,35 +132,35 @@ async function generateFeed(source) {
   let emittedBatchChangeCount = 0;
   let failed = false;
   function logGenerationSummary() {
-    const newPrimaryLabel = `${newPrimaryCount} new primary item${newPrimaryCount === 1 ? "" : "s"}`;
-    const candidateCounts = [
-      `${existingCandidateCount} existing`,
-      ...(newPrimaryCount ? [newPrimaryLabel] : []),
+    const elapsedSeconds = (Date.now() - startedAt) / 1000;
+    const result = [
+      `${checkedCandidateCount} candidates`,
+      `${existingCandidateCount} known`,
+      ...(newPrimaryCount ? [success(`→ ${newPrimaryCount} published`)] : []),
       ...(skippedCandidateCount ? [`${skippedCandidateCount} skipped`] : []),
-    ].join(", ");
-    const updateCount = newEntries.length - newPrimaryCount;
-    const publication = newEntries.length
-      ? `; ${success(
-          `published ${newEntries.length} RSS ${newEntries.length === 1 ? "entry" : "entries"} (${[
-            ...(newPrimaryCount ? [newPrimaryLabel] : []),
-            ...(updateCount
-              ? [`${updateCount} update${updateCount === 1 ? "" : "s"}`]
-              : []),
-          ].join(", ")})`,
-        )}`
-      : "";
-    log(
-      "INFO",
-      `[${source.id}] checked ${checkedCandidateCount} candidates (${candidateCounts})${publication} in ${((Date.now() - startedAt) / 1000).toFixed(3)}s`,
-    );
-    if (batchesChanges)
-      log(
-        "INFO",
-        `[${source.id}] batch: ${pending(`queued ${queuedChangeCount} changes`)}; ${success(`published ${emittedBatchCount} thread updates containing ${emittedBatchChangeCount} changes`)}; ${pending(`pending ${pendingChangeCount()} changes across ${Object.keys(pendingChanges).length} threads`)}`,
-      );
+
+      ...(batchesChanges && queuedChangeCount
+        ? [pending(`+${queuedChangeCount} queued`)]
+        : []),
+      ...(batchesChanges && emittedBatchCount
+        ? [
+            success(
+              `→ ${emittedBatchCount} updates / ${emittedBatchChangeCount} changes`,
+            ),
+          ]
+        : []),
+      ...(batchesChanges && pendingChangeCount()
+        ? [
+            pending(
+              `${pendingChangeCount()} pending / ${Object.keys(pendingChanges).length} threads`,
+            ),
+          ]
+        : []),
+      duration(elapsedSeconds),
+    ].join(" · ");
+    log("INFO", `[${source.id}] ${result}`);
   }
   try {
-    log("INFO", `[${source.id}] requesting source items`);
     const sourceDocument = source.fetchItems
       ? await source.fetchItems()
       : await fetchDocument(source.link, source.encoding);
@@ -189,19 +185,15 @@ async function generateFeed(source) {
       )
       .slice(0, feedEntryCandidateLimit);
     checkedCandidateCount = candidates.length;
-    log(
-      "INFO",
-      `[${source.id}] discovered ${checkedCandidateCount} candidates`,
-    );
-    const contentRequestCount = candidates.filter(
-      (candidate) => candidate.content === undefined,
-    ).length;
-    if (contentRequestCount)
-      log(
-        "INFO",
-        `[${source.id}] requesting content for ${contentRequestCount} candidates`,
-      );
-
+    const candidatesToCapture = checksExistingContent
+      ? candidates
+      : candidates.filter(
+          (candidate) =>
+            !publishedFeed.entries.some(
+              (entry) => entry.link === candidate.link,
+            ),
+        );
+    existingCandidateCount = candidates.length - candidatesToCapture.length;
     let nextCandidateIndex = 0;
     let nextRequestAt = 0;
     async function captureCandidateContent(candidate) {
@@ -220,6 +212,19 @@ async function generateFeed(source) {
       nextRequestAt = requestAt + requestDelay;
       if (requestAt > now)
         await new Promise((resolve) => setTimeout(resolve, requestAt - now));
+      if (source.fetchContent) {
+        const capturedContent = await source.fetchContent(candidate);
+        return {
+          candidate,
+          capturedContent: capturedContent && {
+            ...capturedContent,
+            content: absoluteUrls(
+              capturedContent.content,
+              candidate.contentUrl || candidate.link,
+            ),
+          },
+        };
+      }
       const contentUrl = candidate.contentUrl || candidate.link;
       const contentDocument = await fetchDocument(contentUrl, source.encoding);
       return {
@@ -234,8 +239,8 @@ async function generateFeed(source) {
     async function worker() {
       /** @type {PromiseSettledResult<{ candidate: FeedEntryCandidate, capturedContent: import("./source.d.ts").CapturedContent | null }>[] } */
       const results = [];
-      while (nextCandidateIndex < candidates.length) {
-        const candidate = candidates[nextCandidateIndex++];
+      while (nextCandidateIndex < candidatesToCapture.length) {
+        const candidate = candidatesToCapture[nextCandidateIndex++];
         try {
           results.push({
             status: "fulfilled",
@@ -256,7 +261,12 @@ async function generateFeed(source) {
     const results = (
       await Promise.all(
         Array.from(
-          { length: Math.min(contentFetchConcurrency, candidates.length) },
+          {
+            length: Math.min(
+              contentFetchConcurrency,
+              candidatesToCapture.length,
+            ),
+          },
           worker,
         ),
       )
