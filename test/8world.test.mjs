@@ -22,6 +22,6 @@ test("8world removes embedded social promotion", () => {
   assert.doesNotMatch(content || "", /加入我们的社群|新闻深呼吸|stories-sns/);
   assert.match(
     content || "",
-    /<iframe[^>]+players\.brightcove\.net\/456\/default_default\/index\.html\?videoId=123/,
+    /<p><iframe[^>]+players\.brightcove\.net\/456\/default_default\/index\.html\?videoId=123/,
   );
 });

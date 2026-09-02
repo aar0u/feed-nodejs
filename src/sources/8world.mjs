@@ -74,8 +74,13 @@ const source = {
     }
     const player = video && brightcovePlayer(document, video);
     if (player) {
+      const playerParagraph = document.createElement("p");
+      playerParagraph.append(player);
       const image = first.querySelector("img");
-      first.insertBefore(player, image?.nextSibling || first.firstChild);
+      first.insertBefore(
+        playerParagraph,
+        image?.nextSibling || first.firstChild,
+      );
 
       const notice = document.createElement("p");
       const link = document.createElement("a");
@@ -86,7 +91,7 @@ const source = {
       const strong = document.createElement("strong");
       strong.append(link);
       notice.append(strong);
-      first.insertBefore(notice, player.nextSibling);
+      first.insertBefore(notice, playerParagraph);
     }
     return {
       content: targets.map((target) => target.innerHTML).join(""),
