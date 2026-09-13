@@ -104,7 +104,17 @@ jobs:
             head=$(printf 'Publish feeds\n' | git -C "$pages" commit-tree "$tree")
           fi
           git -C "$pages" update-ref refs/heads/gh-pages "$head"
-          git -C "$pages" push --force origin refs/heads/gh-pages:gh-pages
+          if ! git -C "$pages" push --force origin refs/heads/gh-pages:gh-pages; then
+            echo "Push failed, checking if remote is already at target commit..."
+            remote_head=$(git -C "$pages" ls-remote origin refs/heads/gh-pages | cut -f1)
+            if [ "$remote_head" = "$head" ]; then
+              echo "Remote is already updated to $head, push succeeded."
+            else
+              echo "Remote is at $remote_head, retrying push..."
+              git -C "$pages" fetch origin gh-pages:refs/remotes/origin/gh-pages || true
+              git -C "$pages" push --force origin refs/heads/gh-pages:gh-pages
+            fi
+          fi
       - name: Notify WebSub hub
         if: steps.generate.outputs.changed == 'true'
         run: |
