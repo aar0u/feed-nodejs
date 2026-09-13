@@ -4,12 +4,150 @@
         <title>华尔街见闻 · 股市</title>
         <link>https://wallstreetcn.com/news/shares</link>
         <description>华尔街见闻股市资讯</description>
-        <lastBuildDate>Sat, 12 Sep 2026 10:48:20 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 13 Sep 2026 01:48:20 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh-CN</language>
         <atom:link href="https://aar0u.github.io/feed-nodejs/wallstreetcn-shares.xml" rel="self" type="application/rss+xml"/>
         <atom:link href="https://pubsubhubbub.superfeedr.com/" rel="hub"/>
+        <item>
+            <title><![CDATA[“超级周”来袭：美联储会加息吗？霍尔木兹能达成协议吗]]></title>
+            <link>https://wallstreetcn.com/articles/3781558</link>
+            <guid isPermaLink="false">https://wallstreetcn.com/articles/3781558</guid>
+            <pubDate>Sun, 13 Sep 2026 01:46:44 GMT</pubDate>
+            <content:encoded><![CDATA[<p style="text-align: left;"><strong> 09月14日 - 09月20日当周重磅财经事件一览，以下均为北京时间：</strong></p>
+<p style="text-align: left;"><strong><img class="wscnph" src="https://wpimg-wscn.awtmt.com/729554e6-a213-4a62-8e16-542eb08e0495.png" data-wscntype="image" data-wscnh="3620" data-wscnw="971"></strong></p>
+<p style="text-align: left;"><strong>见闻财经日历提醒下周重点关注：</strong></p>
+<p style="text-align: left;"><strong><span style="color: #1482f0;">超级央行周与中国8月经济数据：</span></strong>美联储将公布FOMC利率决议，沃什随后举行新闻发布会，此次加息还是维持利率不变“预计是一场势均力敌的较量”。此外，市场预计日本央行将加息25个基点，焦点在于未来加息节奏的信号。英国央行预计维持利率不变。中国数据方面，<strong>9月15日，8月规模以上工业增加值</strong>、<strong>社零</strong>、<strong>全国房地产开发投资</strong>、<strong>70城房价</strong>等经济数据出炉。中金宏观预测，社零增速有望回升，工业增加值同比增速或为4.6%。</p>
+<p style="text-align: left;"><span style="color: #1482f0;"><strong>AI硬验证周：</strong></span><strong>字节“豆包手机”将</strong>发布并上市，是中兴通讯与字节联合研发的全球首款AI智能体手机；<strong>荣耀MagicOS 11</strong>同日落地系统级Agent Harness；<strong>华为全联接大会2026</strong>在上海举办，主市场关注Atlas 950 SuperPoD昇腾超节点商用细节与首批AI算力新品；<strong>Anthropic预计</strong>9月中旬召开开发者大会。</p>
+<p style="text-align: left;"><span style="color: #1482f0;"><strong>港股机制方面：</strong></span><strong>9月14日起</strong>科技100指数优化方案生效、恒生生物科技指数样本调整；9月18日恒生科技指数扩容与改组修订意见咨询截止，扩容至50只并引入“收入增长最快”的10只因子；9月15日<strong>希音（Shein）正式纳入恒生综合指数</strong>。</p>
+<p style="text-align: left;"><span style="color: #1482f0;"><strong>地缘层面</strong></span>，<strong>伊朗将与海湾国家谈霍尔木兹协议，会议定于9月14日在阿曼举行。第十三届北京香山论坛</strong>是观察亚太安全的关键舞台；<strong>2026上合组织数字经济论坛</strong>、国家原子能机构<strong>IAEA理事会</strong>同步登场。</p>
+<h2 style="text-align: left;">经济指标</h2>
+<ul>
+<li><span style="color: #1482f0;"><strong>美联储利率决议</strong></span></li>
+</ul>
+<p>美联储将于9月17日凌晨公布FOMC利率决议，主席凯文·沃什随后举行新闻发布会。彭博称，此次加息还是维持利率不变“预计将是一场势均力敌的较量”。主要看点在于加息与按兵不动的抉择及沃什的政策表态。</p>
+<ul>
+<li><span style="color: #1482f0;"><strong>日本央行利率决议</strong></span></li>
+</ul>
+<p>日本央行将于9月18日（周五）公布利率决议，行长植田和男举行会后新闻发布会。彭博预计其将加息25个基点至1.25%，加息已被广泛定价。主要看点在于未来加息节奏的信号</p>
+<ul>
+<li><span style="color: #1482f0;"><strong>英国央行利率决议</strong></span></li>
+</ul>
+<p>英国央行将于9月17日（周四）公布利率决议。彭博新闻称，其“预计将维持利率在3.75%不变”，政策制定者正权衡重新出现的通胀风险与疲弱的经济背景。主要看点在于通胀与经济疲软之间的平衡。</p>
+<ul>
+<li><span style="color: #1482f0;"><strong>中国8月社会零售、固定投资、工业增加值、70城房价等数据</strong></span></li>
+</ul>
+<p>9月15日，中国8月社会零售、固定投资、工业增加值、70城房价等数据密集出炉。中金宏观预测，社零增速有望回升、同比增长1%左右。工业增加值同比增速或为4.6%。房地产销售可能边际走弱，开发投资或继续承压。</p>
+<h2 style="text-align: left;">财经事件</h2>
+<ul>
+<li><span style="color: #1482f0;"><strong>伊朗将与海湾国家谈霍尔木兹协议</strong></span></li>
+</ul>
+<p>据CCTV国际时讯援引英国《金融时报》9月11日报道，海湾国家外长计划与伊朗外长阿拉格齐举行会晤。此次会议由阿曼与伊朗牵头，旨在争取各方支持一项临时协议，以管控霍尔木兹海峡的航运秩序。报道援引两名知情人士的话称，会议定于下周一（9月14日）在阿曼沿海城市塞拉莱举行。</p>
+<ul>
+<li>
+<p style="text-align: left;"><span style="color: #1482f0;"><strong>贝森特预计将出席众议院金融服务委员会进行作证</strong> </span></p>
+</li>
+</ul>
+<p style="text-align: left;">9月15日，美国财政部长斯科特·贝森特预计将出席众议院金融服务委员会，就国际金融体系进行年度作证。</p>
+<ul>
+<li>
+<p style="text-align: left;"><span style="color: #1482f0;"><strong>“豆包手机”发布并上市、荣耀MagicOS 11落地Agent Harness</strong></span></p>
+</li>
+</ul>
+<p style="text-align: left;">中兴通讯与字节跳动联合研发的全球首款AI智能体手机——努比亚 NaviX Ultra（被称为“豆包手机”或“豆包手机二代”）已正式官宣定档 9月16日 14:00 发布并上市。此外，荣耀MagicOS 11同日发布——落地系统级Agent Harness，端侧Agent能力是手机厂商竞争焦点。</p>
+<p style="text-align: left;"><img class="wscnph" src="https://wpimg-wscn.awtmt.com/0bb45fef-2b1d-43b5-807f-58004f5667dc.png" data-wscntype="image" data-wscnh="183" data-wscnw="1174"></p>
+<ul>
+<li>
+<p style="text-align: left;"><span style="color: #1482f0;"><strong>华为全联接大会 2026（上海）</strong> </span></p>
+</li>
+</ul>
+<p style="text-align: left;">第十一届华为全联接大会9月17-19日在上海举办。据华为，大会围绕AI基础设施与行业智能化，或发布算力新品与伙伴计划，呼应AI算力景气周期。此前在2026世界人工智能大会上真机首秀的昇腾950超节点（Atlas 950 SuperPoD），有望在此次大会上公布更多商用细节与实测数据。</p>
+<ul>
+<li>
+<p style="text-align: left;"><span style="color: #1482f0;"><strong>Anthropic 开发者大会（信号：9月中旬）</strong> </span></p>
+</li>
+</ul>
+<p style="text-align: left;">据SkyCrumbs报道Anthropic 已暗示9月中旬举办开发者大会、拟公布产品路线图。</p>
+<ul>
+<li><span style="color: #1482f0;"><strong>恒生科技指数扩容与改组</strong></span></li>
+</ul>
+<p style="text-align: left;">9月18日00:00，恒生指数公司就恒生科技指数扩容与改组方案修订意见咨询同日截止，扩容至50只、AI 独立为主题、10个名额留给“收入增长最快”的公司，9月底最终方案落定。看点是新规对纳入标的的预期重塑，特别是算法与具身智能企业的被动资金扩散，对港股科技板块结构性资金流向具有中长期的指示意义。</p>
+<ul>
+<li>
+<p style="text-align: left;"><span style="color: #1482f0;"><strong>第十三届北京香山论坛</strong> </span></p>
+</li>
+</ul>
+<p style="text-align: left;">9月15日至17日，第十三届北京香山论坛将举办，这是亚太地区重要的防务与安全对话平台。</p>
+<ul>
+<li><span style="color: #1482f0;"> <strong>半导体与电子制造专业盛会Semicon India</strong> </span></li>
+</ul>
+<p style="text-align: left;">Semicon India会议在新德里开幕，全球半导体和政策领导人齐聚一堂。9月17日持续至9月19日。</p>
+<ul>
+<li><span style="color: #1482f0;"> <strong>第23届中国—东盟博览会（东博会）、2026上合组织数字经济论坛</strong></span></li>
+</ul>
+<p style="text-align: left;">第23届东博会9月17–21日南宁举办，主题"共享3.0机遇"，首设东盟需求馆与AI展区（双场地），聚焦中国—东盟自贸区3.0落地。此外，据央视新闻从国家数据局了解到，2026上合组织数字经济论坛将于9月14日至16日在新疆乌鲁木齐举办，本届论坛的主题为“数连上合 智启未来”。</p>
+<ul>
+<li>
+<p style="text-align: left;"><span style="color: #1482f0;"> <strong>首届加拿大投资峰会（卡尼总理主办）</strong> </span></p>
+</li>
+</ul>
+<p style="text-align: left;">加拿大总理卡尼9月14–15日在多伦多首办投资峰会，邀贝莱德/黑石等全球资本，目标五年撬动1万亿美元投资，167个项目手册涵盖数据中心、LNG、关键矿产。</p>
+<ul>
+<li>
+<p style="text-align: left;"><span style="color: #1482f0;"> <strong>iPhone 18 Pro将于9月18日发售</strong> </span></p>
+</li>
+</ul>
+<p style="text-align: left;">iPhone 18 Pro将于9月18日发售，12日开始接受预订。</p>
+<ul>
+<li>
+<p style="text-align: left;"><span style="color: #1482f0;"> <strong>日本定于9月17日改组内阁</strong> </span></p>
+</li>
+</ul>
+<p style="text-align: left;">日本首相高市早苗正积极协调于2026年9月16日决定自民党高层人事、并在 9月17日实施内阁改组。</p>
+<ul>
+<li>
+<p style="text-align: left;"><span style="color: #1482f0;"><strong>国际原子能机构理事会会议（IAEA），或聚焦伊朗核问题</strong> </span></p>
+</li>
+</ul>
+<p style="text-align: left;">国际原子能机构（IAEA）第七十届大会定于2026年9月14日至18日在奥地利维也纳的维也纳国际中心举行。本次会议聚焦的核心议题围绕伊朗核危机、全球核不扩散体系以及核安全标准的转型升级。</p>
+<ul>
+<li>
+<p style="text-align: left;"><span style="color: #1482f0;"> <strong>香港首个五年规划9月16日公布</strong> </span></p>
+</li>
+</ul>
+<p style="text-align: left;">据大湾区之声，香港特区行政长官李家超宣布，香港首个五年规划将和新一份施政报告于9月16日一同公布。</p>
+<h2 style="text-align: left;">财报与个股动态</h2>
+<p>下周美股、A股、港股财报进入淡季，中概股<strong>携程集团</strong>将于美东9月15日盘后公布今年Q2与上半年业绩。9月16日，<strong>恒大汽车</strong>董事会会议审议补发业绩。</p>
+<ul>
+<li>
+<p style="text-align: left;"><span style="color: #1482f0;"> <strong>沐曦股份：9月17日起1397万股限售股上市流通</strong> </span></p>
+</li>
+</ul>
+<p style="text-align: left;">沐曦股份公告称，本次上市流通的限售股为公司首次公开发行网下配售部分限售股，股份数量为1397万股，占公司股本总数的3.4906%。前述股份限售期为自公司首次公开发行股票并上市之日起9个月，该部分限售股锁定期即将届满，将于2026年9月17日起上市流通。</p>
+<ul>
+<li>
+<p style="text-align: left;"><span style="color: #1482f0;"> <strong>中金公司：吸收合并获批，A股股票将自9月15日开市起连续停牌</strong> </span></p>
+</li>
+</ul>
+<p style="text-align: left;">中金公司公告称，公司拟开展换股吸收合并重大资产重组项目的A股异议股东收购请求权有关事宜，已获证监会批复同意吸收合并东兴证券和信达证券。公司A股股票将自2026年9月15日开市起连续停牌。</p>
+<ul>
+<li>
+<p style="text-align: left;"><span style="color: #1482f0;"> <strong>恒生指数公司：希音将快速纳入恒生综合指数</strong> </span></p>
+</li>
+</ul>
+<p style="text-align: left;">恒生指数公司公告，希音符合快速纳入规则要求，将于9月14日收市后被纳入恒生综合指数及其分类指数。9月15日开盘生效。</p>
+<h2>重磅事件提前预警（9/21-9/27）</h2>
+<p><strong>美银Hartnett预计中美外交大事件在</strong>9月24日。</p>
+<p><strong>2026年阿里云栖大会</strong>（9月22日-24日，杭州）——将围绕模型、Agent、Agentic Cloud拆解五层全栈技术，发布阿里云核心技术及年度产品。</p>
+<p><strong>GMIF 2026 全球存储器行业创新峰会</strong>（9月22日-23日，深圳）——主重点探讨 AI 时代下存储技术在云、边、端全场景中的演进与产业协同。</p>
+<p><strong>高通骁龙峰会2026</strong>（北京时间9月23日-25日，夏威夷）——将发布首款采用台积电2nm工艺的骁龙8 Elite Gen6芯片（标准版 SM8950 与 Pro 版 SM8975），性能提升18%、功耗降低36%；小米18系列将首发，后续三星、OPPO等品牌跟进。</p>
+<p><strong>Meta Connect 2026</strong>（9月23日-24日）——多款XR硬件与新品智能眼镜蓄势待发，扎克伯格主题演讲。</p><div style="color: #666; margin-bottom: 15px;">风险提示及免责条款</div>
+          <div style="font-size: 12px;font-family: 黑体;color: #666;line-height: 20px;">
+            市场有风险，投资需谨慎。本文不构成个人投资建议，也未考虑到个别用户特殊的投资目标、财务状况或需要。用户应考虑本文中的任何意见、观点或结论是否符合其特定状况。据此投资，责任自负。
+          </div>
+]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[习近平出席金砖国家领导人第十八次会晤第一阶段会议并发表重要讲话]]></title>
             <link>https://wallstreetcn.com/articles/3781635</link>
@@ -4482,17 +4620,6 @@
 <p style="text-align: justify;">贷款年限最高拉长至40年，最直接的影响就是可以使月供降低，但需要注意的是，总的利息会增加。以100万元贷款、上海首套房3.05%的利率来计算，30年等额本息每个月月供约4243元，总利息约53万元；如果拉长至40年，月供降到约3609元，但总利息会涨到约73万元。每个月还款的压力降低了600多元，每年可以少还超7000元，但40年的总利息比30年多出约20万元。</p>
 <p style="text-align: justify;">此外，《意见》中提到，未来存量浮动利率房贷如果利率与全国新发放个人住房贷款利率偏离达到一定幅度时，可协商调整利率或置换贷款。目前，部分银行表示，存量房利率调整目前仍然按照2024年相关政策执行，暂无变化。</p>
 <p style="text-align: justify;"><span style="color: #b3b3b3;">本文来源：<span style="color: #1482f0;"><a style="color: #1482f0;" href="https://www.jfdaily.com.cn/staticsg/res/html/web/newsDetail.html?id=1170199" target="_blank" rel="noopener">上观新闻</a></span></span></p><div style="color: #666; margin-bottom: 15px;">风险提示及免责条款</div>
-          <div style="font-size: 12px;font-family: 黑体;color: #666;line-height: 20px;">
-            市场有风险，投资需谨慎。本文不构成个人投资建议，也未考虑到个别用户特殊的投资目标、财务状况或需要。用户应考虑本文中的任何意见、观点或结论是否符合其特定状况。据此投资，责任自负。
-          </div>
-]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[WorkBuddy的生态开局：焦虑错过新入口，也怕交出老地盘]]></title>
-            <link>https://wallstreetcn.com/articles/3780984</link>
-            <guid isPermaLink="false">https://wallstreetcn.com/articles/3780984</guid>
-            <pubDate>Thu, 03 Sep 2026 04:55:36 GMT</pubDate>
-            <content:encoded><![CDATA[<p data-pm-slice="0 0 []">AI办公生态的扩容战正式打响。&#160;</p> <p>9月2日，腾讯WorkBuddy举办首场生态大会，并正式上线开放平台，首批超过100家生态伙伴出现。&#160;</p> <p>一边是通达信、广发证券、北森、帆软、微盟等原本就有自己软件入口的公司，另一边则站着Plaud、Rokid、影石、科大讯飞、安克等硬件厂商。</p> <p>过去，用户要做数据分析、投研、报税或者人力资源管理，需要主动打开不同的软件。</p> <p>Agent正在试图省掉这一步：用户只需要告诉WorkBuddy想做什么，至于背后应该找哪款软件、调用什么数据和工具，都可以交给Agent继续完成。&#160;</p> <p>硬件厂商也在重新寻找自己的位置。眼镜、耳机、录音设备等产品天然掌握着现实世界里的声音和图像，但仅仅完成采集和转写已经不够。开放接口、接入Agent成为不少硬件厂商补上AI能力的一条路径。&#160;</p> <p>腾讯瞄准的则是这两股变化汇合之后更大的入口。</p> <p><strong>腾讯云副总裁、腾讯CodeBuddy &amp; WorkBuddy负责人刘毅在现场表示，希望把WorkBuddy打造成“面向Agent时代的操作系统”。</strong></p> <p>按照腾讯的设想，软件的数据和能力可以被WorkBuddy调用，眼镜、耳机、录音设备等硬件则通过开放接口接进来，成为连接用户和现实世界的通道。&#160;</p> <p>接入的能力越多、通道越多，WorkBuddy就越有机会从一款办公Agent继续向新的工作入口靠近。&#160;</p> <p><strong>大家未必已经认定WorkBuddy会成为最后的入口，但在入口还没有定型的时候，谁也不想先缺席。&#160;</strong></p> <figure><img class="wscnph" src="https://wpimg-wscn.awtmt.com/916c6a91-528e-4745-9489-ab34301b3d92.png" data-wscntype="image" data-wscnh="810" data-wscnw="1080"> <figcaption class="wscn-img-desc">全天候科技现场摄图</figcaption> </figure> <p data-pm-slice="0 0 []">&#160;</p> <h2 data-pm-slice="0 0 []">软件接能力，硬件接入口</h2> <p data-pm-slice="0 0 []">软件和硬件进入WorkBuddy的方式并不一样。&#160;</p> <p>对于软件厂商来说，腾讯此次开放了Buddy应用、Expert、Skill、Connector等不同能力。</p> <p>软件厂商不需要把完整产品搬进WorkBuddy，可以把过去积累的数据、工具和行业经验拆出来，变成Agent能够调用的能力。</p> <p>例如目前帆软的连接器和专家都已经进入WorkBuddy。如果用户想做商品、电商或者库存分析，WorkBuddy可以先调用帆软的专家，再通过连接器读取BI中的数据，最后直接生成一份完整的分析报告。</p> <p>原本需要用户进入BI软件完成的一部分操作，被折叠进了一次Agent任务。</p> <p>云账房拆得更加彻底。过去开票、报税等工作需要用户进入财税SaaS完成，现在云账房开始把这些能力拆成一个个Skill。&#160;</p> <p>例如用户告诉WorkBuddy需要开票，WorkBuddy负责理解需求，再调用背后的财税能力继续完成任务。</p> <p><strong>硬件厂商则更像是通道的角色。智能眼镜、麦克风、耳机和录音设备负责把物理世界的信息收进来，WorkBuddy负责后面的理解、规划和执行。&#160;</strong></p> <p>影石Insta360会议产品线负责人罗冠荣向全天候科技表示，设备需要做的是把声音“听清和听对”，再将有效信息输入WorkBuddy。&#160;</p> <p>另一位硬件厂商人士也坦言，从目前的接入来看，硬件主要还是充当数据入口，真正后台的处理仍然交给腾讯这样的AI公司。如果只做入口，这件事情本身的技术难度并不大。</p> <p>这也是此次首批硬件伙伴大量集中在眼镜、录音设备、耳机和麦克风的原因。它们天然掌握着会议、采访等真实世界的信息，但过去这些信息通常停在记录和转写。</p> <p>Agent提供了继续往下走的可能。</p> <p>Plaud此前已经可以生成会议纪要，但Plaud合伙人、亚太区业务负责人孙弛认为，用户最终需要的是“可交付的执行结果”，因此与Agent平台合作是一件自然的事情。</p> <p>值得注意的是，Plaud也没有把自己完全押给WorkBuddy。&#160;</p> <p>孙弛表示，公司仍会保持生态开放，未来大概率还会继续选择不同的Agent和模型，WorkBuddy是目前双方结合最充分的“第一站”。&#160;</p> <p><strong>不愿错过WorkBuddy这个入口是软硬件参与方的共识。</strong></p> <p>微盟技术副总裁肖锋更是直言WorkBuddy这个入口“是一定要去占的”，因为它有机会成为未来To B的超级入口。&#160;</p> <p>软件厂商更期待的还是增量。&#160;</p> <p>如果WorkBuddy只能让原有用户换个地方打开微盟，对软件厂商的意义并不大。肖锋更看重的是，这个新的入口最终能不能带来新的用户。</p> <p>在这个过程中，帆软已经尝到了一点流量。据帆软战略副总裁沈涛介绍，公司目前在WorkBuddy上架了9个专家，已经产生上万次调用，这一数据甚至超过了帆软自己的预期。&#160;</p> <p>在AI办公入口还没有定型之前，先进去占一个位置，已经成为不少软硬件厂商共同的选择。</p> <h2><strong>接进来，不等于全部交出来</strong></h2> <p data-pm-slice="0 0 []">但真正接入WorkBuddy之后，软件厂商很快遇到了另一个问题：到底应该把多少能力交给Agent。&#160;</p> <p>以北森为例，对于查询HR数据等助手类需求，北森可以直接接入WorkBuddy。但涉及招聘、人才管理等更深的专家能力时，情况就复杂得多。&#160;</p> <p>北森副总裁王瑶表示，公司在人力资源领域积累多年的Know-how，本身就是核心竞争力。如果把专家类Skill直接放在本地，“就相当于我们被蒸馏掉了”，这些能力可能逐渐变成所有人都能拥有的东西。&#160;</p> <p>如此背景下，目前北森更倾向于把专家能力留在自己的云端，再由WorkBuddy调用。围绕安全、数据和后续迭代方式，双方还需要继续探索。&#160;</p> <p>这种边界背后是传统软件公司普遍需要面对的一层顾虑。&#160;</p> <p><strong>开放得太浅，Agent能够完成的事情有限；开放得越深，原本属于软件公司的入口、用户关系乃至最核心的行业Know-how，也可能越来越多地退到Agent背后。&#160;</strong></p> <p>这种距离已经出现在实际产品中。 全天候科技在实际体验中发现，部分金融终端虽然已经接入WorkBuddy，但用户在WorkBuddy中能够使用的能力与直接使用原软件仍然存在明显差距。例如部分数据已经可以查询和调用，但一些批量获取、深度处理等原软件具备的能力，目前并没有完整开放给WorkBuddy。</p> <p><strong>这让软件厂商在Agent时代处在一个微妙的位置：一边担心错过新的入口，一边又需要守住最核心的能力。&#160;</strong></p> <p>对于开放能力的问题，腾讯WorkBuddy开放生态负责人林佐露向全天候科技表示，腾讯并不认为合作伙伴需要把所有场景和能力都搬进WorkBuddy。每家软件厂商都会判断哪些能力适合通过自然语言和Agent完成，哪些仍然应该留在独立客户端和网站中。&#160;</p> <p>“用户进入Buddy应用需要完成绑定和授权，软件厂商与用户之间原有的关系仍然存在。过去连接用户的地方可能是浏览器或者小程序，现在又增加了WorkBuddy。”林佐露指出。&#160;</p> <p><strong>另据一位腾讯云内部人士向全天候科技坦承，目前整个生态才刚刚开始，无论是能力调用还是产品体验都还有不少需要优化的地方。按照内部目前的进度，预计到今年10月左右，一批生态能力会迎来比较明显的优化。&#160;</strong></p> <p>首批超过100家伙伴目前更多解决了“有没有接进来”的问题，接下来更难的是“到底能接多深”。</p> <h2>先抢用户，再谈怎么分钱</h2> <p data-pm-slice="0 0 []">从商业模式情况来看，目前WorkBuddy和硬件厂商之间的账相对简单。</p> <p>优篮子表示，硬件厂商还是赚硬件的钱，WorkBuddy的订阅收入归WorkBuddy，双方暂时不会参与对方的收入分成。</p> <p>腾讯WorkBuddy产品专家汪晟杰也表示，软件产生的Token费用仍然由用户向WorkBuddy支付，“用多少付多少”。&#160;</p> <p><strong>对于不少硬件厂商来说，现阶段接入WorkBuddy更直接的价值，还是给原来的产品补上AI能力。</strong></p> <p>但软件厂商的账要复杂得多。如果WorkBuddy逐渐成为新的办公入口，软件公司可能得到新的用户，过去按照账号、席位收费的生意也可能随之发生变化。</p> <p><strong>这也是软件方和Workbuddy目前还未真正触及的核心问题。</strong></p> <p>北森副总裁王瑶表示，目前双方还没有具体讨论分成问题。</p> <p>在王瑶看来，最大的变量仍然是用户。</p> <p>“如果用户都拿脚投票了，你说你的分成多么性感，我觉得没有什么用。”</p> <p>北森现在更关心的是过去To B软件依赖销售和地推获客，进入WorkBuddy之后，能不能出现新的获客和引流方式。</p> <p>沈涛也坦承，现在WorkBuddy以及其他大厂的办公Agent仍处于教育用户的阶段。帆软内部此前甚至讨论过要不要给接入WorkBuddy的产品定价，最后还是决定先免费。</p> <p>“正儿八经谈付费的时候是第二阶段的事情。”沈涛指出。&#160;</p> <p><strong>这也是腾讯做平台业务相当熟悉的一套逻辑。</strong></p> <p><strong>当一个产品有足够多的人使用，用户规模起来以后，各个行业的开发者和企业才有意愿继续投入，把数据、Skill和专业能力放进WorkBuddy。</strong></p> <p><strong>这正是典型的网络效应。用户越多，软件、开发者和硬件厂商越愿意进入；能够调用的数据、Skill和设备越多，WorkBuddy能够完成的任务又会继续增加，反过来提高用户留下来的理由。&#160;</strong></p> <p>这套逻辑在互联网时代已经反复出现。只是在Agent时代，平台往前走了一步。</p> <p>过去的平台更多承担分发功能，用户找到软件以后，仍然需要进入软件自己的界面完成操作。</p> <p>Agent开始直接参与任务交付。用户提出一个需求后，WorkBuddy可以继续调用背后的软件、数据和Skill，把工作一路往下推进。&#160;</p> <p>软件原来的收费单位也可能随之改变。云账房COO王倩认为，过去SaaS卖的是一年多少账号、多少席位；Agent出现以后，软件的收费单位可能进一步变成一张发票、一个账套，甚至最终交付的结果。例如AI会计师自动处理了多少账套，并且结果正确之后再收费。</p> <p>但这套网络效应能不能真正跑起来，还有一个现实问题：这些软件和硬件厂商并不只接WorkBuddy。</p> <p>Plaud已经明确表示未来仍会保持开放；Rokid本身也支持多个大模型和智能体。对于北森、帆软这类软件公司来说，同时进入多个平台更是常见选择。&#160;</p> <p>MCP等标准协议还在继续降低接入不同Agent的成本。今天可以接WorkBuddy，明天同样可以接其他Agent。&#160;</p> <p>因此，100家还是200家合作伙伴本身很难构成长久优势，真正拉开差距的是用户最终愿意把多少任务留在这里。&#160;</p> <p><strong>这也是WorkBuddy这轮生态扩张真正需要观察的地方：伙伴数量扩大了入口的覆盖面；当这些伙伴持续交出更深的能力，用户又愿意把更多工作交给WorkBuddy，网络效应才真正开始形成。</strong></p> <p>到了那时，腾讯口中的“Agent时代操作系统”，才会真正有一个生态的样子。</p><div style="color: #666; margin-bottom: 15px;">风险提示及免责条款</div>
           <div style="font-size: 12px;font-family: 黑体;color: #666;line-height: 20px;">
             市场有风险，投资需谨慎。本文不构成个人投资建议，也未考虑到个别用户特殊的投资目标、财务状况或需要。用户应考虑本文中的任何意见、观点或结论是否符合其特定状况。据此投资，责任自负。
           </div>
