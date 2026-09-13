@@ -1,2 +1,2 @@
 8world.xml
-wallstreetcn-shares.xml
+hackernews.xml
