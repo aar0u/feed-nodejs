@@ -117,16 +117,16 @@ export async function userTimeline(userId) {
 }
 
 export async function hotPosts() {
-  const url = new URL("/statuses/hots.json", baseUrl);
+  const url = new URL("/statuses/hot/listV2.json", "https://api.xueqiu.com");
   url.search = new URLSearchParams({
-    a: "1",
-    count: "10",
-    page: "1",
-    scope: "day",
-    type: "status",
-    meigu: "0",
+    since_id: "-1",
+    max_id: "-1",
+    size: "15",
   }).toString();
+  const data = await getJson(url);
   /** @type {Status[]} */
-  const statuses = await getJson(url);
+  const statuses = (data.items || [])
+    .map((/** @type {{ original_status?: Status }} */ entry) => entry.original_status)
+    .filter(Boolean);
   return statuses.map(item);
 }
