@@ -1,38 +1,45 @@
-import { chromium } from "playwright";
 import { parseHTML } from "linkedom";
 
 const baseUrl = "https://xueqiu.com";
+const userAgent =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36";
 let cookiePromise;
 
 /** @typedef {{ filename?: string }} Image */
 /** @typedef {{ id: string | number, target: string, title?: string, text?: string, description?: string, retweeted_status?: Status, image_info_list?: Image[], created_at?: string | number, legal_user_visible?: boolean, mark?: number }} Status */
 
-function getCookies() {
+async function getCookies() {
   return (cookiePromise ??= (async () => {
-    const browser = await chromium.launch({ headless: true });
-    try {
-      const context = await browser.newContext();
-      const page = await context.newPage();
-      await page.route("**/*", (route) =>
-        ["document", "script"].includes(route.request().resourceType())
-          ? route.continue()
-          : route.abort(),
-      );
-      await page.goto(baseUrl, { waitUntil: "domcontentloaded" });
-      await page.evaluate(() => document.documentElement.outerHTML);
-      return (await context.cookies())
-        .map(({ name, value }) => `${name}=${value}`)
-        .join("; ");
-    } finally {
-      await browser.close();
+    for (const path of ["/about", "/hq"]) {
+      try {
+        const response = await fetch(new URL(path, baseUrl), {
+          headers: { "User-Agent": userAgent },
+          redirect: "follow",
+        });
+        const cookies = response.headers
+          .getSetCookie()
+          .map((cookie) => cookie.split(";")[0])
+          .join("; ");
+        if (cookies.includes("xq_a_token")) {
+          return cookies;
+        }
+      } catch {}
     }
-  })());
+    throw new Error("Failed to obtain Xueqiu session cookies");
+  })().catch((error) => {
+    cookiePromise = undefined;
+    throw error;
+  }));
 }
 
 /** @param {string | URL} url */
 async function getJson(url) {
   const response = await fetch(url, {
-    headers: { cookie: await getCookies(), referer: baseUrl },
+    headers: {
+      cookie: await getCookies(),
+      referer: baseUrl,
+      "User-Agent": userAgent,
+    },
   });
   if (!response.ok)
     throw new Error(`${response.status} ${response.statusText}`);
@@ -126,7 +133,10 @@ export async function hotPosts() {
   const data = await getJson(url);
   /** @type {Status[]} */
   const statuses = (data.items || [])
-    .map((/** @type {{ original_status?: Status }} */ entry) => entry.original_status)
+    .map(
+      (/** @type {{ original_status?: Status }} */ entry) =>
+        entry.original_status,
+    )
     .filter(Boolean);
   return statuses.map(item);
 }
