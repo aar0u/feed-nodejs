@@ -121,7 +121,7 @@ jobs:
           while IFS= read -r feed; do
             feed_url="${FEED_BASE_URL%/}/$feed"
             echo "Notifying WebSub hub: $feed_url"
-            curl --fail --retry 3 --retry-all-errors --silent --show-error --write-out '\nWebSub response: %{http_code}\n' -X POST https://pubsubhubbub.superfeedr.com/ \
+            curl --fail --retry 3 --retry-all-errors --silent --show-error --write-out '\nWebSub response: %{http_code}\n' -X POST https://pubsubhubbub.appspot.com/ \
               --data-urlencode 'hub.mode=publish' \
               --data-urlencode "hub.url=$feed_url"
           done < public/changed-feeds.txt

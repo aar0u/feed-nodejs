@@ -41,7 +41,7 @@ const entryHistoryLimit = 100;
 const defaultContentFetchConcurrency = 5;
 const publishedFeedDirectory = process.env.PUBLISHED_FEED_DIRECTORY;
 const feedBaseUrl = process.env.FEED_BASE_URL;
-const webSubHub = "https://pubsubhubbub.superfeedr.com/";
+const webSubHub = "https://pubsubhubbub.appspot.com/";
 
 /** @param {string | Date | undefined} value */
 function validDate(value) {
