@@ -4,12 +4,19 @@
         <title>8视界</title>
         <link>https://www.8world.com/</link>
         <description>8视界首页</description>
-        <lastBuildDate>Sat, 03 Oct 2026 15:01:22 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 03 Oct 2026 15:21:17 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh-CN</language>
         <atom:link href="https://aar0u.github.io/feed-nodejs/8world.xml" rel="self" type="application/rss+xml"/>
         <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub"/>
+        <item>
+            <title><![CDATA[早起的书虫有福了 八家图书馆早上9点提早开放]]></title>
+            <link>https://www.8world.com/singapore/selected-libraries-to-open-early-3298776</link>
+            <guid isPermaLink="false">https://www.8world.com/singapore/selected-libraries-to-open-early-3298776</guid>
+            <pubDate>Sat, 03 Oct 2026 15:05:28 GMT</pubDate>
+            <content:encoded><![CDATA[<img src="https://dam.mediacorp.sg/image/upload/s--izFnKIW4--/c_fill,g_auto,h_780,w_1390/f_auto,q_auto/v1/8world/images/2026/10/03/punggol_regional_library.png?itok=W2-RGHwS"><small>榜鹅区域图书馆。</small><p>国家图书馆管理局宣布，从后天（5日）起，八家公共图书馆将提早至早上9点开放，比原本的开放时间早一到两个小时。<br><br>国家图书馆管理局星期五（2日）在Facebook发文表示，武吉班让、三巴旺、实龙岗和巴西立公共图书馆，开放时间将从原本的早上11点，提早两个小时至早上9点。<br><br>碧山、榜鹅、淡滨尼和兀兰公共图书馆则将提早一个小时，从原本的早上10点改为早上9点开放。<br><br>公众如果要在提早开放时段进入这八家图书馆，须在入口闸门扫描图书馆会员卡、身份证或其他获接受的身份证件。<br><br>不过，如果需要工作人员协助的服务，仍要等到图书馆原本的开放时间，也就是早上10点或11点才会提供。<br><br>本地公共图书馆一般每天开放至晚上9点。</p>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[西班牙东南部遭洪水侵袭 百岁老妇身亡90人获救]]></title>
             <link>https://www.8world.com/world/spain-flood-3298761</link>
@@ -705,13 +712,6 @@
             <pubDate>Tue, 10 Feb 2026 21:43:00 GMT</pubDate>
             <content:encoded><![CDATA[<img src="https://dam.mediacorp.sg/image/upload/s--hK5iZNew--/c_fill,g_auto,h_676,w_1200/f_auto,q_auto/v1/8world/images/2026/10/02/1790946357-image.jpg?itok=lVi9JP3-"><p>文中含视频 ➡️ <strong><a target="_blank" href="https://www.8world.com/in-depth/frontline/half-of-jb-mall-ev-charging-stations-occupied-by-sg-cars-3297751">跳转原文</a></strong></p><p><iframe allowfullscreen allow="encrypted-media" title="Video player" src="https://players.brightcove.net/6057984932001/default_default/index.html?videoId=6406116427112"></iframe></p><p>摄制队走访一些新山商场时观察到，在电动车充电桩充电的车辆中，近一半来自新加坡。有车主表示到新山逛街时 “顺便“充电。你会经常去新山为电动车充电吗？</p><p>02/10/2026 播出</p>
 ]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[电动车冲入曼谷观音庙 82岁妇不治司机面对三项控状]]></title>
-            <link>https://www.8world.com/southeast-asia/thailand-ev-car-drives-in-shrine-update-3297741</link>
-            <guid isPermaLink="false">https://www.8world.com/southeast-asia/thailand-ev-car-drives-in-shrine-update-3297741</guid>
-            <pubDate>Fri, 02 Oct 2026 13:26:12 GMT</pubDate>
-            <content:encoded><![CDATA[<img src="https://dam.mediacorp.sg/image/upload/s--JqAAbMoI--/c_crop,h_1687,w_3000,x_0,y_290/c_fill,g_auto,h_780,w_1390/f_auto,q_auto/v1/8world/images/2026/10/02/thailand_guan_yin_temple_byd_crash_khaosod_english.jpg?itok=7vcZJraB"><small>泰国曼谷唐人街一座观音庙前站着相关人员。（图：X/Khaosod English）</small><p>泰国曼谷昨天（1日）发生电动车失控冲入唐人街一座观音庙的<a href="https://www.8world.com/southeast-asia/three-hurt-as-driver-crashes-into-guanyin-shrine-in-yaowarat-3297381" target="_blank">事故</a>，伤亡人数进一步上升，一名82岁女子死亡，另有八人受伤。警方已向78岁男司机提出三项控状。</p><p>泰国媒体Khaosod English报道，警方已对涉事司机提出三项疏忽驾驶控状，分别涉及导致他人死亡、重伤，以及身体或精神伤害。</p><p>警方指出，司机没有企图逃逸的迹象。他在被指控后已获准暂时释放。</p><p>调查人员将继续收集证据，随后将案件移交检察机关。</p><p>受害者的赔偿、医疗费用以及对基金会造成的财产损失等事宜也将进行处理。</p>]]></content:encoded>
         </item>
     </channel>
 </rss>

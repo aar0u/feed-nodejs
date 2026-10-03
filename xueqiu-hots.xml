@@ -4,12 +4,40 @@
         <title>雪球热帖</title>
         <link>https://xueqiu.com/</link>
         <description>雪球每日热门帖子</description>
-        <lastBuildDate>Sat, 03 Oct 2026 14:41:12 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 03 Oct 2026 15:21:17 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh-CN</language>
         <atom:link href="https://aar0u.github.io/feed-nodejs/xueqiu-hots.xml" rel="self" type="application/rss+xml"/>
         <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub"/>
+        <item>
+            <title><![CDATA[Coherent专家无意中透露mTEC新场景]]></title>
+            <link>https://xueqiu.com/5672579962/411270923</link>
+            <guid isPermaLink="false">https://xueqiu.com/5672579962/411270923</guid>
+            <pubDate>Sat, 03 Oct 2026 14:17:37 GMT</pubDate>
+            <content:encoded><![CDATA[从今天刚流出的Coherent专家调研的内容看：<br>英伟达下一代整机架构， scale-up 光互联采用 200Gbps/λ 方案，依托 WDM 波分复用技术，单纤4~8波， 跑出800G 至 1.6T 带宽，相比当前代际性能提升约 4 倍。核心技术组合为 UHP 磷化铟激光器搭配 MRM 微环调制器。除 PIC 芯片价值量提升外，mTEC 的...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$淮北矿业(SH600985)$ 最近有空就准备逐个矿研究一下淮北矿业的15对矿井。似乎这些矿马上都要进入丰采期。类似水电的来水丰年。对这15对矿井的详细生产情…]]></title>
+            <link>https://xueqiu.com/8699572373/411265668</link>
+            <guid isPermaLink="false">https://xueqiu.com/8699572373/411265668</guid>
+            <pubDate>Sat, 03 Oct 2026 11:07:00 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SH600985" target="_blank">$淮北矿业(SH600985)$</a> 最近有空就准备逐个矿研究一下淮北矿业的15对矿井。似乎这些矿马上都要进入丰采期。类似水电的来水丰年。对这15对矿井的详细生产情况有认知的球友可以一起讨论分享或者私信我。最近我在研究青东，邹庄，还有信湖这三个矿。可能丰采年份精煤产量可以达到1150万吨，而枯年只有9...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[LBL-034：哪些优势站得住，哪些宣传不成立]]></title>
+            <link>https://xueqiu.com/2338012098/411258205</link>
+            <guid isPermaLink="false">https://xueqiu.com/2338012098/411258205</guid>
+            <pubDate>Sat, 03 Oct 2026 05:51:23 GMT</pubDate>
+            <content:encoded><![CDATA[核心观点<br>一句话：GPRC5D这条路已被塔奎妥单抗验证，LBL-034要回答的不是「机制成不成立」，而是「比已上市的药好多少」。目前站得住的优势都来自分子自身的数据；公司与券商主推的三条安全性优势，经核查都不成立。<br>站得住的：剂量爬到1200μg/kg仍未出现剂量限制性毒性；同一批患者的缓...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$纳斯达克综合指数(.IXIC)$ ，$英伟达(NVDA)$纳指和英伟达今晚再创新高，美股才是真正的AI科技牛市。不得不佩服但斌等坚定做多美股AI科技龙头的有识…]]></title>
+            <link>https://xueqiu.com/1402120886/411237861</link>
+            <guid isPermaLink="false">https://xueqiu.com/1402120886/411237861</guid>
+            <pubDate>Fri, 02 Oct 2026 17:37:13 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/.IXIC" target="_blank">$纳斯达克综合指数(.IXIC)$</a> ，<a href="https://xueqiu.com/S/NVDA" target="_blank">$英伟达(NVDA)$</a><br>纳指和英伟达今晚再创新高，美股才是真正的AI科技牛市。<br>不得不佩服但斌等坚定做多美股AI科技龙头的有识之士的眼光，以后得找渠道多参与美股这种正规市场。<br>再看看咋们A公子最近的那副熊样，以及背后GJD领头的跑路资金的所谓格局与情怀，...]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[通达信标普500 PRS计算方法]]></title>
             <link>https://xueqiu.com/2616724341/411268758</link>
@@ -681,34 +709,6 @@
             <guid isPermaLink="false">https://xueqiu.com/4364582897/411249226</guid>
             <pubDate>Sat, 03 Oct 2026 00:49:53 GMT</pubDate>
             <content:encoded><![CDATA[投资这职业，相较于其它职业，最大的优势就是选择权！<br>就是你永远都有权力选择当下最赚钱的行业。<br>这份权力在当下尤为珍贵。因为向下的大环境中，能保持景气的永远只有极少数行业。<br>只不过这份珍贵的权力由于来的太过容易和轻松，所以大多数人并不会去珍惜。<br>如今，空报权力却依然...]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[三季度市场的风险教育课不要白上三季度，科创50和创业板出现大幅杀跌，给追涨杀跌的投机客上了一堂风险教育课，其实这个结局是必然的，背后的逻辑很简单:郭家就是利用资…]]></title>
-            <link>https://xueqiu.com/1423584650/411248885</link>
-            <guid isPermaLink="false">https://xueqiu.com/1423584650/411248885</guid>
-            <pubDate>Sat, 03 Oct 2026 00:38:06 GMT</pubDate>
-            <content:encoded><![CDATA[三季度市场的风险教育课不要白上<br>三季度，科创50和创业板出现大幅杀跌，给追涨杀跌的投机客上了一堂风险教育课，其实这个结局是必然的，背后的逻辑很简单:<br>郭家就是利用资本市场的融资功能支撑科技大国博弈，人为引导和放任双创炒作制造赚钱效应吸引大家参与炒作，大部分科技公司都被炒到...]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[$小米集团-W(01810)$ 前天，我偶尔看到新闻说小米交付4万+，在另一个股票APP上，那时候港股不开盘，有小米股东说这是好事儿啊！我当时就震惊了，这么拉的…]]></title>
-            <link>https://xueqiu.com/1340630125/411238233</link>
-            <guid isPermaLink="false">https://xueqiu.com/1340630125/411238233</guid>
-            <pubDate>Fri, 02 Oct 2026 17:54:41 GMT</pubDate>
-            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/01810" target="_blank">$小米集团-W(01810)$</a> 前天，我偶尔看到新闻说小米交付4万+，在另一个股票APP上，那时候港股不开盘，有小米股东说这是好事儿啊！我当时就震惊了，这么拉的数据也敢说好？真是大聪明啊，我开盘就看小米跌多少，真的是不负众望。<br>智慧的小米粉总是一米穿4-5界。他们眼里，界车就是他们最痛恨的华...]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[$紫金矿业(SH601899)$ $赤峰黄金(SH600988)$ 老美的数据就跟闹着玩一样。沃什嘴上说着加息与否完全取决于数据，实际上这些数据就是根据需要自己…]]></title>
-            <link>https://xueqiu.com/3270998210/411235400</link>
-            <guid isPermaLink="false">https://xueqiu.com/3270998210/411235400</guid>
-            <pubDate>Fri, 02 Oct 2026 16:10:08 GMT</pubDate>
-            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SH601899" target="_blank">$紫金矿业(SH601899)$</a> <a href="https://xueqiu.com/S/SH600988" target="_blank">$赤峰黄金(SH600988)$</a> 老美的数据就跟闹着玩一样。沃什嘴上说着加息与否完全取决于数据，实际上这些数据就是根据需要自己捏造。<br>长期来看，美国信用就是在这些事情上一点一点被消磨掉的。美债规模当下没有减缓的趋势，美元信用没有上升的趋势，那黄金的行情不会这样结束...]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[中证红利优化（红利稳定盈利的策略及参数测试）稳我才国庆专辑（三）]]></title>
-            <link>https://xueqiu.com/7734995747/411231762</link>
-            <guid isPermaLink="false">https://xueqiu.com/7734995747/411231762</guid>
-            <pubDate>Fri, 02 Oct 2026 14:49:09 GMT</pubDate>
-            <content:encoded><![CDATA[前两天，我们讨论了以红利低波指数ETF<a href="https://xueqiu.com/S/SH512890" target="_blank">$红利低波ETF华泰柏瑞(SH512890)$</a>（563020） 为标的择时，<br> 买入条件：收盘价低于182日均线，且市盈率低于20倍。 <br> 卖出条件：收盘价高于182日均线7% <br> 得到的策略：策略年化收益19.97%，最大回撤-13.04%。累计收益253.99%，一年操作3次。 <br> ...]]></content:encoded>
         </item>
     </channel>
 </rss>
