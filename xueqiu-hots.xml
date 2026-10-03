@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>雪球热帖</title>
+        <link>https://xueqiu.com/</link>
+        <description>雪球每日热门帖子</description>
+        <lastBuildDate>Sat, 03 Oct 2026 14:41:12 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>zh-CN</language>
+        <atom:link href="https://aar0u.github.io/feed-nodejs/xueqiu-hots.xml" rel="self" type="application/rss+xml"/>
+        <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub"/>
+        <item>
+            <title><![CDATA[通达信标普500 PRS计算方法]]></title>
+            <link>https://xueqiu.com/2616724341/411268758</link>
+            <guid isPermaLink="false">https://xueqiu.com/2616724341/411268758</guid>
+            <pubDate>Sat, 03 Oct 2026 13:00:08 GMT</pubDate>
+            <content:encoded><![CDATA[新建板块标普500<br>下载扩展市场行情日线 ，<br>添加品种，扩展<br>建立条件选股公式，名称要和板块相同（标普500）<br>条件选股 <br>全部选中了<br>建立：<br>扩展管理器 <br>extrs公式 既往有<br>建立公式<br>CTRL F<br>BP500RPS<br> X:=EXTDATA_USER(9,0);{50天的}<br>RPS50:X/10...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$比亚迪(SZ002594)$ 看看特斯拉Q3这销量，我不知道美国那些投行分析师是怎么得出特斯拉业绩超预期的？这么拉的成绩都能硬拉5个点。再看看比亚迪每年Q3的…]]></title>
+            <link>https://xueqiu.com/8382607991/411265309</link>
+            <guid isPermaLink="false">https://xueqiu.com/8382607991/411265309</guid>
+            <pubDate>Sat, 03 Oct 2026 10:51:51 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SZ002594" target="_blank">$比亚迪(SZ002594)$</a> 看看特斯拉Q3这销量，我不知道美国那些投行分析师是怎么得出特斯拉业绩超预期的？这么拉的成绩都能硬拉5个点。再看看比亚迪每年Q3的销量和出海数据，除了去年表现差点，今年可以说完全逆转了下滑趋势。目前国内销量越来越向头部车企靠拢，方程豹的业绩增速可以用夸张来描述了，...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$紫金矿业(SH601899)$ $博源化工(SZ000683)$ $锡业股份(SZ000960)$  货币超发本质上是对大众的隐形税收。我们持有的存款，购买力…]]></title>
+            <link>https://xueqiu.com/5039848892/411254772</link>
+            <guid isPermaLink="false">https://xueqiu.com/5039848892/411254772</guid>
+            <pubDate>Sat, 03 Oct 2026 03:43:26 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SH601899" target="_blank">$紫金矿业(SH601899)$</a> <a href="https://xueqiu.com/S/SZ000683" target="_blank">$博源化工(SZ000683)$</a> <a href="https://xueqiu.com/S/SZ000960" target="_blank">$锡业股份(SZ000960)$</a> <br> 货币超发本质上是对大众的隐形税收。我们持有的存款，购买力一直在无声无息中缩水，流向了离印钞机最近的人。<br> 现代货币是信用幻术，理论上可以任意印刷（创造）；黄金是亿万年物理演变的结果，凭空造不出来，即便理论...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[回复@投资就是算好账: 今年港股老登难做的几个原因1、AI抽血，既抽场内血，也抽北水南下的血2、限制境内人交易3、离岸信托补税导致大股东减持4、疯狂IPO抽血5…]]></title>
+            <link>https://xueqiu.com/1216640586/411254758</link>
+            <guid isPermaLink="false">https://xueqiu.com/1216640586/411254758</guid>
+            <pubDate>Sat, 03 Oct 2026 03:42:52 GMT</pubDate>
+            <content:encoded><![CDATA[回复<a href="https://xueqiu.com/n/%E6%8A%95%E8%B5%84%E5%B0%B1%E6%98%AF%E7%AE%97%E5%A5%BD%E8%B4%A6" target="_blank">@投资就是算好账</a>: 今年港股老登难做的几个原因<br>1、AI抽血，既抽场内血，也抽北水南下的血<br>2、限制境内人交易<br>3、离岸信托补税导致大股东减持<br>4、疯狂IPO抽血<br>5、1和4这两个因素叠加港股通检讨机制的BUG导致中小票大跌<br>6、地缘冲突和美元加息预期<br>7、股汇罕见背离...<br><blockquote><p>简单说说2026Q3投资战绩</p><p>截至Q3，收益率为-5.7%，其中，港币汇率下跌贡献了约-4.3%（持仓大部分都是港股），股价下跌贡献了约-1.4%，本年度港汇下跌了4.8%，堪称汇灾。</p><p>自2012年初以来14.75年的年化收益率为16%，比2026H1的历史低点15.8%有所回升。</p><p>目前的仓位高达93%，持仓行业主要在医药（含创新药约20%）、地产相关和建材（16%）、农业化肥（15%）以及消费（7%）等公募基金唾弃的冷门板块上，三季度主要加仓了消费这个以前很少涉猎的板块。</p><p>今年以来分散、逆向通通失效，最要命的是，以前人民币升值港股会涨，今年却股汇双杀，还有，以前经常能让我获得超额收益的港股中小盘股，今年因为大量科技新贵在港股上市导致其退通风险骤增而暴跌，让我损失惨重，另外，以前捂一捂就能热的冷门股这回死活都热不起来，实在郁闷。</p><p>今年买了些A股，也没赚到什么钱，难搞！</p><p>最大的遗憾就是上半年卖飞了建滔，三季度卖飞了金斯瑞。现在都不敢看金斯瑞的股价。</p><p>还剩3个月，看奇迹会不会发生，熬吧！</p><p><a href="https://xueqiu.com/1216640586/411233520">查看原帖</a></p></blockquote>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[十几年前，大概2008到2018这十年，是实打实的经济上行期。走在路上随处能看见吊车，大大小小的工地一个接着一个开工，工地最缺的就是人。农民工不愁找活，只要肯下…]]></title>
+            <link>https://xueqiu.com/2150600161/411267355</link>
+            <guid isPermaLink="false">https://xueqiu.com/2150600161/411267355</guid>
+            <pubDate>Sat, 03 Oct 2026 12:07:14 GMT</pubDate>
+            <content:encoded><![CDATA[十几年前，大概2008到2018这十年，是实打实的经济上行期。<br>走在路上随处能看见吊车，大大小小的工地一个接着一个开工，工地最缺的就是人。农民工不愁找活，只要肯下力气，工资一年比一年高，不怕没活干，就怕你不想出力。<br>不光工地缺人，富士康这类大型电子厂同样闹用工荒。招工难到什么程...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[全网都在等美联储不加息，好像对岸一松口，A股就能跟着喝汤。我反而很冷静。昨晚数据是真炸：9月非农2.9万人，预期9万，10月加息概率一周从64%砸到20%。纳指…]]></title>
+            <link>https://xueqiu.com/6745712234/411264404</link>
+            <guid isPermaLink="false">https://xueqiu.com/6745712234/411264404</guid>
+            <pubDate>Sat, 03 Oct 2026 10:09:04 GMT</pubDate>
+            <content:encoded><![CDATA[全网都在等美联储不加息，好像对岸一松口，A股就能跟着喝汤。<br>我反而很冷静。<br>昨晚数据是真炸：9月非农2.9万人，预期9万，10月加息概率一周从64%砸到20%。<br>纳指涨1.19%，盘中新高。<br>雪球已经有人排队讨论周四高开了。<br>但胜仔的判断是：美联储影响情绪，但决定不了A股。<br>它...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[品牌是没有溢价的，长期来看消费者作为一个群体是理性的！大道的这句话也是经典。“品牌溢价”，确实是一种极其傲慢且误导性的视角。它暗示了品牌是在“收智商税”，是仗着…]]></title>
+            <link>https://xueqiu.com/8536094697/411262243</link>
+            <guid isPermaLink="false">https://xueqiu.com/8536094697/411262243</guid>
+            <pubDate>Sat, 03 Oct 2026 08:36:22 GMT</pubDate>
+            <content:encoded><![CDATA[品牌是没有溢价的，长期来看消费者作为一个群体是理性的！大道的这句话也是经典。<br>“品牌溢价”，确实是一种极其傲慢且误导性的视角。它暗示了品牌是在“收智商税”，是仗着名气让用户多掏冤枉钱。 没有谁会长期做冤大头。 做商业确实很难，我也是早年做生意被很多这些似是而非的概念吸引。包...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[俞敏洪曾问刘永好：“如果女儿想花10个亿投资一家公司，你会干预吗？”刘永好答得毫无保留：“从她手里投出的资金都有四五百亿了，只要她觉得可以投就投。”养猪上的豪赌…]]></title>
+            <link>https://xueqiu.com/1690646168/411260657</link>
+            <guid isPermaLink="false">https://xueqiu.com/1690646168/411260657</guid>
+            <pubDate>Sat, 03 Oct 2026 07:32:16 GMT</pubDate>
+            <content:encoded><![CDATA[俞敏洪曾问刘永好：“如果女儿想花10个亿投资一家公司，你会干预吗？”<br>刘永好答得毫无保留：“从她手里投出的资金都有四五百亿了，只要她觉得可以投就投。”<br>养猪上的豪赌，亦是如此。<br>2016年，时年36岁的刘畅接任董事长已满3年。为了给企业换上一套新气象，刘畅发布了一份《养猪业务...<br><blockquote>今天读了某私募2018年写的一篇对<a href="https://xueqiu.com/S/SZ002714" target="_blank">$牧原股份(SZ002714)$</a> 的研究分析，文章结尾总结道：“投资牧原，要坚持两个不理会：不理会猪周期价格波动，不理会饲料成本价格波动。对投资者而言，猪价的波动其实不是很重要，牧原的成本全行业最低，即使在最严峻的情况下也不太可能亏损。如果再次发生2014年那种异常艰难的局面，大量的散户养殖者会加快退出，对牧原这样的龙头企业反而是利好，龙头企业在后续的猪价反弹阶段将获得巨大利润。”<br>我既不是空头，也不是多头，对行业和公司研究远不及诸位达人，只是站在今天，做个笔记，抛砖几点基本的客观事实：<br>1、牧原的资产负债表是在恶化的，别看资产规模大了很多，但也更脆弱了。如果考虑极端情况，假设猪价以现在这个价格低迷一年，公司的资金链有断裂风险（60亿现金VS175亿短期贷款+145亿长期借款+8亿债券+63亿租赁债）。当然，公司可以增发再融资。如果猪价一年内迅速触底回升，以上不是问题，但这才是大问题。<br>2、不理会猪周期价格波动，做出这个假设，是因为近十年的大环境下猪价低迷的时间都很短，触底后都迅速开始上涨。然而，既然猪价很难预测，凭什么就能预测这次猪价不会低迷很久？如果回顾更长的历史，猪价曾经在1998～2003年长达5年低迷，原因是之前的1994～1997猪价3年高企。而这次非瘟带来的猪价上涨2019～2021.5长达两年，并且高价暴利是史诗级的。<br>3、不理会饲料成本价格波动，这个假设，也是基于当时粮食价格在低位的大环境之下的假象。事实上，今年玉米等主要原材料价格已经创出历史新高，粮食成本占比60%，行业养殖成本已经大大推升。<br>因此，这三大极端事件都出现了，对牧原是个蛮大的考验，近期股价开始上涨，大家憧憬猪价未来6个月将会触底回升，这个我是预测不了，也许市场能预测，也许预测不了，市场也是先交易预期，边走边看，届时再说。<p><a href="https://xueqiu.com/1690646168/199698352">查看原帖</a></p></blockquote>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[管线分析2—同一个靶点，两种命运：英矽的PHD1/2布局]]></title>
+            <link>https://xueqiu.com/6494980516/411258817</link>
+            <guid isPermaLink="false">https://xueqiu.com/6494980516/411258817</guid>
+            <pubDate>Sat, 03 Oct 2026 06:17:06 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/03696" target="_blank">$英矽智能(03696)$</a> <br>英矽智能年内已提名第10款PCC，历史累计达34款；从平台前端效率看，其AI产出节奏仍显著快于传统biotech。34款PCC中，13款推进至IND阶段（IND申报成功率100%），完成BD授权的为8款（其中2笔为合作方未披露交易）。高PCC产能证明的是发现与迭代能力，并不等于资产价值已经兑...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[2020年印度GDP才2.6万亿美元，2025年已经来到了大概4.2万亿美元……按照目前的增速，明年大概率达到5万亿美元左右。短短7年接近翻倍。这种增长速度已经…]]></title>
+            <link>https://xueqiu.com/1333903283/411266701</link>
+            <guid isPermaLink="false">https://xueqiu.com/1333903283/411266701</guid>
+            <pubDate>Sat, 03 Oct 2026 11:47:45 GMT</pubDate>
+            <content:encoded><![CDATA[2020年印度GDP才2.6万亿美元，2025年已经来到了大概4.2万亿美元……<br>按照目前的增速，明年大概率达到5万亿美元左右。短短7年接近翻倍。<br>这种增长速度已经狠狠打脸了很多张口闭口“阿三”的人。。。我就是大概5年前说印度会起来，大部分人都反对，不信，结果呢？<br>现在来看，只要印度、...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$泡泡玛特(09992)$ 这款凡人手办还没发售，但玩家群体普遍猜测，价格大概率在一万五以上，而且必然会售罄，难以买到。世界观 ip 比较慢比较重，可一旦投入了…]]></title>
+            <link>https://xueqiu.com/3631818965/411262761</link>
+            <guid isPermaLink="false">https://xueqiu.com/3631818965/411262761</guid>
+            <pubDate>Sat, 03 Oct 2026 08:56:35 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/09992" target="_blank">$泡泡玛特(09992)$</a> 这款凡人手办还没发售，但玩家群体普遍猜测，价格大概率在一万五以上，而且必然会售罄，难以买到。<br><img src="https://assets.imedao.com/ugc/images/face/emoji_30_pride.png?v=1" title="[傲]" alt="[傲]" height="24">世界观 ip 比较慢比较重，可一旦投入了感情，往往能吃十几年和几十年。<br>目前泡泡玛特已经涉足拼搭市场，主要做积木，模型没怎么做。<br>说实话，产品做的还行，玩...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$东山精密(SZ002384)$本帖直击索尔思光芯片，讲65%BOM对索尔思光芯片的影响及应对——这里涉及到FCC细则——实验室资质条款先看Ai分析，有偏差，后…]]></title>
+            <link>https://xueqiu.com/5122695111/411261209</link>
+            <guid isPermaLink="false">https://xueqiu.com/5122695111/411261209</guid>
+            <pubDate>Sat, 03 Oct 2026 07:55:47 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SZ002384" target="_blank">$东山精密(SZ002384)$</a>本帖直击索尔思光芯片，讲65%BOM对索尔思光芯片的影响及应对——这里涉及到FCC细则——实验室资质条款<br>先看Ai分析，有偏差，后面讲。<br>【 刚才你的分析梳理非常棒。特别是旁征博引了很多有价值的翔实的证据支撑。感谢。<br>现在斗音普遍在传播的是这样一个逻辑: 65%BO...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$贵州茅台(SH600519)$ 招商证券：2026年双节白酒整体动销同比降了约10%，比2025年同期的下降20%收窄了。把"降10%"拆开看，里面是两件事。…]]></title>
+            <link>https://xueqiu.com/9560714455/411260561</link>
+            <guid isPermaLink="false">https://xueqiu.com/9560714455/411260561</guid>
+            <pubDate>Sat, 03 Oct 2026 07:27:41 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SH600519" target="_blank">$贵州茅台(SH600519)$</a> 招商证券：2026年双节白酒整体动销同比降了约10%，比2025年同期的下降20%收窄了。<br>把"降10%"拆开看，里面是两件事。一件是总量还在缩，另一件是缩得极不平均。一份覆盖全国终端的独立渠道调研，结论高度一致：2026年中秋呈结构性分化、旺季不旺、整体缩量，除茅...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[美国的压制政策是不会变的，这是美国优先政策决定的，美政策已大调整上10年了，是一种全球战略的全面性长期性根本性转向，吃美国大红利时代早已过去，大国博弈，不过还是…]]></title>
+            <link>https://xueqiu.com/7529993074/411255316</link>
+            <guid isPermaLink="false">https://xueqiu.com/7529993074/411255316</guid>
+            <pubDate>Sat, 03 Oct 2026 04:00:43 GMT</pubDate>
+            <content:encoded><![CDATA[美国的压制政策是不会变的，这是美国优先政策决定的，美政策已大调整上10年了，是一种全球战略的全面性长期性根本性转向，吃美国大红利时代早已过去，大国博弈，不过还是有生意可做，互惠性生意还会有。映射到投资市场，目前A股市场，优先做那些美企难以国产替代的细分吧，如pcb，FEC，光纤这些，...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[宇树科技上市以后就开始暴跌，很多人评论说宇树科技的研发费用还没有乐高的研发费用高。一直秉承着眼见为实，耳听为虚，就去网上查看了一下：网友说的是对的，宇树科技研发…]]></title>
+            <link>https://xueqiu.com/4812418043/411246773</link>
+            <guid isPermaLink="false">https://xueqiu.com/4812418043/411246773</guid>
+            <pubDate>Fri, 02 Oct 2026 23:01:29 GMT</pubDate>
+            <content:encoded><![CDATA[宇树科技上市以后就开始暴跌，很多人评论说宇树科技的研发费用还没有乐高的研发费用高。<br>一直秉承着眼见为实，耳听为虚，就去网上查看了一下：<br>网友说的是对的，宇树科技研发费用是1.45亿人民币，而乐高研发费用是2300百万克朗，大概是24亿人民币。<br>也就是，2025年乐高的研发费用是宇...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[石油与油运24小时新闻汇总｜10月3日晚统计窗口：北京时间10月2日20:02—10月3日20:02。来源：路透社、彭博社、金融时报、TradeWinds等。最…]]></title>
+            <link>https://xueqiu.com/1716115426/411267396</link>
+            <guid isPermaLink="false">https://xueqiu.com/1716115426/411267396</guid>
+            <pubDate>Sat, 03 Oct 2026 12:08:59 GMT</pubDate>
+            <content:encoded><![CDATA[石油与油运24小时新闻汇总｜10月3日晚<br>统计窗口：北京时间10月2日20:02—10月3日20:02。<br>来源：路透社、彭博社、金融时报、TradeWinds等。<br>最后两条为窗口外的重要背景补充，单独注明时间。<br>一、柴油与储备政策<br>【1】G7释放1亿桶储备，前20天优先投放柴油<br>路透社报道，G7...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[浙江淳安6万人的小县城，一下子涌进60万游客，酒店从70元涨到320元。我看很多人第一反应：酒店太黑，平台算法在割韭菜。其实没那么复杂，就是人太多，房太少。山西…]]></title>
+            <link>https://xueqiu.com/6600079272/411265583</link>
+            <guid isPermaLink="false">https://xueqiu.com/6600079272/411265583</guid>
+            <pubDate>Sat, 03 Oct 2026 11:02:43 GMT</pubDate>
+            <content:encoded><![CDATA[浙江淳安6万人的小县城，一下子涌进60万游客，酒店从70元涨到320元。我看很多人第一反应：酒店太黑，平台算法在割韭菜。<br>其实没那么复杂，就是人太多，房太少。<br>山西大同这几年也一样。云冈石窟、大同古城、悬空寺越来越火，一到国庆、五一，游客暴增，酒店价格马上往上冲。平时两三百元的...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[假设这三家都是极为优秀的好公司，大家都公认，在没有额外的信息差的情况下。。。美股最优秀的公司不太需要择时，也难以产生超额收益。。策略是长期持有。。。大致吻合过去…]]></title>
+            <link>https://xueqiu.com/2151206013/411263583</link>
+            <guid isPermaLink="false">https://xueqiu.com/2151206013/411263583</guid>
+            <pubDate>Sat, 03 Oct 2026 09:30:46 GMT</pubDate>
+            <content:encoded><![CDATA[假设这三家都是极为优秀的好公司，大家都公认，在没有额外的信息差的情况下。。。<br>美股最优秀的公司不太需要择时，也难以产生超额收益。。策略是长期持有。。。大致吻合过去百年历史规律。。假设t0为100, 年化8%，兼备复利。。。以及美股最优秀的公司最多，伟大前程的公司很多，投资环境清晰。...<br><blockquote>这图有意思啊！<br>美股太有效了，创造超额收益反而很难。<br>A股超额收益靠常常不理性的大涨。<br>港股长期低于价值，但是极度低估介入也能有不错的收益。<br>骂归骂，但还是要适应不同市场的风格。<br><img class="ke_img" src="https://xqimg.imedao.com/1a0fbaf76a156d963fbe6b5c.jpeg!custom.jpg"><p><a href="https://xueqiu.com/4570840596/411210826">查看原帖</a></p></blockquote>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[镁不美还是美不镁-国庆随笔]]></title>
+            <link>https://xueqiu.com/8095798871/411263538</link>
+            <guid isPermaLink="false">https://xueqiu.com/8095798871/411263538</guid>
+            <pubDate>Sat, 03 Oct 2026 09:28:40 GMT</pubDate>
+            <content:encoded><![CDATA[去年又重新研究镁是因为CR450，运营时速从350提高到400KM/h，空气动力学决定能耗本该大幅提升（远超速度提升比例哦），但能耗居然跟CR400持平（！），轻量化（每节车厢减重6-8吨）功不可没……进而又关注到盐湖股份。<br>新能源时代，从航天到航空到低空飞行器，从高铁到地铁再到客车，从机器人到...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[比亚迪9月销量解读 比亚迪九月销量达到了45万多，数量和质量都是大幅增长，特别是大唐突破1.3万，王朝网最大的增长潜力就是大汉，是继海豹08、海狮08、大唐后又…]]></title>
+            <link>https://xueqiu.com/6601477837/411257076</link>
+            <guid isPermaLink="false">https://xueqiu.com/6601477837/411257076</guid>
+            <pubDate>Sat, 03 Oct 2026 05:03:25 GMT</pubDate>
+            <content:encoded><![CDATA[比亚迪9月销量解读<br> 比亚迪九月销量达到了45万多，数量和质量都是大幅增长，特别是大唐突破1.3万，王朝网最大的增长潜力就是大汉，是继海豹08、海狮08、大唐后又一爆款。 方程豹也是亮点多多，相比上个月又创新高，达到了43181辆，方程S开始交付，根据老王的透露，只要产能足够每月1—1.5万完...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[【假期见闻】总结起来就一个字：千行凋敝，万业艰难。去赶集，7点多人还算多。蔬菜水果普遍不贵，普通的菜10块钱三斤或四斤，快下市的地黄瓜之类的10块钱两斤，这就算…]]></title>
+            <link>https://xueqiu.com/1264227287/411263292</link>
+            <guid isPermaLink="false">https://xueqiu.com/1264227287/411263292</guid>
+            <pubDate>Sat, 03 Oct 2026 09:18:21 GMT</pubDate>
+            <content:encoded><![CDATA[【假期见闻】<br>总结起来就一个字：千行凋敝，万业艰难。<br>去赶集，7点多人还算多。<br>蔬菜水果普遍不贵，普通的菜10块钱三斤或四斤，快下市的地黄瓜之类的10块钱两斤，这就算贵的了，因为再贵了卖不动。<br>海鲜虽然是昨晚从海里打上来的，活蹦乱跳，但看的人多，买的人少。估计过了节，...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[一些现阶段对存储的观点]]></title>
+            <link>https://xueqiu.com/4674652864/411261318</link>
+            <guid isPermaLink="false">https://xueqiu.com/4674652864/411261318</guid>
+            <pubDate>Sat, 03 Oct 2026 07:59:32 GMT</pubDate>
+            <content:encoded><![CDATA[很久没写存储的长文了。经历了7月的大回撤，一方面自己的心态和期望值在逐步调整，没有什么提笔欲望；一方面板块也逐渐走到了基本面明确但多空分歧加剧的阶段，说白了更多的是市场情绪的变化，没有太多值得探讨的内容。<br>今天也不花时间去整合文章逻辑了，仅条目式地分享一些现阶段对存储的观点...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$东山精密(SZ002384)$ 看看日本三家与光芯片业务相关的上市公司10月这两天的涨幅，如果大摩那份报告真的是大利空，难道日本投资人都是傻子？只有大A全是惊…]]></title>
+            <link>https://xueqiu.com/6365924373/411260997</link>
+            <guid isPermaLink="false">https://xueqiu.com/6365924373/411260997</guid>
+            <pubDate>Sat, 03 Oct 2026 07:47:05 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SZ002384" target="_blank">$东山精密(SZ002384)$</a> 看看日本三家与光芯片业务相关的上市公司10月这两天的涨幅，如果大摩那份报告真的是大利空，难道日本投资人都是傻子？只有大A全是惊弓之鸟。<br>10月1日涨幅：<br>- QD Laser（6613）：+5.31%<br>- 住友电工（5802）：+3.48%<br>- 古河电工（5801）：+3.22%<br>10月2日...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[所有长牛行情的底气，终究是居民消费在托底]]></title>
+            <link>https://xueqiu.com/9498737718/411258204</link>
+            <guid isPermaLink="false">https://xueqiu.com/9498737718/411258204</guid>
+            <pubDate>Sat, 03 Oct 2026 05:51:22 GMT</pubDate>
+            <content:encoded><![CDATA[做投资越久，越摸透一个朴素且关键的产业规律：所有科技、算力、数字化赛道的长期行情，核心依托底层现金流的稳定延续，而非单纯的技术迭代速度。<br>市场上备受追捧的大模型、云计算、高端芯片、算力集群，看似是壁垒极高的高端科技产业。剥开层层商业外壳就能看清，这类产业都依附实体经济运转...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[关于当前油运的一些判断及信息梳理]]></title>
+            <link>https://xueqiu.com/4531216350/411266459</link>
+            <guid isPermaLink="false">https://xueqiu.com/4531216350/411266459</guid>
+            <pubDate>Sat, 03 Oct 2026 11:39:16 GMT</pubDate>
+            <content:encoded><![CDATA[简单梳理了一下关于当前油运的一些判断及信息。<br>第一，缺船情况严重。核心航线湾外阿曼运价指数于8月19日站上200点，9月11日站上500点，9月17日站上800点，当前已在800点附近运行多日。天价运费之所以能够成交、能够持续这么长久，核心原因就是缺船，非常非常缺船。<br>第二，暗航货盘抬升。...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$海康威视(SZ002415)$ 海康威视三季报披露时间确定，预约在10月17日。回看过去5年的披露记录，今年这个时间，是近五年最早的一次。按照交易所规则，三季…]]></title>
+            <link>https://xueqiu.com/4583517334/411255372</link>
+            <guid isPermaLink="false">https://xueqiu.com/4583517334/411255372</guid>
+            <pubDate>Sat, 03 Oct 2026 04:02:42 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SZ002415" target="_blank">$海康威视(SZ002415)$</a> 海康威视三季报披露时间确定，预约在10月17日。<br>回看过去5年的披露记录，今年这个时间，是近五年最早的一次。按照交易所规则，三季报法定披露窗口是10月1日至10月31日，只要在10月31日前发布，都符合监管要求。那为什么海康今年选择把披露时间安排得这么早？<br>在我看...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[请仔细阅读附帖。事实上，比亚迪C/D级车的九月销量大约10万辆左右。四季度，比亚迪在中高级车市场上还有两场硬仗要打，一是大汉、唐三代、钛9三款新车的成功上市，二…]]></title>
+            <link>https://xueqiu.com/9108427119/411252948</link>
+            <guid isPermaLink="false">https://xueqiu.com/9108427119/411252948</guid>
+            <pubDate>Sat, 03 Oct 2026 02:47:00 GMT</pubDate>
+            <content:encoded><![CDATA[请仔细阅读附帖。<br>事实上，比亚迪C/D级车的九月销量大约10万辆左右。四季度，比亚迪在中高级车市场上还有两场硬仗要打，一是大汉、唐三代、钛9三款新车的成功上市，二是豹8、N9两款车的纯电版上市，特别是后者，奠定了比亚迪在高端市场上的平台高度，将逼迫大嘴小嘴通通闭嘴！<br>上述五款车...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[张坤们走了，我们怎么办？9月30日易方达公告：张坤卸任，易方达改由张琦独自管理。消息不算大，但上了头版。因为"张坤"这两个字，是一代人的入场券，是他把"买基金"…]]></title>
+            <link>https://xueqiu.com/2106533683/411263841</link>
+            <guid isPermaLink="false">https://xueqiu.com/2106533683/411263841</guid>
+            <pubDate>Sat, 03 Oct 2026 09:42:40 GMT</pubDate>
+            <content:encoded><![CDATA[张坤们走了，我们怎么办？<br>9月30日易方达公告：张坤卸任，易方达改由张琦独自管理。消息不算大，但上了头版。因为"张坤"这两个字，是一代人的入场券，是他把"买基金"变成了全民运动。所以这次碎的不只是净值，是信仰：那个"把钱交给最牛的人就能躺赢"的时代，最后还是...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[创新与先例]]></title>
+            <link>https://xueqiu.com/5176441859/411253946</link>
+            <guid isPermaLink="false">https://xueqiu.com/5176441859/411253946</guid>
+            <pubDate>Sat, 03 Oct 2026 03:17:59 GMT</pubDate>
+            <content:encoded><![CDATA[前段时间一直写关于兴业回购股份作可转债转股股份的帖子，球友认为不可能实施的主要原因是没有先例，这其实是个悖论，也符合我们逻辑的叙事风格，我们并非没有创新，也并非没有先例就不做了，更多的是对自己是否有利？如果有利，我们还是很有创新精神的，不管有没有先例，甚至打擦边球，先做起来再...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[特斯拉一夜涨了半个比亚迪]]></title>
+            <link>https://xueqiu.com/2714205814/411249272</link>
+            <guid isPermaLink="false">https://xueqiu.com/2714205814/411249272</guid>
+            <pubDate>Sat, 03 Oct 2026 00:51:27 GMT</pubDate>
+            <content:encoded><![CDATA[特斯拉美股10月2日涨幅4.65%，收盘市值增量约648亿美元，总市值超1.46万亿美元。<br>按照9月30日收盘价，比亚迪A股目前总市值为人民币7595.54亿元。以今日离岸人民币汇率6.7058计算，(648 × 6.7058) ÷ 7595.54 ≈ 0.57。<br>特斯拉一天涨了0.57个比亚迪，总市值相当于12.9个比亚迪。<br>10月...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[今年会不会新低不好说，明年大概率新低了。今年年初精准预测了去年的数据，但今年的数据很难预测，原因是去年的结婚数据跟以前不一样，所以没有办法基于以往的数据进行测算…]]></title>
+            <link>https://xueqiu.com/2871720724/411263914</link>
+            <guid isPermaLink="false">https://xueqiu.com/2871720724/411263914</guid>
+            <pubDate>Sat, 03 Oct 2026 09:46:05 GMT</pubDate>
+            <content:encoded><![CDATA[今年会不会新低不好说，明年大概率新低了。今年年初精准预测了去年的数据，但今年的数据很难预测，原因是去年的结婚数据跟以前不一样，所以没有办法基于以往的数据进行测算，所以今年是有可能不新低的。但基于今年上半年的结婚数据推测，明年大概率新低。<br>不知道什么时候才会意识到，社会发展...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$英特尔(INTC)$ 很可能周五盘中回调和一则消息有关。我先把消息本身说清楚：10月2日，前彭博专栏作家、现在运营Culpium的Tim Culpan在X上爆…]]></title>
+            <link>https://xueqiu.com/9400562418/411261015</link>
+            <guid isPermaLink="false">https://xueqiu.com/9400562418/411261015</guid>
+            <pubDate>Sat, 03 Oct 2026 07:47:47 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/INTC" target="_blank">$英特尔(INTC)$</a> 很可能周五盘中回调和一则消息有关。我先把消息本身说清楚：10月2日，前彭博专栏作家、现在运营Culpium的Tim Culpan在X上爆料称：台积电正在探索与马斯克的Terafab合作，并研究帮助Terafab在德州运营晶圆厂。其实这个消息与9月底已经出现的 “台积电考虑在德州建设第二个美国园区”...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$耐克(NKE)$ 耐克品牌一坍塌就完了，特别是在它的最大利润来源地：中国（2021年以前）。据说库克要上位，谁上也白搭。耐克在中国的利润率曾是美国的2倍（40…]]></title>
+            <link>https://xueqiu.com/8129273237/411261329</link>
+            <guid isPermaLink="false">https://xueqiu.com/8129273237/411261329</guid>
+            <pubDate>Sat, 03 Oct 2026 07:59:52 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/NKE" target="_blank">$耐克(NKE)$</a> 耐克品牌一坍塌就完了，特别是在它的最大利润来源地：中国（2021年以前）。据说库克要上位，谁上也白搭。耐克在中国的利润率曾是美国的2倍（40% vs 20%），完全是暴利，且中国人很买单，现在在中国市场收入、利润率双惨。耐克失败最大单一原因是很明显的，耐克在其他市场无法复制中国...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[从龟甲到K线：我们一直在占卜未来]]></title>
+            <link>https://xueqiu.com/2386334596/411248588</link>
+            <guid isPermaLink="false">https://xueqiu.com/2386334596/411248588</guid>
+            <pubDate>Sat, 03 Oct 2026 00:27:31 GMT</pubDate>
+            <content:encoded><![CDATA[从古至今，为了面对未来的不确定性，人类花费了大量的时间和精力，为可能发生的事情做准备和应对。<br>可是世事难料，不能提前预知。但人们的行为多数都是依据对前景的判断作出的，我们本能就倾向于对未来进行“占卜”，依据占卜的结果行事。祖先留下的甲骨文，绝大部分都是占卜的记录档案，可见...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[股市大V猫笔刀也开始认输了…昨天，猫笔刀发了一篇文章，题目叫《熬不过，我认输了》，里面点名糟糕的港股，当天恒生指数下跌2.6%，恒生科技下跌2.26%，年内累计…]]></title>
+            <link>https://xueqiu.com/1163972975/411262980</link>
+            <guid isPermaLink="false">https://xueqiu.com/1163972975/411262980</guid>
+            <pubDate>Sat, 03 Oct 2026 09:05:28 GMT</pubDate>
+            <content:encoded><![CDATA[股市大V猫笔刀也开始认输了…<br>昨天，猫笔刀发了一篇文章，题目叫《熬不过，我认输了》，里面点名糟糕的港股，当天恒生指数下跌2.6%，恒生科技下跌2.26%，年内累计下跌了24%，创下新低。<br>都说A股邋遢，年化只有5%，而港股的11年指数累计涨幅却是负的，对比起来那就太惨了，<br>猫笔刀这种V...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[我们假设未来8年，我再在股市挣500万如果能挣到的话，是不是从现在到未来我退休，差不多也就是在体z内挣500万到600万那么，我还有必要在体制内干这份工作吗？这…]]></title>
+            <link>https://xueqiu.com/2991286124/411262022</link>
+            <guid isPermaLink="false">https://xueqiu.com/2991286124/411262022</guid>
+            <pubDate>Sat, 03 Oct 2026 08:27:53 GMT</pubDate>
+            <content:encoded><![CDATA[我们假设未来8年，我再在股市挣500万<br>如果能挣到的话，是不是从现在到未来我退休，差不多也就是在体z内挣500万到600万<br>那么，我还有必要在体制内干这份工作吗？<br>这里边是有区别的，要把账算清楚：<br>如果这个人跳出了体z，是有其它的能力赚更多钱的，那么，他一次性的把500~600万赚...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[越南今年的人均GDP大概率达到5500美元，而与它毗邻的广西，人均GDP大概是8000美元多一点，其实二者差距已经没很多人想象的那么大了。而越南的增速又如此之快…]]></title>
+            <link>https://xueqiu.com/1333903283/411260845</link>
+            <guid isPermaLink="false">https://xueqiu.com/1333903283/411260845</guid>
+            <pubDate>Sat, 03 Oct 2026 07:41:05 GMT</pubDate>
+            <content:encoded><![CDATA[越南今年的人均GDP大概率达到5500美元，而与它毗邻的广西，人均GDP大概是8000美元多一点，其实二者差距已经没很多人想象的那么大了。<br>而越南的增速又如此之快，人口上亿，大概需要6-8年，其人均GDP就可能追上广西，同时人口是广西的2倍以上。相当于两个广西省了。<br>我预计10-15年时间，越南...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$腾讯控股(00700)$ 从腾讯租美国公司算力来看，英伟达还得涨，腾讯还得跌英伟达得涨如果国产算力可以了，腾讯不用这么麻烦这样搞，走政策的擦边球说明国产算力目…]]></title>
+            <link>https://xueqiu.com/1151605082/411255399</link>
+            <guid isPermaLink="false">https://xueqiu.com/1151605082/411255399</guid>
+            <pubDate>Sat, 03 Oct 2026 04:03:49 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/00700" target="_blank">$腾讯控股(00700)$</a> 从腾讯租美国公司算力来看，英伟达还得涨，腾讯还得跌<br>英伟达得涨<br>如果国产算力可以了，腾讯不用这么麻烦这样搞，走政策的擦边球<br>说明国产算力目前不行<br>腾讯还得跌<br>赚的钱源源不断的送到美国，竞争优势远远不如字节的豆包，收费回本更是遥遥无期<br>这种投...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[继续看李录的投资标的。把喜马拉雅资本最近五年的13F翻出来看，会发现他的组合其实一直在变化，而且2025—2026年的变化尤其大。2021年底，李录最大的公开持…]]></title>
+            <link>https://xueqiu.com/2923655370/411254127</link>
+            <guid isPermaLink="false">https://xueqiu.com/2923655370/411254127</guid>
+            <pubDate>Sat, 03 Oct 2026 03:23:32 GMT</pubDate>
+            <content:encoded><![CDATA[继续看李录的投资标的。把喜马拉雅资本最近五年的13F翻出来看，会发现他的组合其实一直在变化，而且2025—2026年的变化尤其大。<br>2021年底，李录最大的公开持仓是美光。<br>喜马拉雅资本持有美光约1148万股，当时市值约10.7亿美元，是整个公开美股组合中最大的仓位。此外还有美国银行约6.49亿...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$源杰科技(SH688498)$ 传闻的fcc新规在逻辑上根本不成立，就是一次零成本的造谣，目的是让大家恐慌，如果美国想卡咱们的光芯片，直接禁售mocvd设备即…]]></title>
+            <link>https://xueqiu.com/8870278778/411247320</link>
+            <guid isPermaLink="false">https://xueqiu.com/8870278778/411247320</guid>
+            <pubDate>Fri, 02 Oct 2026 23:30:20 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SH688498" target="_blank">$源杰科技(SH688498)$</a> 传闻的fcc新规在逻辑上根本不成立，就是一次零成本的造谣，目的是让大家恐慌，如果美国想卡咱们的光芯片，直接禁售mocvd设备即可，不用这么麻烦。本质上卡不了800G，1.6T，也卡不了3.2T。如果想优先使用美国产品，咱们倒是乐意，可你也得有产能啊。光芯片，激光器，DSP产能都...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[雪球A8、A9身家到处都是，但现实里300人才出一个千万资产富豪]]></title>
+            <link>https://xueqiu.com/6946459350/411256258</link>
+            <guid isPermaLink="false">https://xueqiu.com/6946459350/411256258</guid>
+            <pubDate>Sat, 03 Oct 2026 04:32:36 GMT</pubDate>
+            <content:encoded><![CDATA[打开雪球，全网遍地都是A8、A9股神大户，人人千万过亿身家，个个财务自由。<br>这套从投资圈火到相亲赛道的财富暗号，用字母加数字的组合把资产量级划分得明明白白，字母A取自英文Asset也就是资产的首字母，A7对应百万级净资产，A8是千万级净资产，A9则是亿级净资产。这里的资产特指所有负债后的...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$神火股份(SZ000933)$趁着国庆节休假，重新审视了一下电解铝。按周期定价：我毛估估神火的下一个极好的击球期在530亿。也就是还有10%的空间。向下的安全…]]></title>
+            <link>https://xueqiu.com/7198808810/411253819</link>
+            <guid isPermaLink="false">https://xueqiu.com/7198808810/411253819</guid>
+            <pubDate>Sat, 03 Oct 2026 03:14:26 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SZ000933" target="_blank">$神火股份(SZ000933)$</a><br>趁着国庆节休假，重新审视了一下电解铝。<br>按周期定价：<br>我毛估估神火的下一个极好的击球期在530亿。<br>也就是还有10%的空间。<br>向下的安全垫还可以。<br>最不确定的是铝的未来需求爆点在哪？<br>地产和汽车仍是最大的压制因素。<br>看最近的汽车消费市场...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$盐湖股份(SZ000792)$ 再谈盐湖提镁，盐湖股份当年投资438亿搞了十万吨金属镁亏了七百亿是几年前的事了，镁一体化打包剥给了汇信，如今成本约在一万八，比…]]></title>
+            <link>https://xueqiu.com/4431427325/411251092</link>
+            <guid isPermaLink="false">https://xueqiu.com/4431427325/411251092</guid>
+            <pubDate>Sat, 03 Oct 2026 01:52:57 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SZ000792" target="_blank">$盐湖股份(SZ000792)$</a> 再谈盐湖提镁，盐湖股份当年投资438亿搞了十万吨金属镁亏了七百亿是几年前的事了，镁一体化打包剥给了汇信，如今成本约在一万八，比几年前刚投产时二万二降了不少，但是当年市场价一万八，如今市场价一万六千多，当年搞镁亏本如今还亏本。中试的几种方法其实降成本也有限，关...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$闪迪(SNDK)$ 一家CFO明确表示会把自由现金流100%返还给投资者的NAND存储公司 当估值是个位数且长约锁定2028年前的一多半产能 那么简单计算下 …]]></title>
+            <link>https://xueqiu.com/6357371531/411244743</link>
+            <guid isPermaLink="false">https://xueqiu.com/6357371531/411244743</guid>
+            <pubDate>Fri, 02 Oct 2026 21:00:16 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SNDK" target="_blank">$闪迪(SNDK)$</a> 一家CFO明确表示会把自由现金流100%返还给投资者的NAND存储公司 当估值是个位数且长约锁定2028年前的一多半产能 那么简单计算下 上个季度FCF 5b 回购了4.5B按这个比例假设明年FCF10%增长 明年可以回购20B股份 市值的8%<br>这是半导体公司里面对投资人最忠诚的公司<br>如果市场给AMD...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$东山精密(SZ002384)$ $中际旭创(SZ300308)$ $新易盛(SZ300502)$提炼一下:1、大摩这份研报刻意回避65%含美量法案（BAA和B…]]></title>
+            <link>https://xueqiu.com/5122695111/411231738</link>
+            <guid isPermaLink="false">https://xueqiu.com/5122695111/411231738</guid>
+            <pubDate>Fri, 02 Oct 2026 14:48:47 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SZ002384" target="_blank">$东山精密(SZ002384)$</a> <a href="https://xueqiu.com/S/SZ300308" target="_blank">$中际旭创(SZ300308)$</a> <a href="https://xueqiu.com/S/SZ300502" target="_blank">$新易盛(SZ300502)$</a><br>提炼一下:<br>1、大摩这份研报刻意回避65%含美量法案（BAA和BABA）有明确的适用边界: 只约束政府采购和政府补贴基建类项目。<br>该法存在80多年了，含美量不断上调，但边界却始终没变，只管政府花钱行为，无法管到私人部门如...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[极端运价会导致需求破坏吗？]]></title>
+            <link>https://xueqiu.com/8655052669/411260720</link>
+            <guid isPermaLink="false">https://xueqiu.com/8655052669/411260720</guid>
+            <pubDate>Sat, 03 Oct 2026 07:35:15 GMT</pubDate>
+            <content:encoded><![CDATA[省流：油运需求没有价格弹性，但原油可能有<br>POTEN油轮观点<br>标题：油轮会出现需求破坏吗？<br>副标题：高昂运费是否会抑制油轮需求？<br>对Poten每日市场报告（跟踪多条主要油轮贸易航线即期运费）的复盘显示，数据令人触目惊心。整体来看，油轮运费已经攀升至前所未有的水平（见图表1）...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[宁德时代匈牙利工厂内部曝光2026年10月1日，宁德时代首次在德布勒森电池工厂接待了媒体记者。参观活动使记者看到欧洲最现代化、高度自动化的生产线。参观过程中，来…]]></title>
+            <link>https://xueqiu.com/3654041367/411248835</link>
+            <guid isPermaLink="false">https://xueqiu.com/3654041367/411248835</guid>
+            <pubDate>Sat, 03 Oct 2026 00:36:08 GMT</pubDate>
+            <content:encoded><![CDATA[宁德时代匈牙利工厂内部曝光<br>2026年10月1日，宁德时代首次在德布勒森电池工厂接待了媒体记者。参观活动使记者看到欧洲最现代化、高度自动化的生产线。<br>参观过程中，来宾们能够一步步了解电池制造流程，从组装到绕线，直至电池制造工艺的核心技术。<br>宁德时代德布勒森工厂具有重要的战略...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[通胀与通缩]]></title>
+            <link>https://xueqiu.com/7153156603/411260253</link>
+            <guid isPermaLink="false">https://xueqiu.com/7153156603/411260253</guid>
+            <pubDate>Sat, 03 Oct 2026 07:13:50 GMT</pubDate>
+            <content:encoded><![CDATA[到通胀的地方赚钱，到通缩的地方消费；这个逻辑过去还是不错的，现在也要升级观点了；今天加油发现老美的油价又创了新高，去超市买矿泉水，发现爆款水的价格直接翻倍；过去4.99美金40多瓶的大包装，现在换成24瓶的小包装了，价格还是4.99<br> 麦当劳/耐克股价暴跌也能理解的，但凡只能赚普通人钱...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[那段股市房市健康三杀的三年，慢慢熬过来的这两年，都没有低头。只有7月初至今未痊愈已经不能久坐的腰伤，更大不如前的身体素质，终究是迷茫了。我是不自信的，我现在也是…]]></title>
+            <link>https://xueqiu.com/8058053762/411236096</link>
+            <guid isPermaLink="false">https://xueqiu.com/8058053762/411236096</guid>
+            <pubDate>Fri, 02 Oct 2026 16:27:40 GMT</pubDate>
+            <content:encoded><![CDATA[那段股市房市健康三杀的三年，慢慢熬过来的这两年，都没有低头。<br>只有7月初至今未痊愈已经不能久坐的腰伤，更大不如前的身体素质，终究是迷茫了。<br>我是不自信的，我现在也是输不起的，所以我把这两年盈利的全还了房贷。<br>基本又回到924行情挽救我于水火开始的本金，我也开始渐渐老矣，...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$银行(BK0055)$ 适度宽松。货币政策就像水龙头。适度宽松的货币政策就是打开小的水龙头。好消息是PPI转正了，银行有存在戴维斯双击的可能。另外，人民币升值…]]></title>
+            <link>https://xueqiu.com/2910691870/411218562</link>
+            <guid isPermaLink="false">https://xueqiu.com/2910691870/411218562</guid>
+            <pubDate>Fri, 02 Oct 2026 10:42:54 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/BK0055" target="_blank">$银行(BK0055)$</a> 适度宽松。<br>货币政策就像水龙头。适度宽松的货币政策就是打开小的水龙头。好消息是PPI转正了，银行有存在戴维斯双击的可能。<br>另外，人民币升值将促成核心资产估值重构。银行、保险、券商。<br>我最怕人多。节假日里闷头睡。睡得有点脑袋疼，胡思乱想的。<br>图片中的哥们...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$万科A(SZ000002)$ 你回头想想，九十年代全民抢彩电，长虹股价一飞冲天；后来十几年大家扎堆买房，万科、碧桂园成了风光无限的大牛市；到现在电动车走进千家…]]></title>
+            <link>https://xueqiu.com/1777734313/411248479</link>
+            <guid isPermaLink="false">https://xueqiu.com/1777734313/411248479</guid>
+            <pubDate>Sat, 03 Oct 2026 00:24:09 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SZ000002" target="_blank">$万科A(SZ000002)$</a> 你回头想想，九十年代全民抢彩电，长虹股价一飞冲天；后来十几年大家扎堆买房，万科、碧桂园成了风光无限的大牛市；到现在电动车走进千家万户，比亚迪、宁德时代一路走高；网购、短视频成了日常，对应的平台也越做越大。<br>反过来也一样，没人再抢彩电了，长虹也就没落了；买...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[美股新高，达子新高，老馒头马上新高，日本快新高了，台湾新高，韩国大概率也可以新高A货已经不指望新高了，能不能反弹也无所谓了看到外面科技如火如荼，希望他们的科技越…]]></title>
+            <link>https://xueqiu.com/3511250753/411229322</link>
+            <guid isPermaLink="false">https://xueqiu.com/3511250753/411229322</guid>
+            <pubDate>Fri, 02 Oct 2026 14:14:28 GMT</pubDate>
+            <content:encoded><![CDATA[美股新高，达子新高，老馒头马上新高，日本快新高了，台湾新高，韩国大概率也可以新高<br>A货已经不指望新高了，能不能反弹也无所谓了<br>看到外面科技如火如荼，希望他们的科技越来越好，发展越来越快，以后无论养老还是治病亦或者娱乐等等，还得指望这些科技帮人类解决大部分问题<br>看到今天...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[抱怨市场的人，我感觉挺有意思的，没事开开玩笑可以，但是把一切归结成市场的错，整天怨天尤人，挂在嘴边，我觉得这和loser老登没区别。A股就是这么个A股，客观存在…]]></title>
+            <link>https://xueqiu.com/4514680565/411259125</link>
+            <guid isPermaLink="false">https://xueqiu.com/4514680565/411259125</guid>
+            <pubDate>Sat, 03 Oct 2026 06:29:46 GMT</pubDate>
+            <content:encoded><![CDATA[抱怨市场的人，我感觉挺有意思的，没事开开玩笑可以，但是把一切归结成市场的错，整天怨天尤人，挂在嘴边，我觉得这和loser老登没区别。A股就是这么个A股，客观存在的事实。6月之后，全球科技产业链公司很多都不创新高了，咱们这边却顶着创新高，一直到6月底甚至7月1号。有兴趣的可以统计一下，美...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[GDP十年翻了一倍多，股市为什么这么差？ 2015年到2025年，中国名义GDP从68.9万亿涨到140万亿左右，翻了一倍多。实际GDP年均增速稳定在5%以上，…]]></title>
+            <link>https://xueqiu.com/7318086163/411257960</link>
+            <guid isPermaLink="false">https://xueqiu.com/7318086163/411257960</guid>
+            <pubDate>Sat, 03 Oct 2026 05:41:46 GMT</pubDate>
+            <content:encoded><![CDATA[GDP十年翻了一倍多，股市为什么这么差？ <br>2015年到2025年，中国名义GDP从68.9万亿涨到140万亿左右，翻了一倍多。实际GDP年均增速稳定在5%以上，是美国的两倍多。<br>同期，沪深300全收益指数十年累计涨38.7%，年化3.3%。上证指数十年年化3%，波动率16.3%，最大回撤46%，夏普比率接近于零。<br...< body=""></br...<>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[结婚数量和新生儿数量持续下降，那么 A股的上市企业，未来将有很大一部分面临缩量逻辑（人口下滑大背景决定的），还有很大一部分非常卷，这些方向根本不具备长期走好的可…]]></title>
+            <link>https://xueqiu.com/2278098029/411256113</link>
+            <guid isPermaLink="false">https://xueqiu.com/2278098029/411256113</guid>
+            <pubDate>Sat, 03 Oct 2026 04:27:59 GMT</pubDate>
+            <content:encoded><![CDATA[结婚数量和新生儿数量持续下降，那么 A股的上市企业，未来将有很大一部分面临缩量逻辑（人口下滑大背景决定的），还有很大一部分非常卷，这些方向根本不具备长期走好的可能性。<br>只剩下一小部分，具备长期向上的增量逻辑。也就是说，未来若干年，其实我们的可选择性很小。如果大背景不变，不太...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$东山精密(SZ002384)$ 早上起来看了几个斗音视频，一边倒都在测算BOM，然后说旭创和新易盛问题不大，因为DSP和激光器都是美国的，刚好够65%。旭创硅…]]></title>
+            <link>https://xueqiu.com/5122695111/411256034</link>
+            <guid isPermaLink="false">https://xueqiu.com/5122695111/411256034</guid>
+            <pubDate>Sat, 03 Oct 2026 04:25:17 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SZ002384" target="_blank">$东山精密(SZ002384)$</a> 早上起来看了几个斗音视频，一边倒都在测算BOM，然后说旭创和新易盛问题不大，因为DSP和激光器都是美国的，刚好够65%。旭创硅光用的以色列的，美国铁杆盟友。对源杰，仕佳等国产芯片企业不利。东山连提的兴趣都没有。视频下面跟帖倒是很多人都在问东山，都很担心。这些视频没...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[泡泡玛特的全球情绪生意 王宁 2010 年在中关村欧美汇租了个 10 平米的货架，卖进口文具、耳环、动漫小模型，开始创业。2016 年签了 香港设计师画的嘟嘴小…]]></title>
+            <link>https://xueqiu.com/1004206566/411254360</link>
+            <guid isPermaLink="false">https://xueqiu.com/1004206566/411254360</guid>
+            <pubDate>Sat, 03 Oct 2026 03:31:05 GMT</pubDate>
+            <content:encoded><![CDATA[泡泡玛特的全球情绪生意 <br>王宁 2010 年在中关村欧美汇租了个 10 平米的货架，卖进口文具、耳环、动漫小模型，开始创业。<br>2016 年签了 香港设计师画的嘟嘴小女孩 MOLLY的全亚洲独家授权，把 MOLLY 装进不透明的小盒子里卖 —— 这就是盲盒的雏形。2017 年单 MOLLY 就过亿。<br>2019 年港股...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[来各位帮忙出出主意，武汉二环内小户型，有第一梯队的中学，30多个平方，现在价格能谈到21万左右，租金在1200~1300，房龄是20多年，单价6300，小区高峰…]]></title>
+            <link>https://xueqiu.com/4533780163/411252894</link>
+            <guid isPermaLink="false">https://xueqiu.com/4533780163/411252894</guid>
+            <pubDate>Sat, 03 Oct 2026 02:44:51 GMT</pubDate>
+            <content:encoded><![CDATA[来各位帮忙出出主意，武汉二环内小户型，有第一梯队的中学，30多个平方，现在价格能谈到21万左右，租金在1200~1300，房龄是20多年，单价6300，小区高峰是高单价是18,000一平，这个小区斜对面三分钟路程的新盘卖3万多一平，然后还有一个楼盘是卖25,000一平<br>这个可不可以买，我犹豫的点是它的租...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[从量，价，本 三个角度看广核的优势和风险]]></title>
+            <link>https://xueqiu.com/5841425253/411252585</link>
+            <guid isPermaLink="false">https://xueqiu.com/5841425253/411252585</guid>
+            <pubDate>Sat, 03 Oct 2026 02:35:38 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SZ003816" target="_blank">$中国广核(SZ003816)$</a> 从量，价，本 三个角度看中国广核的优势和风险<br>1、量：除了大修外基本能满发，年发电7500小时以上，广核25年数据7700+<br>风险：如果电力供需逆转，核电也被迫降负荷调峰（技术上无难度，动态调峰还有争议，但降负荷运行已有大量经验），将会直接受损。<br>目前看，核...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$宏达股份(SH600331)$1️⃣：2026年以来，西藏多龙矿业有限公司围绕多龙铜矿及多不杂西铜矿，已发布超过几十项公开招标与询比采购。招标覆盖工程设计、尾…]]></title>
+            <link>https://xueqiu.com/4224803379/411249727</link>
+            <guid isPermaLink="false">https://xueqiu.com/4224803379/411249727</guid>
+            <pubDate>Sat, 03 Oct 2026 01:07:23 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SH600331" target="_blank">$宏达股份(SH600331)$</a><br>1️⃣：2026年以来，西藏多龙矿业有限公司围绕多龙铜矿及多不杂西铜矿，已发布超过几十项公开招标与询比采购。招标覆盖工程设计、尾矿库研究、合规评估、能源保障、岩土勘察、补充勘探、临时设施、生态修复、地方配套、多不杂西专项等十余个类别，中标方涵盖中国恩菲、长...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[读《投资最重要的事》，我就理解了一句话，防控风险是第一位的。2022年杠杆率是8倍，2026年10月杠杆率不足1倍。我的杠杆率一直在下降。早期是扩规模，如今是防…]]></title>
+            <link>https://xueqiu.com/1972422777/411246273</link>
+            <guid isPermaLink="false">https://xueqiu.com/1972422777/411246273</guid>
+            <pubDate>Fri, 02 Oct 2026 22:25:37 GMT</pubDate>
+            <content:encoded><![CDATA[读《投资最重要的事》，我就理解了一句话，防控风险是第一位的。2022年杠杆率是8倍，2026年10月杠杆率不足1倍。我的杠杆率一直在下降。早期是扩规模，如今是防风险。<br>为什么要防风险？这是唯一的生存之道。赚多少不重要，关键是十年后我们还在！<br>从100万到1000万，我基本实现了，用的是高...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[巴菲特给年轻人的建议]]></title>
+            <link>https://xueqiu.com/8959246745/411223794</link>
+            <guid isPermaLink="false">https://xueqiu.com/8959246745/411223794</guid>
+            <pubDate>Fri, 02 Oct 2026 13:02:38 GMT</pubDate>
+            <content:encoded><![CDATA[股东问： <br>你会给我们年轻人一些建议吗？让我们为未来像你一样成功做好准备。<br> 巴菲特： <br>如果你对生意感兴趣，我认为你应该在20多岁学习所有的会计知识，会计是商业语言。<br>这并不意味着它是一种完美的语言，所以你必须知道这种语言的局限性，以及它的所有方面。<br>我建议你兼...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[熬了十年，大牛猫认输了10月2日晚上，猫笔刀发了一篇，标题叫熬不过我认输了。导火索是当天恒生指数跌2.6%，恒生科技指数跌2.26%，盘中砸到4111点，创年内…]]></title>
+            <link>https://xueqiu.com/7318086163/411257429</link>
+            <guid isPermaLink="false">https://xueqiu.com/7318086163/411257429</guid>
+            <pubDate>Sat, 03 Oct 2026 05:19:02 GMT</pubDate>
+            <content:encoded><![CDATA[熬了十年，大牛猫认输了<br>10月2日晚上，猫笔刀发了一篇，标题叫熬不过我认输了。<br>导火索是当天恒生指数跌2.6%，恒生科技指数跌2.26%，盘中砸到4111点，创年内新低，一年跌掉38%。要是把时间拉回2021年2月的最高点10945点，现在只剩4157点，跌了62%。<br>直接引发交易的是他那两句话：<br>...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[男人只有秋天的时候才最接近自己。秋天，每个男人都需要一趟没有目的地和方向的出走。阮籍常率意独驾，不由径路，车迹所穷，辄恸哭而反。1889年1月3日，都灵。弗里德…]]></title>
+            <link>https://xueqiu.com/5742821612/411257020</link>
+            <guid isPermaLink="false">https://xueqiu.com/5742821612/411257020</guid>
+            <pubDate>Sat, 03 Oct 2026 05:01:06 GMT</pubDate>
+            <content:encoded><![CDATA[男人只有秋天的时候才最接近自己。<br>秋天，每个男人都需要一趟没有目的地和方向的出走。<br>阮籍常率意独驾，不由径路，车迹所穷，辄恸哭而反。<br>1889年1月3日，都灵。弗里德里希·威廉·尼采走出维亚·卡罗·艾尔波特酒店的大门。都灵的大街，刚下过一场春雨，长街尽湿。一辆马车停在路边...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[详解恒瑞医药卖青苗“恶行”与BD的未来]]></title>
+            <link>https://xueqiu.com/4360740165/411251285</link>
+            <guid isPermaLink="false">https://xueqiu.com/4360740165/411251285</guid>
+            <pubDate>Sat, 03 Oct 2026 01:59:00 GMT</pubDate>
+            <content:encoded><![CDATA[近期恒瑞将口服 GLP-1 减重管线 HRS-1596 海外权益授权诺和诺德，收获 3 亿美元首付以及高达26亿美元的潜在总额。<br>过去四年恒瑞对外授权十余款早期分子，24年BD首付款1.85亿，2025年达7.83 亿美元，今年再加 BMS、诺和两笔预期合计9 亿美金。首付款总额超百亿，里程碑总计高达400亿美元，卖青...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[这个人很早就屏蔽了（发表一些阴阳怪气的话），早知道不屏蔽，少了这么多乐趣言归正传，个股买卖，本来就是自己的事，没人拿着刀架你脖子上，叫你必须买或者卖🐷哥很早就说…]]></title>
+            <link>https://xueqiu.com/7029780056/411249314</link>
+            <guid isPermaLink="false">https://xueqiu.com/7029780056/411249314</guid>
+            <pubDate>Sat, 03 Oct 2026 00:53:04 GMT</pubDate>
+            <content:encoded><![CDATA[这个人很早就屏蔽了（发表一些阴阳怪气的话），早知道不屏蔽，少了这么多乐趣<br>言归正传，个股买卖，本来就是自己的事，没人拿着刀架你脖子上，叫你必须买或者卖<br>🐷哥很早就说了，二级的萝卜不要随便买，他看好萝卜，吹萝卜，不管a还是h，这都是他个人的事<br>如果因为他吹萝卜，或者喷...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[前些天，房地产又出了政策刺激市场，市场反馈正向，房地产板块大涨，比如卡叔持仓的万科连续大涨。以前亏损超90%，现在仅亏82%了。而我们合肥本地新闻里，居然出现了…]]></title>
+            <link>https://xueqiu.com/9508203182/411256387</link>
+            <guid isPermaLink="false">https://xueqiu.com/9508203182/411256387</guid>
+            <pubDate>Sat, 03 Oct 2026 04:37:18 GMT</pubDate>
+            <content:encoded><![CDATA[前些天，房地产又出了政策刺激市场，市场反馈正向，房地产板块大涨，比如卡叔持仓的万科连续大涨。以前亏损超90%，现在仅亏82%了。<br>而我们合肥本地新闻里，居然出现了久违的排队摇号新房。<br>但是论坛里、新闻评论里、投资群里。大家对购房的前景却是很悲观的。看空的声音非常的多。<br>其...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[抓大放小 投资如是 人生如是]]></title>
+            <link>https://xueqiu.com/8730685728/411255952</link>
+            <guid isPermaLink="false">https://xueqiu.com/8730685728/411255952</guid>
+            <pubDate>Sat, 03 Oct 2026 04:22:25 GMT</pubDate>
+            <content:encoded><![CDATA[这次是大摩的观点，上次是传闻，下次可能是某个企业负责人的看法，<br>这些都是小。<br>什么是大，ai叙事破灭：<br>英伟达跌到160以下，大模型半年没有突破，算力单位成本不能以倍数级别下降。<br>要是总是陷入一些无端猜测，并根据这些衍生想象出缩量市场，<br>容易影响到投资决策。<br>方...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[近八年的宏观周期观察总结]]></title>
+            <link>https://xueqiu.com/1006269237/411249108</link>
+            <guid isPermaLink="false">https://xueqiu.com/1006269237/411249108</guid>
+            <pubDate>Sat, 03 Oct 2026 00:45:26 GMT</pubDate>
+            <content:encoded><![CDATA[过去七八年，我养成一个习惯：定期看宏观数据和产业周期。起因很朴素——同样的努力，放在不同的年份，结果能差出一倍以上；决定落差的往往不是谁更拼，而是那一年的水位在涨还是在退。人总把顺境里的成绩记在自己账上，很少承认那是时代给的。看得久了，偶尔觉得某个位置到了关键处，就在朋友圈记...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[光通信：FCC光模块规则可能没有市场担忧的那么糟，对中国头部厂商也可能比你想象的更有利]]></title>
+            <link>https://xueqiu.com/8141527616/411256227</link>
+            <guid isPermaLink="false">https://xueqiu.com/8141527616/411256227</guid>
+            <pubDate>Sat, 03 Oct 2026 04:31:50 GMT</pubDate>
+            <content:encoded><![CDATA[转一篇国外Funda的研报，目前FCC的方案最终还没确定，所以最终谁利好谁利空也不能一锤定音，多看看不同观点大家自己独立思考吧.<br>FUNDA｜10月2日。<br>投资者一直在讨论昨日光通信股票的强势表现，尤其是Lumentum和Coherent。市场将这些上涨归因于一份受到广泛讨论的报告，该报告转述了一个资...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[中国股市涨跌有太多非基本面因素，波动性大，牛短熊长，习惯就好。。时刻记得自己持有公司的业绩能否支撑得起估值即可，确保自己能熬到翻盘那一天。大不了就吃股息分红。我…]]></title>
+            <link>https://xueqiu.com/1333903283/411252044</link>
+            <guid isPermaLink="false">https://xueqiu.com/1333903283/411252044</guid>
+            <pubDate>Sat, 03 Oct 2026 02:20:04 GMT</pubDate>
+            <content:encoded><![CDATA[中国股市涨跌有太多非基本面因素，波动性大，牛短熊长，习惯就好。。<br>时刻记得自己持有公司的业绩能否支撑得起估值即可，确保自己能熬到翻盘那一天。<br>大不了就吃股息分红。<br>我对整体大盘的判断没有改变，今年更像是2018，而不是2022。<br>因为股市估值本来就不高，还跌了那么多、那么...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[微盘策略容量的思考]]></title>
+            <link>https://xueqiu.com/8576887183/411250752</link>
+            <guid isPermaLink="false">https://xueqiu.com/8576887183/411250752</guid>
+            <pubDate>Sat, 03 Oct 2026 01:41:44 GMT</pubDate>
+            <content:encoded><![CDATA[其实很多小伙伴在问微盘股策略到底怎么计算容量，大概持有多少支股票会比较合适，其实这个问题没有统一的答案，主要看你自己的策略的适配程度。<br>往往基本面比较严苛的股票对持股数量要求比较高，基本上5支或者10支是最好，如果持有的股票多了对策略来说会造成非常大的影响，但是如果对基本面要...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[跨越阶层的机会，你必须带着止损去冒险，因为怕输一世难封侯，求稳一世难出头。但你要清醒的知道，真正让你翻盘的神来之笔，大多是老天爷赏饭的偶然，往往都是无心插柳撞上…]]></title>
+            <link>https://xueqiu.com/8222776757/411249213</link>
+            <guid isPermaLink="false">https://xueqiu.com/8222776757/411249213</guid>
+            <pubDate>Sat, 03 Oct 2026 00:49:30 GMT</pubDate>
+            <content:encoded><![CDATA[跨越阶层的机会，你必须带着止损去冒险，因为怕输一世难封侯，求稳一世难出头。<br>但你要清醒的知道，真正让你翻盘的神来之笔，大多是老天爷赏饭的偶然，往往都是无心插柳撞上的。<br>反倒你熬夜计算到极致的完美计划，最后多半都没那么重要。<br>既然如此，又何必为了某一次的踏空和亏损，去...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[这12家A股估值已跌至历史底部！股息率超5%，ROE超20%（附名单）]]></title>
+            <link>https://xueqiu.com/6292223557/411230974</link>
+            <guid isPermaLink="false">https://xueqiu.com/6292223557/411230974</guid>
+            <pubDate>Fri, 02 Oct 2026 14:37:44 GMT</pubDate>
+            <content:encoded><![CDATA[节前一周，市场出现了一波明显杀跌，直接从4000点附近一路跌至2800点。<br>而今年以来，上证指数确实持续处于横盘调整期间，而在这期间，一方面，科技股走出了一波高潮迭起的行情之后，开始逐渐沉寂。<br>另一方面，经过今年的调整，已经有一批公司，目前估值居然比两年前924行情当天，上证指数...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$格力电器(SZ000651)$ 师太当年那句"我5年不分红你们又能怎么样？"，很多人至今还念念不忘，其实那只是一时气话，女人情绪一上来是很容易说出一些过头的话…]]></title>
+            <link>https://xueqiu.com/5081828392/411229314</link>
+            <guid isPermaLink="false">https://xueqiu.com/5081828392/411229314</guid>
+            <pubDate>Fri, 02 Oct 2026 14:14:18 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SZ000651" target="_blank">$格力电器(SZ000651)$</a> 师太当年那句"我5年不分红你们又能怎么样？"，很多人至今还念念不忘，其实那只是一时气话，女人情绪一上来是很容易说出一些过头的话的，况且是性格刚烈的董师太。作投资不光要听其言，也要观其行。事实是格力这么多年来累计分红了1588亿元，除去银行外，比它还高的就...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[普通人投资的出路到底在哪儿]]></title>
+            <link>https://xueqiu.com/1433550277/411255785</link>
+            <guid isPermaLink="false">https://xueqiu.com/1433550277/411255785</guid>
+            <pubDate>Sat, 03 Oct 2026 04:16:47 GMT</pubDate>
+            <content:encoded><![CDATA[2026年应该是国家的J济和股票市场比较艰难的一年，不排除未来更为艰难，在当下的时点，普通人如何保护自己的财富不贬值呢，个人的一些观点分享如下：<br> 注：本文普通人的概念，没有基本的财务知识、不懂股票基本估值方法、对经济的发展不关注。<br> 1、不建议投资实体经济，投资性房地产更不...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[关于这个fcc这个65%的bom成本，很有意思。我查了下8-9月的FCC那个意见征求稿，那里其实已经有表述，要用bom比例来设置合规门栏。只是这次大摩沟通完，直…]]></title>
+            <link>https://xueqiu.com/2166485231/411254925</link>
+            <guid isPermaLink="false">https://xueqiu.com/2166485231/411254925</guid>
+            <pubDate>Sat, 03 Oct 2026 03:48:16 GMT</pubDate>
+            <content:encoded><![CDATA[关于这个fcc这个65%的bom成本，很有意思。<br>我查了下8-9月的FCC那个意见征求稿，那里其实已经有表述，要用bom比例来设置合规门栏。只是这次大摩沟通完，直接丢出了65%的数字。这个数字呢，其实就是引用了BAA（美国物资采购法）的比例。<br>这个意见征求搞发出后，各大csp，模块厂的意见反馈很...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[转，今天跟朋友吃饭，听了一个买方机构的画像，真是觉得大千世界无奇不有啊。规模不大，小几亿美金的小对冲。老板带头高强度，天天加班，弄不好得11点下班，节假日也得加…]]></title>
+            <link>https://xueqiu.com/9210717241/411253994</link>
+            <guid isPermaLink="false">https://xueqiu.com/9210717241/411253994</guid>
+            <pubDate>Sat, 03 Oct 2026 03:19:13 GMT</pubDate>
+            <content:encoded><![CDATA[转，今天跟朋友吃饭，听了一个买方机构的画像，真是觉得大千世界无奇不有啊。<br>规模不大，小几亿美金的小对冲。<br>老板带头高强度，天天加班，弄不好得11点下班，节假日也得加班，工作时间可冲每周100小时。<br>钱是愿意给的，至少市场中上水平，还算有竞争力。<br>听到这个工作强度，第一...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[段永平：不懂不投，守住能力圈。段永平投泡泡玛特在自己的能力圈吗？段永平常说，投资最重要的就是不懂不投，守住自己的能力圈。守本分守常识，首先是守住能力圈。能力圈大…]]></title>
+            <link>https://xueqiu.com/2106533683/411248770</link>
+            <guid isPermaLink="false">https://xueqiu.com/2106533683/411248770</guid>
+            <pubDate>Sat, 03 Oct 2026 00:33:59 GMT</pubDate>
+            <content:encoded><![CDATA[段永平：不懂不投，守住能力圈。段永平投泡泡玛特在自己的能力圈吗？<br>段永平常说，投资最重要的就是不懂不投，守住自己的能力圈。守本分守常识，首先是守住能力圈。<br>能力圈大小不重要，重要的是清楚它的边界。能力圈，就是你真正看得懂的生意。超出这个范围，再诱人的机会，都不属于你。不...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$阿里巴巴-W(09988)$ 本人重申一遍：阿里在AI时代的牌面，是中国互联网公司里最全的。 我不敢说它哪一张牌都最强——芯片不如英伟达，模型跟OpenAI还…]]></title>
+            <link>https://xueqiu.com/9958283689/411247914</link>
+            <guid isPermaLink="false">https://xueqiu.com/9958283689/411247914</guid>
+            <pubDate>Fri, 02 Oct 2026 23:58:55 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/09988" target="_blank">$阿里巴巴-W(09988)$</a> 本人重申一遍：阿里在AI时代的牌面，是中国互联网公司里最全的。 我不敢说它哪一张牌都最强——芯片不如英伟达，模型跟OpenAI还有身位，云的利润率被AWS甩着跑——但能把“自研芯片、最大公有云、第一梯队开源模型、国民级C端入口、完整商业履约网络”五张牌同时握在手里的，...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[感谢大咖王增森，分享的股市口诀]]></title>
+            <link>https://xueqiu.com/6959663840/411204897</link>
+            <guid isPermaLink="false">https://xueqiu.com/6959663840/411204897</guid>
+            <pubDate>Fri, 02 Oct 2026 05:59:57 GMT</pubDate>
+            <content:encoded><![CDATA[王三亿股市口诀汇编及解读<a href="https://xueqiu.com/n/%E7%8E%8B%E5%A2%9E%E6%A3%AE" target="_blank">@王增森</a><br>注：第25条为华尔街经典交易格言，源自杰西·利弗莫尔<br>1. “经验教训都是巨资买来的”——点评：A股绝大多数深刻认知，都来自真金白银的亏损，模拟盘欢乐豆练不出交易心性。<br>2. “改错是股生常态”——点评：没有人每一笔交易都正确，坦然接受做错，...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[近期，在清华五道口首席经济学家论坛上，余永定和林毅夫教授两位国内主流经济学界代表性人物再度发声，重申经典经济增长逻辑，引发学界热议。两位资深学者坚守传统宏观经济…]]></title>
+            <link>https://xueqiu.com/9089343523/411254971</link>
+            <guid isPermaLink="false">https://xueqiu.com/9089343523/411254971</guid>
+            <pubDate>Sat, 03 Oct 2026 03:49:58 GMT</pubDate>
+            <content:encoded><![CDATA[近期，在清华五道口首席经济学家论坛上，余永定和林毅夫教授两位国内主流经济学界代表性人物再度发声，重申经典经济增长逻辑，引发学界热议。<br>两位资深学者坚守传统宏观经济范式，形成高度统一的核心判断：长期经济增长的本源永远是生产与投资，消费只是增长的结果而非动力，所谓“消费驱动经...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[对于富信科技，5月份在市场“抗日情绪”高涨时，中船特气一个月涨了快五倍，那时候大家都对碲化铋、tec不是很了解，包括我对micro tec都不是彻底了解，认为一…]]></title>
+            <link>https://xueqiu.com/6449440475/411253799</link>
+            <guid isPermaLink="false">https://xueqiu.com/6449440475/411253799</guid>
+            <pubDate>Sat, 03 Oct 2026 03:13:45 GMT</pubDate>
+            <content:encoded><![CDATA[对于富信科技，5月份在市场“抗日情绪”高涨时，中船特气一个月涨了快五倍，那时候大家都对碲化铋、tec不是很了解，包括我对micro tec都不是彻底了解，认为一个激光器无论是100M还是200M都要需要一个tec，结果出现了过山车走势，这是极大的误判，昨天和一个从苏州回来的专业人士聊了一下午，现在是...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[SI 超级智能]]></title>
+            <link>https://xueqiu.com/1136289048/411251316</link>
+            <guid isPermaLink="false">https://xueqiu.com/1136289048/411251316</guid>
+            <pubDate>Sat, 03 Oct 2026 01:59:44 GMT</pubDate>
+            <content:encoded><![CDATA[2026年9月29日，特朗普签署行政令，美国联邦文件把＂人工智能AI＂改称为＂超级智能Super intelligence (SI)。<br>这里分享一个很有意思的时间线：<br>早在6年前，2020年6月18日 微创医疗股东大会，常总提出 Super‑Intelligence Center 超智能中心的体系。常总当时的表述是：“我们未来要打造一...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$长江电力(SH600900)$ 支支支支支支支支支支支支支支支支支支支支支支支支支支支支支支支支叕又比昨天更好了。325个又。溪洛渡入库1800，乌白继续蓄水…]]></title>
+            <link>https://xueqiu.com/8223138566/411250588</link>
+            <guid isPermaLink="false">https://xueqiu.com/8223138566/411250588</guid>
+            <pubDate>Sat, 03 Oct 2026 01:36:28 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SH600900" target="_blank">$长江电力(SH600900)$</a> 支支支支支支支支支支支支支支支支支支支支支支支支支支支支支支支支叕又比昨天更好了。<br>325个又。<br>溪洛渡入库1800，乌白继续蓄水。<br>积极一点，<br>一方面，管理层说坚持3060亿度的发电目标不动摇，那今年发电量无忧。<br>另一方面，水位快速追上来，水在财在...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$赣锋锂业(SZ002460)$ 之前看的一群在5月、6月疯狂坚定看多的抖音博主现在嘴终于不铁了...前几个月还在说坚定看多，去库行为已经是实质发生等等。（实则…]]></title>
+            <link>https://xueqiu.com/4360740165/411237263</link>
+            <guid isPermaLink="false">https://xueqiu.com/4360740165/411237263</guid>
+            <pubDate>Fri, 02 Oct 2026 17:16:48 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SZ002460" target="_blank">$赣锋锂业(SZ002460)$</a> 之前看的一群在5月、6月疯狂坚定看多的抖音博主现在嘴终于不铁了...前几个月还在说坚定看多，去库行为已经是实质发生等等。（实则当时6F的缺口产生后但价格下跌也是有预兆的，看到的人肯定不止我一个，但都不愿意相信）<br>其实做投资最需要远离的就是把概率事件当作绝对来...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[我在hk呆了四五年认识不少大陆在hk工作的从去年开始这群人基本把钱要么去买纳斯达克真想买港股也回港股通了原因你们也懂所以现在没有内资的日子港股这样子一点都不奇怪…]]></title>
+            <link>https://xueqiu.com/7685246569/411202484</link>
+            <guid isPermaLink="false">https://xueqiu.com/7685246569/411202484</guid>
+            <pubDate>Fri, 02 Oct 2026 05:02:11 GMT</pubDate>
+            <content:encoded><![CDATA[我在hk呆了四五年<br>认识不少大陆在hk工作的<br>从去年开始<br>这群人基本把钱要么去买纳斯达克<br>真想买港股也回港股通了<br>原因你们也懂<br>所以现在没有内资的日子<br>港股这样子一点都不奇怪<br>未来节假日这种情况<br>可能会越来越多<br>除非港股哪里好起来了<br>能够吸引真正...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[商住的土地续期收费。跟房产税也差不多了。上海出台《工商业项目土地使用权续期工作指导意见》，商业用地40年、办公50年到期后，续期需补缴不低于基准地价70%的费用…]]></title>
+            <link>https://xueqiu.com/1685554336/411253192</link>
+            <guid isPermaLink="false">https://xueqiu.com/1685554336/411253192</guid>
+            <pubDate>Sat, 03 Oct 2026 02:53:53 GMT</pubDate>
+            <content:encoded><![CDATA[商住的土地续期收费。跟房产税也差不多了。<br>上海出台《工商业项目土地使用权续期工作指导意见》，商业用地40年、办公50年到期后，续期需补缴不低于基准地价70%的费用。<br>1、核心区（一级，陆家嘴、外滩、淮海路）<br>商业楼面基准地价：36670元/㎡<br>7折后楼面单价：25669元/㎡<br>100...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$藏格矿业(SZ000408)$ 雾里看花的丑国加息及其就业数据！9月份预测其非农就业人数新增8--9万人，失业率4.1%。公布的数据则分别是非农新增就业人数2…]]></title>
+            <link>https://xueqiu.com/7895717506/411252592</link>
+            <guid isPermaLink="false">https://xueqiu.com/7895717506/411252592</guid>
+            <pubDate>Sat, 03 Oct 2026 02:35:53 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SZ000408" target="_blank">$藏格矿业(SZ000408)$</a> 雾里看花的丑国加息及其就业数据！<br>9月份预测其非农就业人数新增8--9万人，失业率4.1%。公布的数据则分别是非农新增就业人数2.9万人，不及预期的三分之一，失业率4.2%。<br>8月份他们公布的非农就业新增16.2万人，超预期三倍！好惊人的数据！结果现在又又开始下修了，数...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[薪大发了个国外电解铝产能规划图，其中印尼占比近半，合计1085万吨。国内产能红线从2017年开始执行的，2017年电解铝产能3329万吨，到去年才满产，这八年国…]]></title>
+            <link>https://xueqiu.com/6391159524/411251051</link>
+            <guid isPermaLink="false">https://xueqiu.com/6391159524/411251051</guid>
+            <pubDate>Sat, 03 Oct 2026 01:51:24 GMT</pubDate>
+            <content:encoded><![CDATA[薪大发了个国外电解铝产能规划图，其中印尼占比近半，合计1085万吨。国内产能红线从2017年开始执行的，2017年电解铝产能3329万吨，到去年才满产，这八年国内贡献了全球新增产量的80%左右。为啥8年海外才新增不到200万吨产量呢？其实10年前海外和现在一样也是规划产量吓人高达1000多万吨，实际规划...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[早今天Ai自动化早报过去24小时我筛下来，真正值得交易的主线只有5条。最大的变化不是某一家又发了一个模型，而是市场同时在交易：弱就业降低10月加息概率 + Ag…]]></title>
+            <link>https://xueqiu.com/1192466154/411250154</link>
+            <guid isPermaLink="false">https://xueqiu.com/1192466154/411250154</guid>
+            <pubDate>Sat, 03 Oct 2026 01:21:54 GMT</pubDate>
+            <content:encoded><![CDATA[早<br>今天Ai自动化早报<br>过去24小时我筛下来，真正值得交易的主线只有5条。最大的变化不是某一家又发了一个模型，而是市场同时在交易：弱就业降低10月加息概率 + Agent继续证明算力需求 + AI存储开始从HBM/SSD外溢到HDD。<br>1．9月非农只有2.9万：这是今天科技AI最重要的宏观利好。 美国9月...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[重申，AAOI = LITE/3]]></title>
+            <link>https://xueqiu.com/5672579962/411251742</link>
+            <guid isPermaLink="false">https://xueqiu.com/5672579962/411251742</guid>
+            <pubDate>Sat, 03 Oct 2026 02:11:46 GMT</pubDate>
+            <content:encoded><![CDATA[截止 10 月 2 日收盘，Lumentum 市值接近 1000 亿美元，AAOI 约 100 亿美元，二者刚好相差 10 倍。而在今年 5 月的高点，Lumentum 市值约 1000 亿，AAOI 摸到 250 亿，当时二者仅相差 4 倍。<br>从发展潜力来看，当前估值和实业基本面出现明显背离。AAOI 通过股权融资，向罗博特科采购了大量自动...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$招商轮船(SH601872)$ $中远海能(SH600026)$ 记住一点，2007-2008油运最高峰的VLCC一年期租价也就8万美元！现在是5年期租已经是…]]></title>
+            <link>https://xueqiu.com/9252324442/411250274</link>
+            <guid isPermaLink="false">https://xueqiu.com/9252324442/411250274</guid>
+            <pubDate>Sat, 03 Oct 2026 01:25:51 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SH601872" target="_blank">$招商轮船(SH601872)$</a> <a href="https://xueqiu.com/S/SH600026" target="_blank">$中远海能(SH600026)$</a> 记住一点，2007-2008油运最高峰的VLCC一年期租价也就8万美元！现在是5年期租已经是8万，5年总租价才1.5亿美元？我还不如跑三趟美湾？<br>中远海控21年营收3300亿，22年营收3900亿，利润是890亿和1090亿，利润营收比27%和28%，这是大体量行业里名副其实...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[段永平说"耐克决策层大失误"，到底在说什么？]]></title>
+            <link>https://xueqiu.com/7736566551/411249488</link>
+            <guid isPermaLink="false">https://xueqiu.com/7736566551/411249488</guid>
+            <pubDate>Sat, 03 Oct 2026 00:59:20 GMT</pubDate>
+            <content:encoded><![CDATA[今天看到段永平（大道无形我有型）回复 BigNotes 的一条帖子，只有短短三句话：耐克的网上路线不成功，像是决策层的大失误，他们的情况和茅台不一样。话不多，但信息量很大。结合耐克刚发布的财报，我试着拆解一下这三句话背后的逻辑。<br>一、"网上路线"指的是什么<br>段永平说的"...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[从美光财报谈谈市场需要什么预期]]></title>
+            <link>https://xueqiu.com/5332385101/411250110</link>
+            <guid isPermaLink="false">https://xueqiu.com/5332385101/411250110</guid>
+            <pubDate>Sat, 03 Oct 2026 01:20:14 GMT</pubDate>
+            <content:encoded><![CDATA[9月30日盘后，美光公布2026财年第四季度业绩：营收542.29亿美元，同比增长379%；调整后每股收益33.42美元，毛利率达到87%。下一季度营收指引中值615亿美元，收入与盈利指引均远高于市场预期。<br>不过，股价并没有随之明显上行。10月1日先跌后收涨约3%，10月2日又回落超2%，两个交易日合计较财报...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[投资这职业，相较于其它职业，最大的优势就是选择权！就是你永远都有权力选择当下最赚钱的行业。这份权力在当下尤为珍贵。因为向下的大环境中，能保持景气的永远只有极少数…]]></title>
+            <link>https://xueqiu.com/4364582897/411249226</link>
+            <guid isPermaLink="false">https://xueqiu.com/4364582897/411249226</guid>
+            <pubDate>Sat, 03 Oct 2026 00:49:53 GMT</pubDate>
+            <content:encoded><![CDATA[投资这职业，相较于其它职业，最大的优势就是选择权！<br>就是你永远都有权力选择当下最赚钱的行业。<br>这份权力在当下尤为珍贵。因为向下的大环境中，能保持景气的永远只有极少数行业。<br>只不过这份珍贵的权力由于来的太过容易和轻松，所以大多数人并不会去珍惜。<br>如今，空报权力却依然...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[三季度市场的风险教育课不要白上三季度，科创50和创业板出现大幅杀跌，给追涨杀跌的投机客上了一堂风险教育课，其实这个结局是必然的，背后的逻辑很简单:郭家就是利用资…]]></title>
+            <link>https://xueqiu.com/1423584650/411248885</link>
+            <guid isPermaLink="false">https://xueqiu.com/1423584650/411248885</guid>
+            <pubDate>Sat, 03 Oct 2026 00:38:06 GMT</pubDate>
+            <content:encoded><![CDATA[三季度市场的风险教育课不要白上<br>三季度，科创50和创业板出现大幅杀跌，给追涨杀跌的投机客上了一堂风险教育课，其实这个结局是必然的，背后的逻辑很简单:<br>郭家就是利用资本市场的融资功能支撑科技大国博弈，人为引导和放任双创炒作制造赚钱效应吸引大家参与炒作，大部分科技公司都被炒到...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$小米集团-W(01810)$ 前天，我偶尔看到新闻说小米交付4万+，在另一个股票APP上，那时候港股不开盘，有小米股东说这是好事儿啊！我当时就震惊了，这么拉的…]]></title>
+            <link>https://xueqiu.com/1340630125/411238233</link>
+            <guid isPermaLink="false">https://xueqiu.com/1340630125/411238233</guid>
+            <pubDate>Fri, 02 Oct 2026 17:54:41 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/01810" target="_blank">$小米集团-W(01810)$</a> 前天，我偶尔看到新闻说小米交付4万+，在另一个股票APP上，那时候港股不开盘，有小米股东说这是好事儿啊！我当时就震惊了，这么拉的数据也敢说好？真是大聪明啊，我开盘就看小米跌多少，真的是不负众望。<br>智慧的小米粉总是一米穿4-5界。他们眼里，界车就是他们最痛恨的华...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[$紫金矿业(SH601899)$ $赤峰黄金(SH600988)$ 老美的数据就跟闹着玩一样。沃什嘴上说着加息与否完全取决于数据，实际上这些数据就是根据需要自己…]]></title>
+            <link>https://xueqiu.com/3270998210/411235400</link>
+            <guid isPermaLink="false">https://xueqiu.com/3270998210/411235400</guid>
+            <pubDate>Fri, 02 Oct 2026 16:10:08 GMT</pubDate>
+            <content:encoded><![CDATA[<a href="https://xueqiu.com/S/SH601899" target="_blank">$紫金矿业(SH601899)$</a> <a href="https://xueqiu.com/S/SH600988" target="_blank">$赤峰黄金(SH600988)$</a> 老美的数据就跟闹着玩一样。沃什嘴上说着加息与否完全取决于数据，实际上这些数据就是根据需要自己捏造。<br>长期来看，美国信用就是在这些事情上一点一点被消磨掉的。美债规模当下没有减缓的趋势，美元信用没有上升的趋势，那黄金的行情不会这样结束...]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[中证红利优化（红利稳定盈利的策略及参数测试）稳我才国庆专辑（三）]]></title>
+            <link>https://xueqiu.com/7734995747/411231762</link>
+            <guid isPermaLink="false">https://xueqiu.com/7734995747/411231762</guid>
+            <pubDate>Fri, 02 Oct 2026 14:49:09 GMT</pubDate>
+            <content:encoded><![CDATA[前两天，我们讨论了以红利低波指数ETF<a href="https://xueqiu.com/S/SH512890" target="_blank">$红利低波ETF华泰柏瑞(SH512890)$</a>（563020） 为标的择时，<br> 买入条件：收盘价低于182日均线，且市盈率低于20倍。 <br> 卖出条件：收盘价高于182日均线7% <br> 得到的策略：策略年化收益19.97%，最大回撤-13.04%。累计收益253.99%，一年操作3次。 <br> ...]]></content:encoded>
+        </item>
+    </channel>
+</rss>
