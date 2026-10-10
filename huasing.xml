@@ -4,12 +4,19 @@
         <title>华新鲜事</title>
         <link>http://bbs.huasing.org/sForum/zsbbs.php</link>
         <description>华新论坛最新帖子</description>
-        <lastBuildDate>Sat, 10 Oct 2026 17:21:25 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 10 Oct 2026 19:21:17 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh-CN</language>
         <atom:link href="https://aar0u.github.io/feed-nodejs/huasing.xml" rel="self" type="application/rss+xml"/>
         <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub"/>
+        <item>
+            <title><![CDATA[💬 【原创文学】历史的冷漠与信仰的温度——评《站在长河里看双十》的解构陷阱]]></title>
+            <link>http://bbs.huasing.org/wap/xbbs.php?B=106_15155399</link>
+            <guid isPermaLink="false">http://bbs.huasing.org/wap/xbbs.php?B=106_15155399#comments-15155401</guid>
+            <pubDate>Sat, 10 Oct 2026 14:47:37 GMT</pubDate>
+            <content:encoded><![CDATA[<p><a href="http://bbs.huasing.org/wap/xbbs.php?B=106_15155399">View thread</a></p><hr><h3>New Comments</h3><article data-comment-id="15155401"><h3>双十之际</h3><p>岂容贬损当年之驱除鞑虏之先烈壮举。 　标题有误， 由Gemini 助力完成，并非原创文学。</p><p><small><a href="http://bbs.huasing.org/sForum/user.php?B=177965">shearwater2025</a> · Sat, 10 Oct 2026 14:47:37 GMT</small></p></article>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[💬 政策要变了？ 吴俊刚：破除“高薪养廉”的迷思]]></title>
             <link>http://bbs.huasing.org/wap/xbbs.php?B=107_15155346</link>
@@ -702,13 +709,6 @@
             <guid isPermaLink="false">http://bbs.huasing.org/wap/xbbs.php?B=107_15155218</guid>
             <pubDate>Thu, 01 Oct 2026 03:50:41 GMT</pubDate>
             <content:encoded><![CDATA[<article data-comment-id="15155218"><h3>聊天机器人基于事实还是基于文件</h3><p>美国总统特朗普星期二（9月29日）推出人工智能聊天机器人America.gov，旨在方便民众获取政府信息和联邦服务。上线不久，它就在2020年总统大选、国会山骚乱等争议话题上给出与总统说法不同的回答，例如指官方联邦评估并未发现足以改变选举结果的欺诈行为。但据法新社报道，次日同样的问题得到的回应是，它“不提供政治评论，或对过往选举的分析”。<br><br>美洲数字民主研究所的初步分析指出，这个机器人通常提供基于政府记录、有据可查的回答，即便这些记录与特朗普及其政府的说法相左。也就是说，它的立场未必是“反对总统”，更像是忠实于文件。它引述美国劳工统计局的数据，回应“拜登任内通胀为史上最严重”的说法，同样是这个逻辑。<br><br>不过，基于文件是否等于基于事实，值得思考。官方评估和统计数据通常是可靠的事实依据，也是民众查证的起点，但文件由机构编制和保管。一个以文件为依据的机器人，可信度取决于文件本身，也取决于由谁决定它参考哪些资料、回答哪些问题。<br><br>第二天的变化正说明了这一点。目前尚不清楚白宫是否调整了设置，白宫也未立即置评。若只是技术上的审慎处理，尚可理解；但如果是为了避免机器人与总统说法相冲突，那么文件再确凿，输出端的设定也能决定答案是否出现。无论原因为何 (<a href="http://bbs.huasing.org/wap/xbbs.php?B=107_15155218">more...</a>)</p><p><small><a href="http://bbs.huasing.org/sForum/user.php?B=28659">省思</a> · Thu, 01 Oct 2026 03:50:41 GMT</small></p></article>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[EP  在新加坡常驻时间有要求么]]></title>
-            <link>http://bbs.huasing.org/wap/xbbs.php?B=146_15155213</link>
-            <guid isPermaLink="false">http://bbs.huasing.org/wap/xbbs.php?B=146_15155213</guid>
-            <pubDate>Wed, 30 Sep 2026 22:32:36 GMT</pubDate>
-            <content:encoded><![CDATA[<article data-comment-id="15155213"><h3>EP  在新加坡常驻时间有要求么</h3><p>现在有个case， 负责亚太业务的同事，其实常驻国内，全亚太出差很频繁，但是公司愿意申请EP，把合同放在新加坡，可以省个税<br><br>先不说国内和坡双重征税的问题，也不说是不是能申请到EP的问题<br><br>我看EP其实是需要在新加坡办公的，这个尺度放在哪里？  需要超过183天常驻在坡县？ 还是其实不怎么管。<br><br>有经验的望分享一下。</p><p><small><a href="http://bbs.huasing.org/sForum/user.php?B=44188">astro</a> · Wed, 30 Sep 2026 22:32:36 GMT</small></p></article>]]></content:encoded>
         </item>
     </channel>
 </rss>
