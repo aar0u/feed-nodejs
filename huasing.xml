@@ -4,12 +4,19 @@
         <title>华新鲜事</title>
         <link>http://bbs.huasing.org/sForum/zsbbs.php</link>
         <description>华新论坛最新帖子</description>
-        <lastBuildDate>Sat, 17 Oct 2026 14:41:05 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 17 Oct 2026 20:21:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh-CN</language>
         <atom:link href="https://aar0u.github.io/feed-nodejs/huasing.xml" rel="self" type="application/rss+xml"/>
         <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub"/>
+        <item>
+            <title><![CDATA[💬 快四十岁 遇到offer该不该换工作]]></title>
+            <link>http://bbs.huasing.org/wap/xbbs.php?B=107_15155404</link>
+            <guid isPermaLink="false">http://bbs.huasing.org/wap/xbbs.php?B=107_15155404#comments-15155488-15155489-15155490</guid>
+            <pubDate>Sat, 17 Oct 2026 15:45:40 GMT</pubDate>
+            <content:encoded><![CDATA[<p><a href="http://bbs.huasing.org/wap/xbbs.php?B=107_15155404">View thread</a></p><hr><h3>New Comments</h3><article data-comment-id="15155488"><h3>新公司面试的时候说了同样的话</h3><p>他说，看你想不想尝试新的东西，我知道你的老东家很好，但是新环境锻炼人。</p><p><small><a href="http://bbs.huasing.org/sForum/user.php?B=80158">omyga</a> · Sat, 17 Oct 2026 15:42:54 GMT</small></p></article><hr><article data-comment-id="15155489"><h3>啊 我还是想谈一下的</h3><p>如果match 的话难受的点在哪呢？ 是现老板难受的意思吗</p><p><small><a href="http://bbs.huasing.org/sForum/user.php?B=80158">omyga</a> · Sat, 17 Oct 2026 15:44:15 GMT</small></p></article><hr><article data-comment-id="15155490"><h3>是的除非我不可替代又愿意给我资源</h3><p>除非公司重新审视我而不是 默认我喜欢被温水煮。 虽然之前都是在温水煮。 现在心躁动了哈</p><p><small><a href="http://bbs.huasing.org/sForum/user.php?B=80158">omyga</a> · Sat, 17 Oct 2026 15:45:40 GMT</small></p></article>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[💬 快四十岁 遇到offer该不该换工作]]></title>
             <link>http://bbs.huasing.org/wap/xbbs.php?B=107_15155404</link>
@@ -702,13 +709,6 @@
             <guid isPermaLink="false">http://bbs.huasing.org/wap/xbbs.php?B=107_15155278#comments-15155308-15155309</guid>
             <pubDate>Sun, 04 Oct 2026 19:10:20 GMT</pubDate>
             <content:encoded><![CDATA[<p><a href="http://bbs.huasing.org/wap/xbbs.php?B=107_15155278">View thread</a></p><hr><h3>New Comments</h3><article data-comment-id="15155308"><h3>「舌尖上的中国」让我顿悟</h3><p>那部拍得极美的电视片，涉及的食材非常广泛，蛹类、菌类、巢类，还有笋、芽、花......　为什么我们的老祖宗用尽智慧变着法儿的搞烹饪？　</p><p><small><a href="http://bbs.huasing.org/sForum/user.php?B=100331">多此一举</a> · Sun, 04 Oct 2026 18:59:11 GMT</small></p></article><hr><article data-comment-id="15155309"><h3>肯定会呀</h3><p>看看最近20年，中国各地满街的胖子：一不留神就营养过剩。</p><p><small><a href="http://bbs.huasing.org/sForum/user.php?B=100331">多此一举</a> · Sun, 04 Oct 2026 19:10:20 GMT</small></p></article>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[“太阳花女神”刘乔安涉跨国运毒 遣返台后被起诉]]></title>
-            <link>http://bbs.huasing.org/wap/xbbs.php?B=107_15155310</link>
-            <guid isPermaLink="false">http://bbs.huasing.org/wap/xbbs.php?B=107_15155310</guid>
-            <pubDate>Sun, 04 Oct 2026 22:55:26 GMT</pubDate>
-            <content:encoded><![CDATA[<article data-comment-id="15155310"><h3>“太阳花女神”刘乔安涉跨国运毒 遣返台后被起诉</h3><p><small><a href="http://bbs.huasing.org/sForum/user.php?B=160917">qingni2</a> · Sun, 04 Oct 2026 22:55:26 GMT</small></p></article>]]></content:encoded>
         </item>
     </channel>
 </rss>
