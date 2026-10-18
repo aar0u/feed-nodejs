@@ -4,12 +4,21 @@
         <title>联合早报</title>
         <link>https://www.zaobao.com.sg/</link>
         <description>新加坡、中国、亚洲和国际的即时、评论、商业、体育、生活、科技与多媒体新闻，尽在联合早报。</description>
-        <lastBuildDate>Sat, 17 Oct 2026 23:21:02 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 17 Oct 2026 23:41:02 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh-CN</language>
         <atom:link href="https://aar0u.github.io/feed-nodejs/zaobao.xml" rel="self" type="application/rss+xml"/>
         <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub"/>
+        <item>
+            <title><![CDATA[星期天PSI预计介于150至220点 下周我国迎阵雨]]></title>
+            <link>https://www.zaobao.com.sg/news/singapore/story20261017-9853490</link>
+            <guid isPermaLink="false">https://www.zaobao.com.sg/news/singapore/story20261017-9853490</guid>
+            <pubDate>Sat, 17 Oct 2026 11:46:11 GMT</pubDate>
+            <content:encoded><![CDATA[<img src="https://cassette.sphdigital.com.sg/image/zaobao/56f7035f930e80e3f587fd6fb00ab5fb12b951601818a7c62fd14b394093c364"><div><p>星期天（10月18日）的<a href="https://www.zaobao.com.sg/keywords/kong-qi-wu-ran?ref=article-inline" target="_blank">空气污染</a>情况预计处于不健康至非常不健康水平，24小时空气污染指数（PSI）介于150点至220点。 </p><p>根据<a href="https://www.zaobao.com.sg/keywords/guo-jia-huan-jing-ju?ref=article-inline" target="_blank">国家环境局</a>星期六（17日）晚上发布的<a href="https://www.zaobao.com.sg/specials/haze-in-singapore?ref=article-inline" target="_blank">烟霾</a>预报，我国和周边地区预计星期天下阵雨。风向将稍微转变，可减少来自印度尼西亚加里曼丹的烟霾吹向本地，但苏门答腊部分烟霾仍可能飘向新加坡。　　 </p><p>下星期一和星期二（19日和20日），我国和加里曼丹都可能下雨，加上风势转弱和风向转变，会进一步减少加里曼丹吹向本地的烟霾；苏门答腊的烟霾则预计会继续影响我国。</p><p>截至星期六晚上7时，24小时PSI介于130点至199点，逼近非常不健康水平；一小时PM2.5悬浮颗粒浓度则介于每立方米106微克至198微克，西部的空气素质最糟。</p><div class="bff-embed-wrapper embed-florish"><iframe src="https://interactive.zaobao.com.sg/sg-haze/embed-24-hr-psi-pm2.5.html" class="aspect-4/3 w-full" height="500" style="width: undefined; min-height: undefined;"></iframe></div>
+    
+  </div>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[国际特稿：楼价狂飙边界炸雷 李在明陷内外交困]]></title>
             <link>https://www.zaobao.com.sg/news/world/story20261018-9837159</link>
@@ -967,15 +976,6 @@
             <content:encoded><![CDATA[<img src="https://cassette.sphdigital.com.sg/image/zaobao/cf013864a2f77e7f13a8ed48b1ac70c789dd852da72d91a9de08423d391893f5"><div><p>联合国官员星期三（10月14日）警告，若美伊无法在数周内就联合国支持的霍尔木兹海峡化肥运输计划达成协议，亚洲和非洲部分地区恐面临严重的粮食安全危机。</p><p>自今年2月底<a href="https://www.zaobao.com.sg/keywords/mei-yi-chong-tu?ref=article-inline" target="_blank">美以空袭伊朗</a>后，伊朗加紧控制霍尔木兹海峡以对美施压，美军则对伊朗港口实施海上封锁，导致这一全球咽喉要道陷入瘫痪。国际粮食政策研究所（International Food Policy Research Institute）指出，波斯湾地区的化肥出口至今已停滞超过半年。 </p><p>联合国今年3月成立工作组，拟在阿曼设立协调中心，并由联合国监督员配合当地海关，计划每天安排至少五艘化肥船安全通行。</p><p>联合国副秘书长兼项目事务署执行主任莫雷拉·达席尔瓦（Moreira da Silva）告诉路透社，只要美伊签署协议，该机制可在7至10天内启动。他强调：“必须在未来几周内达成协议，否则将错过播种季。” </p><p>国际商会（International&#160;Chamber&#160;of&#160;Commerce）预估，若阻断持续，全球谷物价格最高可暴涨81%，油料作物上涨66%。</p>
     
   <p>目前美伊虽通过中间人展开谈判，但因德黑兰提出的条件以及华盛顿坚持先解决伊朗核问题，复航谈判陷入僵局。</p><p>与此同时，黑海商船遇袭事件增加，加上红海胡塞武装的持续骚扰，全球海上三大咽喉要道，霍尔木兹、黑海与红海同时受阻，加上气候危机叠加，全球粮食安全防线正面临前所未有的严峻考验。</p></div>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[我国西部24小时PSI升至212点 中部也逼近非常不健康水平]]></title>
-            <link>https://www.zaobao.com.sg/news/singapore/story20261015-9840482</link>
-            <guid isPermaLink="false">https://www.zaobao.com.sg/news/singapore/story20261015-9840482</guid>
-            <pubDate>Thu, 15 Oct 2026 04:55:53 GMT</pubDate>
-            <content:encoded><![CDATA[<img src="https://cassette.sphdigital.com.sg/image/zaobao/854933fc377ff1f2229d53752d329c8ba1997a852d3b6ed5a57df232becae015"><div><p>我国烟霾笼罩的情况加剧，西部地区24小时空气污染指数（PSI）星期四（10月15日）持续攀升，截至中午升至212点，东部PSI也逼近非常不健康水平。</p><p>国家环境局网站的最新数据显示，截至星期四中午，西部地区的24小时PSI达212点的非常不健康水平；中部PSI也回升至194点，东部170点、南部163点、北部128点，都处于不健康水平。</p><p>全岛一小时PM2.5悬浮颗粒浓度也回升，中部升至161微克的高水平，预计接下来24小时PSI也会进一步回升；其他四个地区的PM2.5处于偏高水平，西部143、南部138、东部137、北部99。</p><p>西部地区的PM2.5星期三（14日）下午3时一度升至288微克，到了晚上9时，24小时PSI突破200点的非常不健康水平，为今年最高。</p><p>由于烟霾情况加剧，政府已开始向符合条件的国人分发N95口罩，并在民众俱乐部等社区场所开放冷气房，让居民避霾。</p>
-    
-  </div>]]></content:encoded>
         </item>
     </channel>
 </rss>
