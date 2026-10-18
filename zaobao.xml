@@ -4,12 +4,26 @@
         <title>联合早报</title>
         <link>https://www.zaobao.com.sg/</link>
         <description>新加坡、中国、亚洲和国际的即时、评论、商业、体育、生活、科技与多媒体新闻，尽在联合早报。</description>
-        <lastBuildDate>Sat, 17 Oct 2026 11:01:12 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 17 Oct 2026 23:21:02 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh-CN</language>
         <atom:link href="https://aar0u.github.io/feed-nodejs/zaobao.xml" rel="self" type="application/rss+xml"/>
         <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub"/>
+        <item>
+            <title><![CDATA[国际特稿：楼价狂飙边界炸雷 李在明陷内外交困]]></title>
+            <link>https://www.zaobao.com.sg/news/world/story20261018-9837159</link>
+            <guid isPermaLink="false">https://www.zaobao.com.sg/news/world/story20261018-9837159</guid>
+            <pubDate>Sat, 17 Oct 2026 21:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<img src="https://cassette.sphdigital.com.sg/image/zaobao/17430cdf7bcdb7c077c0dc63a5feb42c976db8243705fcbee0166cf42c162e84"><div><p>韩国盖洛普10月9日公布的民调显示，总统李在明施政正面评价为37%，负面评价为51%。在给予负面评价的受访者中，不满房地产政策者以18%居首，其次是国防及对朝安全政策（15%）、检察机关改革（8%）。</p><p>其他民调也反映类似趋势：Realmeter民调显示李在明支持率降至35.2%，全国指标调查（NBS）的负面评价则升至50%。</p><p>房地产政策是李在明政府当前最棘手的内政课题之一。李在明上任后将打击房地产投机列为施政重点，多次强调必须遏制足以“危及国家”的投机行为，并承诺兑现让韩国摆脱“房地产投机共和国”的誓言。</p></div>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[中国特稿：独立出版等春风 顽强续写下一页]]></title>
+            <link>https://www.zaobao.com.sg/news/china/story20261018-9820542</link>
+            <guid isPermaLink="false">https://www.zaobao.com.sg/news/china/story20261018-9820542</guid>
+            <pubDate>Sat, 17 Oct 2026 21:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<img src="https://cassette.sphdigital.com.sg/image/zaobao/acf9fd878d2bb26c5c52964e624e10c41a2a9ecfcca10584b2f6ba0e8e707ef4"><div><p>这是一类在中国很难找到的书。它们往往没有书号，没有公开销售渠道，有时印数只有个位数。</p><p>这又是一类遍布中国各地的书。在三线小城的独立书店、线下书展，或是民间读书会，都可能遇到这些书，以及它们的作者、出版方和销售商。</p><p>这类书甚至没有统一名称，有的叫独立期刊，有的叫自出版物，有的叫艺术书，还有的叫小志（zine）……</p></div>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[【红蚂蚁】新马与印尼的阴霾 外交上一本难念的经]]></title>
             <link>https://www.zaobao.com.sg/news/singapore/story20261017-9852924</link>
@@ -962,24 +976,6 @@
             <content:encoded><![CDATA[<img src="https://cassette.sphdigital.com.sg/image/zaobao/854933fc377ff1f2229d53752d329c8ba1997a852d3b6ed5a57df232becae015"><div><p>我国烟霾笼罩的情况加剧，西部地区24小时空气污染指数（PSI）星期四（10月15日）持续攀升，截至中午升至212点，东部PSI也逼近非常不健康水平。</p><p>国家环境局网站的最新数据显示，截至星期四中午，西部地区的24小时PSI达212点的非常不健康水平；中部PSI也回升至194点，东部170点、南部163点、北部128点，都处于不健康水平。</p><p>全岛一小时PM2.5悬浮颗粒浓度也回升，中部升至161微克的高水平，预计接下来24小时PSI也会进一步回升；其他四个地区的PM2.5处于偏高水平，西部143、南部138、东部137、北部99。</p><p>西部地区的PM2.5星期三（14日）下午3时一度升至288微克，到了晚上9时，24小时PSI突破200点的非常不健康水平，为今年最高。</p><p>由于烟霾情况加剧，政府已开始向符合条件的国人分发N95口罩，并在民众俱乐部等社区场所开放冷气房，让居民避霾。</p>
     
   </div>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[光明山通道Thomson Reserve星期六预览 尺价2608元起跳]]></title>
-            <link>https://www.zaobao.com.sg/finance/singapore/story20261015-9840253</link>
-            <guid isPermaLink="false">https://www.zaobao.com.sg/finance/singapore/story20261015-9840253</guid>
-            <pubDate>Thu, 15 Oct 2026 04:22:25 GMT</pubDate>
-            <content:encoded><![CDATA[<img src="https://cassette.sphdigital.com.sg/image/zaobao/c6e0552548f1cf7f624812c6769dd5572aeadd0fbfd45a55c4564e1bb3b0b8da"><div><p>位于光明山通道的Thomson Reserve将于星期六（10月17日）开始预览，10月31日正式开盘，单位尺价2608元起跳。</p><p>项目位于占地3000多公顷的新加坡最大自然保护区——中央集水区自然保护区（Central Catchment Nature Reserve）东南侧，周边包括新加坡岛屿乡村俱乐部（SICC）及武吉知马自然保护区。</p><p>这个99年地契项目通过有盖走道直通<a href="https://www.zaobao.com.sg/keywords/tang-shen-dong-hai-xian?ref=article-inline" target="_blank">汤申—东海岸线</a>的上汤申地铁站。Thomson Reserve坐落于占地5公顷的高地之上，由四栋21层高的住宅及两栋30层高的住宅组成。 </p><p>Thomson Reserve由<a href="https://www.zaobao.com.sg/keywords/hua-ye-ji-tuan?ref=article-inline" target="_blank">华业集团</a>（UOL Group）与凯德发展（CapitaLand Development）组成的联营公司携手推出。 </p><p>价格方面，Thomson Reserve的两卧房、三卧房和四卧房单位售价分别从154万元、250万元和338万元起。其中，三卧房单位占28%；四卧房和两卧房单位分别占14%，以及56%；五卧房单位占2%。</p>
-    
-  <p>项目联营公司星期四（15日）发文告说，私宅市场持续保持韧性，买家仍优先考虑交通便利、邻近优质学校及其他便利设施的新项目。</p><p>文告指出，Thomson Reserve预计将吸引看好该区成熟风貌的买家。项目预计2030年下半年取得临时入伙证（TOP）。</p><p>华业集团与凯德发展推出项目前，近期发展的住宅项目均获得不俗的市场反响。2025年2月推出的淡滨尼1193单位项目PARKTOWN Residence目前已售出98%。</p></div>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[慈善总监办公室检讨慈善法令 明年起展开初步咨询]]></title>
-            <link>https://www.zaobao.com.sg/news/singapore/story20261015-9839393</link>
-            <guid isPermaLink="false">https://www.zaobao.com.sg/news/singapore/story20261015-9839393</guid>
-            <pubDate>Thu, 15 Oct 2026 02:00:00 GMT</pubDate>
-            <content:encoded><![CDATA[<img src="https://cassette.sphdigital.com.sg/image/zaobao/f1d2ca442bc35f974bd089351c70671b8a05f531fab7e4f694fcd96a662089e5"><div><p>为了继续维持公众对慈善领域的信任，进一步巩固这个领域的基础，慈善总监办公室明年起就检讨慈善法令，与慈善机构开展初步咨询。</p><p>文化、社区及青年部长兼教育部第二部长<a href="https://www.zaobao.com.sg/keywords/david-neo?ref=article-inline" target="_blank">梁振伟</a>星期四（10月15日）在慈善监管研讨会上宣布这项消息。 </p><p>梁振伟致辞时呼吁慈善机构积极参与慈善总监办公室就检讨慈善法令展开的小组讨论会，对塑造一个稳固的慈善领域发挥积极作用。</p><p>“你的参与是至关重要的，有助我们在赋予慈善机构行善的能力，以及在出现治理问题时进行干预之间，取得适当平衡。”</p><p>文社青部在星期四发布的文告中说，慈善总监办公室就慈善法令展开的检讨工作，是为了确保我国监管慈善机构的框架继续获得信任，符合实际需求，以及协助慈善机构更好地服务弱势群体及社区。</p>
-    
-  <p>文社青部指出，慈善机构通过咨询活动提供的建议，将有助政府制定一个既能支持慈善领域蓬勃发展，又可维护公众信任的监管架构。文社青部会适时宣布拟议修订法令的详情。</p><p>慈善法令是监管和规范慈善机构以及同它们相关事务的主要法律，这包括慈善机构提交的年度报告和展开的募捐活动。法令上一次修订是在2018年。</p><p>根据慈善总监办公室今年1月发布的常年报告，有关慈善法令的最新检讨工作在2024年启动。报告指出，除了提升慈善机构的治理和问责水平，检讨也希望加强慈善总监的监管权力，维持公众对慈善领域的高度信任。</p><div class="bff-sub-heading"><h2>试行导师计划</h2></div><p>此外，梁振伟也宣布，慈善理事会（Charity Council）将试行一项名为Charity Elevate的导师计划，为慈善机构的董事会成员、人力资源主管，以及执行理事长配对具备丰富经验的导师，促进彼此分享实践经验与观点。</p><p>梁振伟指出，这项计划纳入不同的领导者，突显了每个人都能为良好治理贡献力量。“这是整个慈善机构共同承担的责任。当各层级的成员都参与其中，我们的慈善机构将能变得更加强大。”</p><p>另一方面，慈善总监办公室、慈善理事会，以及安永（Ernst &amp; Young Advisory）在2024年合作展开一项名为“Charities Life Cycle Landscape Report 2025”的研究，以更好地了解慈善机构的组织成熟度及各项能力所达的水平。</p><p>研究发现，虽然不少慈善机构认为自己在治理和行政等方面已相当成熟，但在管理和雇员管理方面有待进步，这包括志愿者协调和进行更系统培训计划等方面。</p><p>参与研究的540家慈善机构当中，仅33%认为它们在人员管理方面已达到成熟阶段，而60%仍处于初创或成长阶段。</p><p>未来三年，慈善总监办公室和慈善理事会将与不同领域的慈善机构交流，分享报告结果并与他们合作，就有待进步的领域提升它们的能力。</p></div>]]></content:encoded>
         </item>
     </channel>
 </rss>
