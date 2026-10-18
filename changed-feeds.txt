@@ -1,1 +1,2 @@
-zaobao.xml
+huasing.xml
+laohu8-news.xml
