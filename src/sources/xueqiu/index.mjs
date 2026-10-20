@@ -7,7 +7,8 @@ const sources = [
     title: "雪球 · 美股研究社",
     link: "https://xueqiu.com/u/3582153332",
     description: "雪球用户 3582153332 的最新动态",
-    fetchItems: () => userTimeline("3582153332"),
+    refreshContent: true,
+    fetchItems: (signal) => userTimeline("3582153332", signal),
   },
   {
     id: "xueqiu-hots",
@@ -15,6 +16,7 @@ const sources = [
     link: "https://xueqiu.com",
     description: "雪球每日热门帖子",
     fetchItems: hotPosts,
+    refreshContent: true,
   },
 ];
 

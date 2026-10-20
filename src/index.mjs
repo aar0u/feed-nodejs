@@ -128,6 +128,7 @@ async function generateFeed(source) {
   let checkedCandidateCount = 0;
   let existingCandidateCount = 0;
   let newPrimaryCount = 0;
+  let refreshedCount = 0;
   let skippedCandidateCount = 0;
   let queuedChangeCount = 0;
   let emittedBatchCount = 0;
@@ -139,6 +140,7 @@ async function generateFeed(source) {
       `${checkedCandidateCount} candidates`,
       `${existingCandidateCount} known`,
       ...(newPrimaryCount ? [success(`→ ${newPrimaryCount} published`)] : []),
+      ...(refreshedCount ? [`${refreshedCount} refreshed`] : []),
       ...(skippedCandidateCount ? [`${skippedCandidateCount} skipped`] : []),
 
       ...(batchesChanges && queuedChangeCount
@@ -187,14 +189,15 @@ async function generateFeed(source) {
       )
       .slice(0, feedEntryCandidateLimit);
     checkedCandidateCount = candidates.length;
-    const candidatesToCapture = checksExistingContent
-      ? candidates
-      : candidates.filter(
-          (candidate) =>
-            !publishedFeed.entries.some(
-              (entry) => entry.link === candidate.link,
-            ),
-        );
+    const candidatesToCapture =
+      checksExistingContent || source.refreshContent
+        ? candidates
+        : candidates.filter(
+            (candidate) =>
+              !publishedFeed.entries.some(
+                (entry) => entry.link === candidate.link,
+              ),
+          );
     existingCandidateCount = candidates.length - candidatesToCapture.length;
     let nextCandidateIndex = 0;
     let nextRequestAt = 0;
@@ -299,14 +302,22 @@ async function generateFeed(source) {
       const publishedPrimaryEntry = publishedFeed.entries.find(
         (entry) => entry.id === candidate.link,
       );
-      if (!publishedPrimaryEntry) {
-        newPrimaryCount += 1;
+      if (
+        !publishedPrimaryEntry ||
+        (source.refreshContent &&
+          publishedPrimaryEntry.content !== capturedContent.content)
+      ) {
+        if (!publishedPrimaryEntry) newPrimaryCount += 1;
+        else refreshedCount += 1;
         newEntries.push({
           id: candidate.link,
           title: capturedContent.title || candidate.title,
           link: candidate.link,
           content: capturedContent.content,
-          date: capturedContent.date || candidate.date,
+          date:
+            publishedPrimaryEntry?.date ||
+            capturedContent.date ||
+            candidate.date,
         });
         continue;
       }

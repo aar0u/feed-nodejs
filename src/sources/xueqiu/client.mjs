@@ -1,49 +1,57 @@
 import { parseHTML } from "linkedom";
+import { log } from "../../utils/log.mjs";
 
 const baseUrl = "https://xueqiu.com";
 const userAgent =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36";
-let cookiePromise;
 
 /** @typedef {{ filename?: string }} Image */
 /** @typedef {{ id: string | number, target: string, title?: string, text?: string, description?: string, retweeted_status?: Status, image_info_list?: Image[], created_at?: string | number, legal_user_visible?: boolean, mark?: number }} Status */
 
-async function getCookies() {
-  return (cookiePromise ??= (async () => {
-    for (const path of ["/about", "/hq"]) {
-      try {
-        const response = await fetch(new URL(path, baseUrl), {
-          headers: { "User-Agent": userAgent },
-          redirect: "follow",
-        });
-        const cookies = response.headers
-          .getSetCookie()
-          .map((cookie) => cookie.split(";")[0])
-          .join("; ");
-        if (cookies.includes("xq_a_token")) {
-          return cookies;
-        }
-      } catch {}
+/** @param {AbortSignal} [signal] */
+async function getCookies(signal) {
+  for (const path of ["/about", "/hq"]) {
+    try {
+      const response = await fetch(new URL(path, baseUrl), {
+        headers: { "User-Agent": userAgent },
+        redirect: "follow",
+        signal: AbortSignal.any([
+          AbortSignal.timeout(10_000),
+          ...(signal ? [signal] : []),
+        ]),
+      });
+      const cookies = response.headers
+        .getSetCookie()
+        .map((cookie) => cookie.split(";")[0])
+        .join("; ");
+      if (cookies.includes("xq_a_token")) {
+        return cookies;
+      }
+    } catch {
+      signal?.throwIfAborted();
     }
-    throw new Error("Failed to obtain Xueqiu session cookies");
-  })().catch((error) => {
-    cookiePromise = undefined;
-    throw error;
-  }));
+  }
+  throw new Error("Failed to obtain Xueqiu session cookies");
 }
 
-/** @param {string | URL} url */
-async function getJson(url) {
+/** @param {string | URL} url @param {string} cookie @param {AbortSignal} [signal] */
+async function getJson(url, cookie, signal) {
   const response = await fetch(url, {
     headers: {
-      cookie: await getCookies(),
+      cookie,
       referer: baseUrl,
       "User-Agent": userAgent,
     },
+    signal: AbortSignal.any([
+      AbortSignal.timeout(10_000),
+      ...(signal ? [signal] : []),
+    ]),
   });
   if (!response.ok)
     throw new Error(`${response.status} ${response.statusText}`);
-  return response.json();
+  const data = await response.json();
+  if (data.error_code) throw new Error(`Xueqiu API error ${data.error_code}`);
+  return data;
 }
 
 /** @param {string} [html] */
@@ -69,7 +77,9 @@ function item(status) {
   const quote = quoted && (quoted.text || quoted.description);
   const quoteLink = quoted?.target && new URL(quoted.target, baseUrl).href;
   const images = (status.image_info_list || []).flatMap(({ filename }) =>
-    filename ? [`<img src="https://xqimg.imedao.com/${filename}">`] : [],
+    filename && !content.includes(`https://xqimg.imedao.com/${filename}`)
+      ? [`<img src="https://xqimg.imedao.com/${filename}">`]
+      : [],
   );
   return {
     link: new URL(status.target, baseUrl).href,
@@ -86,22 +96,45 @@ function item(status) {
   };
 }
 
-/** @param {Status} status */
-async function timelineItem(status) {
+/** @param {Status} status @param {string} cookie @param {AbortSignal} [signal] @returns {Promise<import("../../source.d.ts").FeedEntryCandidate>} */
+async function detailedItem(status, cookie, signal) {
   if (status.legal_user_visible) return item(status);
-
   try {
     const detail = await getJson(
       `https://api.xueqiu.com/statuses/show.json?id=${status.id}`,
+      cookie,
+      signal,
     );
+    if (!detail.text) throw new Error("missing full text");
     return item({ ...status, ...detail });
-  } catch {
+  } catch (error) {
+    signal?.throwIfAborted();
+    log(
+      "ERROR",
+      `[xueqiu] using list text for ${status.id}: ${error instanceof Error ? error.message : String(error)}`,
+    );
     return item(status);
   }
 }
 
-/** @param {string} userId */
-export async function userTimeline(userId) {
+/** @param {Status[]} statuses @param {string} cookie @param {AbortSignal} [signal] */
+async function items(statuses, cookie, signal) {
+  const results = [];
+  for (let index = 0; index < statuses.length; index += 3) {
+    signal?.throwIfAborted();
+    const batch = statuses.slice(index, index + 3);
+    results.push(
+      ...(await Promise.all(
+        batch.map((status) => detailedItem(status, cookie, signal)),
+      )),
+    );
+  }
+  return results;
+}
+
+/** @param {string} userId @param {AbortSignal} [signal] */
+export async function userTimeline(userId, signal) {
+  const cookie = await getCookies(signal);
   const url = new URL(
     "/v4/statuses/user_timeline.json",
     "https://api.xueqiu.com",
@@ -112,25 +145,24 @@ export async function userTimeline(userId) {
     count: "20",
   }).toString();
   /** @type {Status[]} */
-  const statuses = (await getJson(url)).statuses;
-  const visible = statuses.filter((status) => status.mark !== 1);
-  const items = [];
-  for (let index = 0; index < visible.length; index += 3) {
-    items.push(
-      ...(await Promise.all(visible.slice(index, index + 3).map(timelineItem))),
-    );
-  }
-  return items;
+  const statuses = (await getJson(url, cookie, signal)).statuses;
+  return items(
+    statuses.filter((status) => status.mark !== 1),
+    cookie,
+    signal,
+  );
 }
 
-export async function hotPosts() {
+/** @param {AbortSignal} [signal] */
+export async function hotPosts(signal) {
+  const cookie = await getCookies(signal);
   const url = new URL("/statuses/hot/listV2.json", "https://api.xueqiu.com");
   url.search = new URLSearchParams({
     since_id: "-1",
     max_id: "-1",
     size: "15",
   }).toString();
-  const data = await getJson(url);
+  const data = await getJson(url, cookie, signal);
   /** @type {Status[]} */
   const statuses = (data.items || [])
     .map(
@@ -138,5 +170,5 @@ export async function hotPosts() {
         entry.original_status,
     )
     .filter(Boolean);
-  return statuses.map(item);
+  return items(statuses, cookie, signal);
 }

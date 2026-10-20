@@ -31,6 +31,7 @@ export interface Source {
   link: string;
   description: string;
   encoding?: string;
+  refreshContent?: boolean;
   contentFetchConcurrency?: number;
   requestDelay?: number;
   changeBatchSize?: number;
