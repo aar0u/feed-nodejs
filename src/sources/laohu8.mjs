@@ -33,10 +33,13 @@ function quoteSummary(quote) {
   return ` <small>${change}${quote.hourTrading?.tag ? ` · ${escape(quote.hourTrading.tag)}` : ""}</small>`;
 }
 
-/** @returns {Promise<News>} */
-async function getNews() {
+/** @param {AbortSignal} [signal] @returns {Promise<News>} */
+async function getNews(signal) {
   const response = await fetch(newsUrl, {
-    signal: AbortSignal.timeout(10_000),
+    signal: AbortSignal.any([
+      AbortSignal.timeout(10_000),
+      ...(signal ? [signal] : []),
+    ]),
   });
   if (!response.ok)
     throw new Error(`${response.status} ${response.statusText}`);
@@ -56,8 +59,8 @@ async function getNews() {
   };
 }
 
-/** @param {string[]} symbols @param {string} token @returns {Promise<Map<string, Quote>>} */
-async function quotes(symbols, token) {
+/** @param {string[]} symbols @param {string} token @param {AbortSignal} [signal] @returns {Promise<Map<string, Quote>>} */
+async function quotes(symbols, token, signal) {
   if (!symbols.length) return new Map();
   const response = await fetch(quoteUrl, {
     method: "POST",
@@ -70,7 +73,10 @@ async function quotes(symbols, token) {
       hkDelay: true,
       items: symbols.map((symbol) => ({ symbol })),
     }),
-    signal: AbortSignal.timeout(10_000),
+    signal: AbortSignal.any([
+      AbortSignal.timeout(10_000),
+      ...(signal ? [signal] : []),
+    ]),
   });
   if (!response.ok)
     throw new Error(`${response.status} ${response.statusText}`);
@@ -84,10 +90,13 @@ async function quotes(symbols, token) {
   );
 }
 
-/** @param {NewsItem} item @param {Map<string, Quote>} quotes */
-async function article(item, quotes) {
+/** @param {NewsItem} item @param {Map<string, Quote>} quotes @param {AbortSignal} [signal] */
+async function article(item, quotes, signal) {
   const response = await fetch(item.url, {
-    signal: AbortSignal.timeout(10_000),
+    signal: AbortSignal.any([
+      AbortSignal.timeout(10_000),
+      ...(signal ? [signal] : []),
+    ]),
   });
   if (!response.ok)
     throw new Error(`${response.status} ${response.statusText}`);
@@ -118,11 +127,11 @@ async function article(item, quotes) {
   };
 }
 
-/** @returns {Promise<(import("../source.d.ts").FeedEntryCandidate & { item: NewsItem, details: Map<string, Quote> })[]>} */
-async function news() {
-  const { items, token } = await getNews();
+/** @param {AbortSignal} [signal] @returns {Promise<(import("../source.d.ts").FeedEntryCandidate & { item: NewsItem, details: Map<string, Quote> })[]>} */
+async function news(signal) {
+  const { items, token } = await getNews(signal);
   const symbols = [...new Set(items.flatMap((item) => item.symbols || []))];
-  const details = await quotes(symbols, token).catch(() => new Map());
+  const details = await quotes(symbols, token, signal).catch(() => new Map());
   return items.map((item) => ({
     link: `https://www.laohu8.com/news/${item.id}`,
     contentUrl: item.url,
@@ -133,11 +142,11 @@ async function news() {
   }));
 }
 
-/** @param {import("../source.d.ts").FeedEntryCandidate & { item?: NewsItem, details?: Map<string, Quote> }} candidate */
-async function articleContent(candidate) {
+/** @param {import("../source.d.ts").FeedEntryCandidate & { item?: NewsItem, details?: Map<string, Quote> }} candidate @param {AbortSignal} [signal] */
+async function articleContent(candidate, signal) {
   if (!candidate.item || !candidate.details)
     throw new Error("missing news item or quote details");
-  return article(candidate.item, candidate.details);
+  return article(candidate.item, candidate.details, signal);
 }
 
 /** @type {import("../source.d.ts").Source} */

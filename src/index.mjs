@@ -1,6 +1,7 @@
 import { mkdir, readdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { Feed } from "feed";
+import { setTimeout as delay } from "node:timers/promises";
 import { duration, log, pending, success } from "./utils/log.mjs";
 import {
   readPendingChanges,
@@ -68,6 +69,7 @@ function appendFeedEntry(feed, entry) {
 /** @param {Source} source */
 async function generateFeed(source) {
   const startedAt = Date.now();
+  const signal = AbortSignal.timeout(60_000);
   const contentFetchConcurrency =
     source.contentFetchConcurrency ?? defaultContentFetchConcurrency;
   const requestDelay = source.requestDelay ?? 0;
@@ -162,8 +164,8 @@ async function generateFeed(source) {
   }
   try {
     const sourceDocument = source.fetchItems
-      ? await source.fetchItems()
-      : await fetchDocument(source.link, source.encoding);
+      ? await source.fetchItems(signal)
+      : await fetchDocument(source.link, source.encoding, signal);
     const candidateLinks = new Set();
     const candidates = (
       source.extractItems
@@ -210,10 +212,10 @@ async function generateFeed(source) {
       const now = Date.now();
       const requestAt = Math.max(now, nextRequestAt);
       nextRequestAt = requestAt + requestDelay;
-      if (requestAt > now)
-        await new Promise((resolve) => setTimeout(resolve, requestAt - now));
+      if (requestAt > now) await delay(requestAt - now, undefined, { signal });
+      signal.throwIfAborted();
       if (source.fetchContent) {
-        const capturedContent = await source.fetchContent(candidate);
+        const capturedContent = await source.fetchContent(candidate, signal);
         return {
           candidate,
           capturedContent: capturedContent && {
@@ -226,20 +228,28 @@ async function generateFeed(source) {
         };
       }
       const contentUrl = candidate.contentUrl || candidate.link;
-      const contentDocument = await fetchDocument(contentUrl, source.encoding);
+      const contentDocument = await fetchDocument(
+        contentUrl,
+        source.encoding,
+        signal,
+      );
       return {
         candidate,
         capturedContent: await extractContent(
           contentDocument,
           contentUrl,
           source,
+          signal,
         ),
       };
     }
     async function worker() {
       /** @type {PromiseSettledResult<{ candidate: FeedEntryCandidate, capturedContent: import("./source.d.ts").CapturedContent | null }>[] } */
       const results = [];
-      while (nextCandidateIndex < candidatesToCapture.length) {
+      while (
+        !signal.aborted &&
+        nextCandidateIndex < candidatesToCapture.length
+      ) {
         const candidate = candidatesToCapture[nextCandidateIndex++];
         try {
           results.push({
@@ -250,6 +260,7 @@ async function generateFeed(source) {
           const url = candidate.contentUrl || candidate.link || "unknown URL";
           const message =
             reason instanceof Error ? reason.message : String(reason);
+          log("ERROR", `[${source.id}] skipped article: ${url}: ${message}`);
           results.push({
             status: "rejected",
             reason: new Error(`${url}: ${message}`),
@@ -271,14 +282,16 @@ async function generateFeed(source) {
         ),
       )
     ).flat();
+    if (signal.aborted) {
+      skippedCandidateCount += candidatesToCapture.length - nextCandidateIndex;
+      log(
+        "ERROR",
+        `[${source.id}] source deadline exceeded (60s); keeping completed results`,
+      );
+    }
     for (const result of results) {
       if (result.status !== "fulfilled" || !result.value.capturedContent) {
         skippedCandidateCount += 1;
-        if (result.status === "rejected")
-          log(
-            "ERROR",
-            `[${source.id}] skipped article: ${result.reason.message}`,
-          );
         continue;
       }
       const { candidate, capturedContent } = result.value;

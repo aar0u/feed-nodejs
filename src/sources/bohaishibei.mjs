@@ -20,10 +20,13 @@ function proxyImages(content) {
   );
 }
 
-/** @returns {Promise<import("../source.d.ts").FeedEntryCandidate[]>} */
-async function fetchItems() {
+/** @param {AbortSignal} [signal] @returns {Promise<import("../source.d.ts").FeedEntryCandidate[]>} */
+async function fetchItems(signal) {
   const response = await fetch(feedUrl, {
-    signal: AbortSignal.timeout(10_000),
+    signal: AbortSignal.any([
+      AbortSignal.timeout(10_000),
+      ...(signal ? [signal] : []),
+    ]),
   });
   if (!response.ok)
     throw new Error(`${response.status} ${response.statusText}`);

@@ -27,8 +27,8 @@ function text(value) {
     .replace(/\n/g, "<br>");
 }
 
-/** @param {string} boardAndThread */
-async function imagesByComment(boardAndThread) {
+/** @param {string} boardAndThread @param {AbortSignal} [signal] */
+async function imagesByComment(boardAndThread, signal) {
   const firstPage = `${baseUrl}/wap/xbbs.php?B=${boardAndThread}`;
   const pages = [firstPage];
   const visited = new Set();
@@ -36,14 +36,16 @@ async function imagesByComment(boardAndThread) {
   const images = new Map();
 
   while (pages.length) {
+    signal?.throwIfAborted();
     const pageUrl = pages.pop();
     if (!pageUrl || visited.has(pageUrl)) continue;
     visited.add(pageUrl);
 
     let document;
     try {
-      document = await fetchDocument(pageUrl, "gbk");
+      document = await fetchDocument(pageUrl, "gbk", signal);
     } catch {
+      signal?.throwIfAborted();
       continue;
     }
 
@@ -109,7 +111,7 @@ function createSource(id, title, link, description) {
         },
       ];
     },
-    async extract(document, url) {
+    async extract(document, url, signal) {
       const boardAndThread = new URL(url).searchParams.get("B");
       const boardId = boardAndThread?.split("_")[0];
       const scripts = [...document.querySelectorAll("script")]
@@ -133,7 +135,7 @@ function createSource(id, title, link, description) {
         .sort((left, right) => left.date.valueOf() - right.date.valueOf());
       if (!comments.length) return null;
       const images = boardAndThread
-        ? await imagesByComment(boardAndThread)
+        ? await imagesByComment(boardAndThread, signal)
         : new Map();
 
       const threadLink = boardAndThread

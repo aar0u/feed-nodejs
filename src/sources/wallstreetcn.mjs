@@ -4,11 +4,16 @@ const apiUrl = "https://api-one.wallstcn.com";
 /** @typedef {{ id: string | number, uri?: string, title?: string }} Resource */
 /** @typedef {{ resource_type: string, resource: Resource }} FlowItem */
 
-/** @param {Resource} resource */
-async function article(resource) {
+/** @param {Resource} resource @param {AbortSignal} [signal] */
+async function article(resource, signal) {
   const response = await fetch(
     `${apiUrl}/apiv1/content/articles/${resource.id}?extract=0`,
-    { signal: AbortSignal.timeout(10_000) },
+    {
+      signal: AbortSignal.any([
+        AbortSignal.timeout(10_000),
+        ...(signal ? [signal] : []),
+      ]),
+    },
   );
   const { data } = await response.json();
   const content = [data.content, data.content_more].filter(Boolean).join("");
@@ -20,10 +25,16 @@ async function article(resource) {
   };
 }
 
-async function shares() {
+/** @param {AbortSignal} [signal] */
+async function shares(signal) {
   const response = await fetch(
     `${apiUrl}/apiv1/content/information-flow?channel=shares&accept=article&limit=20`,
-    { signal: AbortSignal.timeout(10_000) },
+    {
+      signal: AbortSignal.any([
+        AbortSignal.timeout(10_000),
+        ...(signal ? [signal] : []),
+      ]),
+    },
   );
   const { data } = await response.json();
   /** @type {FlowItem[]} */
@@ -31,7 +42,7 @@ async function shares() {
   return Promise.all(
     items
       .filter((item) => item.resource_type === "article")
-      .map((item) => article(item.resource)),
+      .map((item) => article(item.resource, signal)),
   );
 }
 

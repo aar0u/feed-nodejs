@@ -7,8 +7,8 @@ const headers = {
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
 };
 
-/** @param {string | URL} url @param {string} [encoding] */
-export async function fetchDocument(url, encoding = "utf-8") {
+/** @param {string | URL} url @param {string} [encoding] @param {AbortSignal} [signal] */
+export async function fetchDocument(url, encoding = "utf-8", signal) {
   const cookies = new Map();
 
   for (let redirects = 0; redirects < 6; redirects += 1) {
@@ -18,7 +18,10 @@ export async function fetchDocument(url, encoding = "utf-8") {
     const response = await fetch(url, {
       headers: cookie ? { ...headers, cookie } : headers,
       redirect: "manual",
-      signal: AbortSignal.timeout(timeout),
+      signal: AbortSignal.any([
+        AbortSignal.timeout(timeout),
+        ...(signal ? [signal] : []),
+      ]),
     });
     const setCookies =
       response.headers.getSetCookie?.() ||
@@ -33,8 +36,16 @@ export async function fetchDocument(url, encoding = "utf-8") {
       url = new URL(location, url).href;
       continue;
     }
-    if (!response.ok)
-      throw new Error(`${response.status} ${response.statusText}`);
+    if (!response.ok) {
+      const challenge = response.headers.get("cf-mitigated");
+      const type = response.headers.get("content-type");
+      const cloudflare = response.headers.get("server") === "cloudflare";
+      const viaProxy = response.headers.get("x-proxy-via") === "content-proxy";
+      await response.body?.cancel();
+      throw new Error(
+        `${response.status} ${response.statusText}${viaProxy ? "; proxy-worker=content-proxy" : ""}${cloudflare ? "; server=cloudflare" : ""}${challenge ? `; cf-mitigated=${challenge}` : ""}${type ? `; content-type=${type}` : ""}`,
+      );
+    }
 
     const charset =
       response.headers.get("content-type")?.match(/charset=([^;\s]+)/i)?.[1] ||
@@ -59,14 +70,14 @@ export function absoluteUrls(html, url) {
   return document.body.innerHTML;
 }
 
-/** @param {Document} document @param {string} url @param {import("../source.d.ts").Source} [source] */
-export async function extractContent(document, url, source) {
+/** @param {Document} document @param {string} url @param {import("../source.d.ts").Source} [source] @param {AbortSignal} [signal] */
+export async function extractContent(document, url, source, signal) {
   const published =
     document
       .querySelector('meta[property="article:published_time"], time[datetime]')
       ?.getAttribute("content") ||
     document.querySelector("time[datetime]")?.getAttribute("datetime");
-  const custom = await source?.extract?.(document, url);
+  const custom = await source?.extract?.(document, url, signal);
   if (custom)
     return {
       ...custom,

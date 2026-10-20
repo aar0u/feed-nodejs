@@ -45,12 +45,14 @@ export interface Source {
     changeCandidates: FeedEntry[],
   ): FeedEntry[];
   extractItems?(document: Document): FeedEntryCandidate[];
-  fetchItems?(): Promise<FeedEntryCandidate[]>;
+  fetchItems?(signal?: AbortSignal): Promise<FeedEntryCandidate[]>;
   fetchContent?(
     candidate: FeedEntryCandidate,
+    signal?: AbortSignal,
   ): CapturedContent | null | Promise<CapturedContent | null>;
   extract?(
     document: Document,
     url: string,
+    signal?: AbortSignal,
   ): CapturedContent | null | Promise<CapturedContent | null>;
 }
