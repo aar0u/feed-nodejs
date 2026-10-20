@@ -2,7 +2,17 @@ import { brightcovePlayer } from "../utils/brightcove.mjs";
 
 const baseUrl = "https://www.8world.com";
 
-/** @typedef {{ "@type"?: string, image?: string[], datePublished?: string }} ArticleData */
+/** @typedef {{ "@type"?: string, image?: string[] | { url?: string | string[] }, datePublished?: string }} ArticleData */
+
+/** @param {ArticleData["image"]} image */
+function lastImageUrl(image) {
+  const urls = Array.isArray(image)
+    ? image
+    : image?.url
+      ? [image.url].flat()
+      : [];
+  return urls.at(-1);
+}
 
 /** @param {Document} document */
 function articleData(document) {
@@ -51,7 +61,7 @@ const source = {
     if (!targets.length) return null;
     const first = targets[0];
     const src =
-      article?.image?.at(-1) ||
+      lastImageUrl(article?.image) ||
       document
         .querySelector('meta[property="og:image"]')
         ?.getAttribute("content");

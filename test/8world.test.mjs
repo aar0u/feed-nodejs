@@ -25,3 +25,32 @@ test("8world removes embedded social promotion", () => {
     /<p><iframe[^>]+players\.brightcove\.net\/456\/default_default\/index\.html\?videoId=123/,
   );
 });
+
+test("8world uses the last image URL from a JSON-LD ImageObject", () => {
+  const { document } = parseHTML(`
+    <script type="application/ld+json">${JSON.stringify({
+      "@graph": [
+        {
+          "@type": "NewsArticle",
+          image: {
+            "@type": "ImageObject",
+            url: [
+              "https://cdn.example.com/small.jpg",
+              "https://cdn.example.com/large.jpg",
+            ],
+          },
+          datePublished: "2026-10-19T05:00:00Z",
+        },
+      ],
+    })}</script>
+    <div class="article-content"><div class="text-long">
+      <p>Article text</p>
+    </div></div>
+  `);
+  const captured = source.extract(document, "https://www.8world.com/article");
+  assert.match(
+    captured?.content || "",
+    /<img src="https:\/\/cdn\.example\.com\/large\.jpg">/,
+  );
+  assert.equal(captured?.date?.toISOString(), "2026-10-19T05:00:00.000Z");
+});
