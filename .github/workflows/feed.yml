@@ -40,6 +40,8 @@ jobs:
       - run: pnpm exec playwright install chromium
       - id: generate
         name: Generate feeds
+        env:
+          GAMER520_PROXY_URL: ${{ vars.GAMER520_PROXY_URL }}
         run: |
           set -o pipefail
           PUBLISHED_FEED_DIRECTORY=previous pnpm run generate 2>&1 | tee /tmp/feed-generation.log
@@ -47,7 +49,7 @@ jobs:
           {
             echo "## Feed generation"
             echo '```text'
-            cat /tmp/feed-summary.log
+            grep -v ' ERROR:' /tmp/feed-summary.log || true
             echo '```'
             if grep -q ' ERROR:' /tmp/feed-summary.log; then
               echo '### Errors'

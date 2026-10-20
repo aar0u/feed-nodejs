@@ -4,7 +4,7 @@
 
 ## 本地运行
 
-需要 Node.js 20.19+（Actions 使用 Node.js 20）：
+需要 Node.js 20.19+（Actions 使用 Node.js 24）：
 
 ```bash
 pnpm install --frozen-lockfile
@@ -19,6 +19,10 @@ pnpm run generate
 `src/sources/` 保存每个源的入口和列表提取逻辑。`src/utils/parser.mjs` 负责抓取（10 秒超时）和从已抓取的 DOM 提取文章；入口负责协调两者。文章与源的失败通过 `Promise.allSettled` 隔离，其他 XML 仍会生成。
 
 要添加单一来源，只需在 `src/sources/` 新增一个 `.mjs` source 模块；入口也会加载一级子目录的 `index.mjs`，后者可默认导出多个相关来源。普通来源的 `extractItems(document)` 返回 `{ link, title, date?, contentUrl? }`；仅在通用 Readability 不够时加入 `extract`。需要其他传输方式的来源可定义 `fetchItems()`，直接返回含 `content` 的条目。抓取内容的 URL 不同于条目 URL 时，返回 `contentUrl`。缺少有效日期时不生成 `pubDate`。
+
+每个来源的网络请求共用 60 秒预算，自定义的抓取函数必须响应其 `AbortSignal`。设置 `refreshContent: true` 后，内容变化的已有条目会被更新，ID 和日期不变。
+
+Gamer520 的列表和文章通过 `https://assets.spotjoy.com/fetch` 抓取，可用环境变量 `GAMER520_PROXY_URL` 覆盖（Actions 中为仓库变量）。其他来源直接连接。
 
 ## GitHub Pages
 
