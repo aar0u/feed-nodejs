@@ -1,5 +1,7 @@
 import { fetchDocument } from "../utils/parser.mjs";
 import { formatTimestamp } from "../utils/time.mjs";
+import { log } from "../utils/log.mjs";
+import { setTimeout as delay } from "node:timers/promises";
 
 const siteUrl = "https://news.ycombinator.com/";
 const newsUrl = new URL("news", siteUrl).href;
@@ -7,6 +9,8 @@ const minPoints = 50;
 const storyCount = 15;
 const rootCommentCount = 3;
 const replyCount = 2;
+const requestDelay = 3_000;
+const listPageDelay = 10_000;
 
 /** @param {string} id */
 function discussionUrl(id) {
@@ -128,7 +132,7 @@ const source = {
   link: newsUrl,
   description: "Hacker News stories with at least 50 points and top comments",
   contentFetchConcurrency: 1,
-  requestDelay: 3000,
+  requestDelay,
   changeBatchSize: 10,
   changeBatchDelay: 4 * 60 * 60 * 1000,
   filterChangeCandidates(capturedContent, history) {
@@ -163,10 +167,25 @@ const source = {
       },
     ];
   },
-  async fetchItems() {
-    const documents = await Promise.all(
-      ["news", "news?p=2"].map((path) => fetchDocument(new URL(path, siteUrl))),
-    );
+  async fetchItems(signal) {
+    const documents = [];
+    let lastError;
+    for (const [index, path] of ["news", "news?p=2"].entries()) {
+      try {
+        if (index) await delay(listPageDelay, undefined, { signal });
+        documents.push(
+          await fetchDocument(new URL(path, siteUrl), undefined, signal),
+        );
+      } catch (error) {
+        lastError = error;
+        log(
+          "ERROR",
+          `[hackernews] skipped list page: ${new URL(path, siteUrl)}: ${error instanceof Error ? error.message : String(error)}`,
+        );
+        if (signal?.aborted) break;
+      }
+    }
+    if (!documents.length) throw lastError;
     return documents
       .flatMap(stories)
       .sort((left, right) => right.score - left.score)
