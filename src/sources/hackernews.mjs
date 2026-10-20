@@ -1,18 +1,19 @@
-import { fetchDocument } from "../utils/parser.mjs";
 import { formatTimestamp } from "../utils/time.mjs";
-import { log } from "../utils/log.mjs";
-import { setTimeout as delay } from "node:timers/promises";
 
 const siteUrl = "https://news.ycombinator.com/";
 const newsUrl = new URL("news", siteUrl).href;
+const apiUrl = "https://hacker-news.firebaseio.com/v0/";
 const minPoints = 50;
 const storyCount = 15;
+const listSize = 60;
 const rootCommentCount = 3;
 const replyCount = 2;
-const requestDelay = 3_000;
-const listPageDelay = 10_000;
+const listBatchSize = 10;
 
-/** @param {string} id */
+/** @typedef {{ id: string, author: string, content: string, date: string }} Comment */
+/** @typedef {{ id: number, type?: string, title?: string, url?: string, text?: string, score?: number, time?: number, by?: string, kids?: number[], dead?: boolean, deleted?: boolean }} Item */
+
+/** @param {string | number} id */
 function discussionUrl(id) {
   return new URL(`item?id=${id}`, siteUrl).href;
 }
@@ -27,68 +28,73 @@ function discussionHtml(url, score) {
   return `<p>${score ? `<strong>${score}</strong> · ` : ""}<a href="${url}">View discussion</a></p>`;
 }
 
-/** @param {Document} document */
-function stories(document) {
-  return [...document.querySelectorAll("tr.athing.submission")]
-    .map((story) => {
-      const subtext = story.nextElementSibling;
-      const score = Number(
-        subtext?.querySelector(".score")?.textContent.match(/^\d+/)?.[0],
-      );
-      const titleLink = story.querySelector(".titleline > a");
-      const title = titleLink?.textContent.trim();
-      const href = titleLink?.getAttribute("href");
-      const date = subtext
-        ?.querySelector(".age")
-        ?.getAttribute("title")
-        ?.split(" ")[0];
-      return {
-        link: href ? new URL(href, siteUrl).href : undefined,
-        contentUrl: discussionUrl(story.id),
-        title,
-        date: date || undefined,
-        score,
-      };
-    })
-    .filter((story) => story.title && story.score >= minPoints);
+/** @param {number} id @param {AbortSignal} [signal] @returns {Promise<Item | null>} */
+async function getItem(id, signal) {
+  const response = await fetch(new URL(`item/${id}.json`, apiUrl), {
+    signal: AbortSignal.any([
+      AbortSignal.timeout(10_000),
+      ...(signal ? [signal] : []),
+    ]),
+  });
+  if (!response.ok)
+    throw new Error(`${response.status} ${response.statusText}`);
+  return response.json();
 }
 
-/** @param {Element} node */
-function comment(node) {
-  const author = node.querySelector(".hnuser")?.textContent;
-  const content = node.querySelector(".commtext")?.innerHTML;
-  const date = node.querySelector(".age")?.getAttribute("title")?.split(" ")[0];
-  return author && content
-    ? { id: node.id, author, content, date: date || undefined }
+/** @param {number} time */
+function isoDate(time) {
+  return new Date(time * 1000).toISOString();
+}
+
+/** @param {Item | null} item @returns {Comment | undefined} */
+function comment(item) {
+  return item &&
+    !item.dead &&
+    !item.deleted &&
+    item.by &&
+    item.text &&
+    item.time
+    ? {
+        id: String(item.id),
+        author: item.by,
+        content: item.text,
+        date: isoDate(item.time),
+      }
     : undefined;
 }
 
-/** @param {Document} document */
-function comments(document) {
-  /** @type {{ comment: { id: string, author: string, content: string, date?: string }, replies: { id: string, author: string, content: string, date?: string }[] }[]} */
-  const roots = [];
-  /** @type {{ comment: { id: string, author: string, content: string, date?: string }, replies: { id: string, author: string, content: string, date?: string }[] } | undefined} */
-  let root;
-  for (const node of document.querySelectorAll("tr.athing.comtr")) {
-    const indent = node.querySelector(".ind")?.getAttribute("indent");
-    const value = comment(node);
-    if (indent === "0") {
-      root = value && { comment: value, replies: [] };
-      if (root && roots.length < rootCommentCount) roots.push(root);
-      else root = undefined;
-    } else if (
-      indent === "1" &&
-      root &&
-      value &&
-      root.replies.length < replyCount
-    ) {
-      root.replies.push(value);
+/** Fetches ids in batches of `count` until `count` valid comments are found.
+ * @param {number[]} ids @param {number} count @param {AbortSignal} [signal]
+ * @returns {Promise<(Comment & { kids: number[] })[]>} */
+async function firstComments(ids, count, signal) {
+  /** @type {(Comment & { kids: number[] })[]} */
+  const found = [];
+  for (
+    let index = 0;
+    index < ids.length && found.length < count;
+    index += count
+  ) {
+    const items = await Promise.all(
+      ids.slice(index, index + count).map((id) => getItem(id, signal)),
+    );
+    for (const item of items) {
+      const value = comment(item);
+      if (value && found.length < count)
+        found.push({ ...value, kids: item?.kids || [] });
     }
   }
-  return roots;
+  return found;
 }
 
-/** @param {{ id: string, author: string, content: string, date?: string }} comment */
+/** @param {Comment[]} comments */
+function latestDate(comments) {
+  return comments
+    .map(({ date }) => date)
+    .sort()
+    .at(-1);
+}
+
+/** @param {Comment} comment */
 function commentMeta(comment) {
   const timestamp =
     comment.date &&
@@ -98,22 +104,22 @@ function commentMeta(comment) {
   return `<a href="${userUrl(comment.author)}">${comment.author}</a> · <a href="${discussionUrl(comment.id)}">${timestamp || "View comment"}</a>`;
 }
 
-/** @param {{ id: string, author: string, content: string, date?: string }} comment @param {string} [prefix] */
+/** @param {Comment} comment @param {string} [prefix] */
 function commentContent(comment, prefix = "") {
   return `<article data-comment-id="${comment.id}"><div>${prefix}${comment.content}</div><p><small>— ${commentMeta(comment)}</small></p></article>`;
 }
 
-/** @param {{ id: string, author: string, content: string, date?: string }} reply @param {{ id: string, author: string, content: string, date?: string }} parent */
+/** @param {Comment} reply @param {Comment} parent */
 function replyContent(reply, parent) {
   return `<p><small><strong>↳ Reply to <a href="${userUrl(parent.author)}">${parent.author}</a></strong></small></p>${commentContent(reply)}`;
 }
 
-/** @param {{ id: string, author: string, content: string, date?: string }} reply @param {{ id: string, author: string, content: string, date?: string }} parent */
+/** @param {Comment} reply @param {Comment} parent */
 function changeHtml(reply, parent) {
   return `<p>💬 <small>${commentMeta(parent)}</small></p><blockquote>${replyContent(reply, parent)}</blockquote>`;
 }
 
-/** @param {{ id: string, author: string, content: string, date?: string }} comment @param {{ id: string, author: string, content: string, date?: string }[]} replies */
+/** @param {Comment} comment @param {Comment[]} replies */
 function threadHtml(comment, replies) {
   return `${commentContent(comment, "💬 ")}${replies.map((reply) => `<blockquote>${replyContent(reply, comment)}</blockquote>`).join("")}`;
 }
@@ -131,8 +137,6 @@ const source = {
   title: "Hacker News Top Stories",
   link: newsUrl,
   description: "Hacker News stories with at least 50 points and top comments",
-  contentFetchConcurrency: 1,
-  requestDelay,
   changeBatchSize: 10,
   changeBatchDelay: 4 * 60 * 60 * 1000,
   filterChangeCandidates(capturedContent, history) {
@@ -168,70 +172,101 @@ const source = {
     ];
   },
   async fetchItems(signal) {
-    const documents = [];
-    let lastError;
-    for (const [index, path] of ["news", "news?p=2"].entries()) {
-      try {
-        if (index) await delay(listPageDelay, undefined, { signal });
-        documents.push(
-          await fetchDocument(new URL(path, siteUrl), undefined, signal),
-        );
-      } catch (error) {
-        lastError = error;
-        log(
-          "ERROR",
-          `[hackernews] skipped list page: ${new URL(path, siteUrl)}: ${error instanceof Error ? error.message : String(error)}`,
-        );
-        if (signal?.aborted) break;
-      }
-    }
-    if (!documents.length) throw lastError;
-    return documents
-      .flatMap(stories)
+    const response = await fetch(new URL("topstories.json", apiUrl), {
+      signal: AbortSignal.any([
+        AbortSignal.timeout(10_000),
+        ...(signal ? [signal] : []),
+      ]),
+    });
+    if (!response.ok)
+      throw new Error(`${response.status} ${response.statusText}`);
+    /** @type {number[]} */
+    const ids = (await response.json()).slice(0, listSize);
+    /** @type {(Item | null)[]} */
+    const items = [];
+    for (let index = 0; index < ids.length; index += listBatchSize)
+      items.push(
+        ...(await Promise.all(
+          ids
+            .slice(index, index + listBatchSize)
+            .map((id) => getItem(id, signal)),
+        )),
+      );
+    return items
+      .flatMap((item) =>
+        item &&
+        item.type === "story" &&
+        !item.dead &&
+        !item.deleted &&
+        item.title &&
+        item.time &&
+        (item.score ?? 0) >= minPoints
+          ? [
+              {
+                ...item,
+                title: item.title,
+                time: item.time,
+                score: item.score ?? 0,
+              },
+            ]
+          : [],
+      )
       .sort((left, right) => right.score - left.score)
-      .slice(0, storyCount);
+      .slice(0, storyCount)
+      .map((story) => ({
+        link: story.url || discussionUrl(story.id),
+        contentUrl: discussionUrl(story.id),
+        title: story.title,
+        date: isoDate(story.time),
+        story,
+      }));
   },
-  extract(document, url) {
-    const score = document.querySelector(".fatitem .score")?.textContent;
-    const text = document.querySelector(".toptext")?.innerHTML;
-    const titleLink = document.querySelector(".titleline > a");
-    const sourceHref = titleLink?.getAttribute("href");
-    const sourceLink = sourceHref && new URL(sourceHref, siteUrl).href;
-    const sourceTitle = titleLink?.textContent.trim() || "Hacker News";
-    const topComments = comments(document);
-    const commentChanges = topComments.flatMap(({ comment, replies }) => [
+  async fetchContent(candidate, signal) {
+    const { story } =
+      /** @type {import("../source.d.ts").FeedEntryCandidate & { story?: Item }} */ (
+        candidate
+      );
+    if (!story || !candidate.contentUrl || !candidate.link)
+      throw new Error("missing story details");
+    const roots = await firstComments(
+      story.kids || [],
+      rootCommentCount,
+      signal,
+    );
+    const threads = await Promise.all(
+      roots.map(async (root) => ({
+        comment: root,
+        replies: await firstComments(root.kids, replyCount, signal),
+      })),
+    );
+    const sourceLink = candidate.link;
+    const sourceTitle = story.title || "Hacker News";
+    const commentChanges = threads.flatMap(({ comment, replies }) => [
       { comment, content: threadHtml(comment, []) },
       ...replies.map((reply) => ({
         comment: reply,
         content: changeHtml(reply, comment),
       })),
     ]);
-    const dates = commentChanges.flatMap(({ comment }) =>
-      comment.date ? [comment.date] : [],
-    );
     return {
-      date: dates.sort().at(-1),
+      date: latestDate(commentChanges.map(({ comment }) => comment)),
       content: [
-        discussionHtml(url, score),
-        text,
+        discussionHtml(candidate.contentUrl, `${story.score} points`),
+        story.text,
         commentsHtml(
-          topComments.map(({ comment, replies }) =>
-            threadHtml(comment, replies),
-          ),
+          threads.map(({ comment, replies }) => threadHtml(comment, replies)),
           "Top Comments",
         ),
       ]
         .filter(Boolean)
         .join(""),
-      changeCandidates: sourceLink
-        ? commentChanges.map(({ comment, content }) => ({
-            id: `${sourceLink}#comment-${comment.id}`,
-            title: `💬 ${sourceTitle}`,
-            link: discussionUrl(comment.id),
-            content,
-            date: comment.date,
-          }))
-        : [],
+      changeCandidates: commentChanges.map(({ comment, content }) => ({
+        id: `${sourceLink}#comment-${comment.id}`,
+        title: `💬 ${sourceTitle}`,
+        link: discussionUrl(comment.id),
+        content,
+        date: comment.date,
+      })),
     };
   },
 };
