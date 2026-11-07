@@ -1,2 +1,2 @@
 8world.xml
-xueqiu-hots.xml
+hackernews.xml
