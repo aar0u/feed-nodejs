@@ -3,7 +3,7 @@ import test from "node:test";
 import { parseHTML } from "linkedom";
 import source, { extractItems, proxyUrl } from "../src/sources/gamer520.mjs";
 
-test("gamer520 extracts game entries from the switch category", () => {
+test("gamer520 extracts game entries from the home page", () => {
   const { document } = parseHTML(`
     <div class="posts-wrapper">
       <article class="post post-grid">
@@ -74,7 +74,7 @@ test("gamer520 proxies list and article fetches while preserving original URLs a
   assert.doesNotMatch(captured.content, /spotjoy/);
   assert.equal(captured.date.toISOString(), "2026-10-18T19:00:00.000Z");
   assert.deepEqual(requests, [
-    "https://www.gamer520.com/gameswitch",
+    "https://www.gamer520.com/",
     "https://www.gamer520.com/123.html",
   ]);
   assert.equal(source.contentFetchConcurrency, 1);

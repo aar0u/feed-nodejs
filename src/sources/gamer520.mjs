@@ -36,9 +36,9 @@ export function extractItems(document) {
 /** @type {import("../source.d.ts").Source} */
 const source = {
   id: "gamer520-gameswitch",
-  title: "Switch游戏下载",
-  link: `${baseUrl}/gameswitch`,
-  description: "Gamer520 Switch 游戏下载更新",
+  title: "Gamer520 游戏下载",
+  link: `${baseUrl}/`,
+  description: "Gamer520 首页游戏下载更新",
   requestDelay: 2_000,
   contentFetchConcurrency: 1,
   async fetchItems(signal) {
