@@ -1,1 +1,1 @@
-xueqiu-hots.xml
+hackernews.xml
