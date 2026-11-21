@@ -4,12 +4,22 @@
         <title>老虎社区 · 要闻</title>
         <link>https://www.laohu8.com/news</link>
         <description>老虎社区热门资讯</description>
-        <lastBuildDate>Sat, 21 Nov 2026 09:40:20 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 21 Nov 2026 10:40:22 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh-CN</language>
         <atom:link href="https://aar0u.github.io/feed-nodejs/laohu8-news.xml" rel="self" type="application/rss+xml"/>
         <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub"/>
+        <item>
+            <title><![CDATA[SpaceX完成440亿美元GPU租赁融资定价：AI扩张成本成为焦点]]></title>
+            <link>https://www.laohu8.com/news/1120525746</link>
+            <guid isPermaLink="false">https://www.laohu8.com/news/1120525746</guid>
+            <pubDate>Sat, 21 Nov 2026 10:33:59 GMT</pubDate>
+            <content:encoded><![CDATA[<p><strong>相关标的：</strong><a href="https://www.laohu8.com/stock/APO">阿波罗全球管理 (APO)</a> <small>-4.41% · 盘后</small></p>
+<html><head></head><body><video poster="https://news-video-sg.skytigris.cn/videos/covers/6621.webp" tg-width="486" tg-height="864" width="486" height="864" class="ql-video te-video-limit" controls="true" id="te-video-215d479b04b34f5196313b4fd80ad9cb" controlslist="nodownload" playsinline="true" webkit-playsinline="true"><source src="https://news-video-sg.skytigris.cn/videos/remotion/6621/render_6621_1795256728229.mp4"></video></body></html>
+
+<hr><p><small><strong>全部相关标的：</strong><a href="https://www.laohu8.com/stock/APO">阿波罗全球管理 (APO)</a> · <a href="https://www.laohu8.com/stock/SPCX">SpaceX (SPCX)</a></small></p>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[风险资产恐慌席卷币圈！费城半导体单日重挫10%，美股收盘后比特币继续暴跌，创两年新低]]></title>
             <link>https://www.laohu8.com/news/2685819100</link>
@@ -1335,16 +1345,6 @@
 </div>
 
 ]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[Hunterbrook做空报告重挫AMD！称存在循环交易，承诺规模远超英伟达，AMD否认]]></title>
-            <link>https://www.laohu8.com/news/2684024539</link>
-            <guid isPermaLink="false">https://www.laohu8.com/news/2684024539</guid>
-            <pubDate>Thu, 19 Nov 2026 21:09:56 GMT</pubDate>
-            <content:encoded><![CDATA[<p><strong>相关标的：</strong><a href="https://www.laohu8.com/stock/AMD">美国超微公司 (AMD)</a> <small>-7.72% · 盘后</small></p>
-<html><head></head><body><p style="text-align: left;">对冲基金Hunterbrook Capital发布做空报告，重挫 <a href="https://laohu8.com/S/AMD">美国超微公司</a>股价。该报告指出AMD在客户融资安排上存在循环交易隐患，且对AI支出放缓高度敏感，AMD方面否认相关指控。</p><p style="text-align: left;">周四，AMD股价盘中最大跌幅达11%，低至470.56美元，为当日纳斯达克100指数成分股中跌幅最大的个股。该股此前年内涨幅已逾一倍。截至收盘，AMD下跌7.72%。</p><p class="t-img-caption"><img src="https://community-static.tradeup.com/news/f3a6ba8f5071de284b2c9108b2b053bf" data-align="center" tg-width="1912" tg-height="1216"><span></span></p><p style="text-align: left;">Hunterbrook Capital表示，目前持有AMD空头仓位，同时做多一篮子可比标的。AMD则回应称，Hunterbrook的"相关指控歪曲了AMD的业务实践与合作关系"。</p><h2 style="text-align: left;">循环交易隐患：AMD承诺过多、现金偏少</h2><p style="text-align: left;">Hunterbrook在报告中指出，<strong>AMD向客户与合作伙伴作出的承诺规模已远超英伟达，而其现金储备却相对不足。</strong>报告警告称，"如果围绕英伟达的相关风险持续发酵、演变为AI基础设施建设的一场更大危机，AMD将难以幸免。"</p><p style="text-align: left;">这一担忧的核心在于AI硬件领域日益普遍的循环交易模式——芯片厂商向购买自家芯片的客户提供融资支持或参股，从而在账面上虚增需求。</p><p style="text-align: left;">知名华尔街投资人、《大空头》原型人物Michael Burry此前已就此发出警示，认为此类安排可能人为推高AI及相关基础设施的表观需求规模。</p><h2 style="text-align: left;">供应链风险：出口管制或成业务隐患</h2><p style="text-align: left;">Hunterbrook旗下媒体机构Hunterbrook Media在报告中还指出，AMD在供应链层面存在一定的出口管制合规风险。</p><p style="text-align: left;">报告称，<strong>AMD增长逻辑所倚重的部分产品线，恰恰面临更为严格的出口限制，一旦相关政策收紧，可能对公司业务扩张形成制约。</strong></p><p style="text-align: left;">报告亦提及有证据显示，部分需要美国政府许可证的软件已被用于使AMD芯片在服务器中运行。</p><p style="text-align: left;">针对上述指控，AMD发言人表示，<strong>公司"严格遵守适用的美国出口管制法律法规，并在全球运营中维持严格的合规流程"，并强调公司致力于"维护最高标准的诚信经营"。</strong></p></body></html>
-
-<hr><p><small><strong>全部相关标的：</strong><a href="https://www.laohu8.com/stock/AMD">美国超微公司 (AMD)</a> · <a href="https://www.laohu8.com/stock/AMDU">Defiance Leveraged Long + Income AMD ETF (AMDU)</a> · <a href="https://www.laohu8.com/stock/AMDY">AMD期权收益策略ETF-YieldMax (AMDY)</a> · <a href="https://www.laohu8.com/stock/QQQA">ProShares Nasdaq-100 Dorsey Wright Momentum ETF (QQQA)</a> · <a href="https://www.laohu8.com/stock/GAMR">Amplify Video Game Leaders ETF (GAMR)</a> · <a href="https://www.laohu8.com/stock/AMDS">GRANITESHARES 1X SHORT AMD DAILY ETF (AMDS)</a> · <a href="https://www.laohu8.com/stock/TTEQ">T. Rowe Price Technology ETF (TTEQ)</a> · <a href="https://www.laohu8.com/stock/LEGR">First Trust Indxx Innovative Transaction &amp; Process ETF (LEGR)</a> · <a href="https://www.laohu8.com/stock/AMDC">Corgi AMD 2x Daily ETF (AMDC)</a> · <a href="https://www.laohu8.com/stock/CNAV">Mohr Company Nav ETF (CNAV)</a> · <a href="https://www.laohu8.com/stock/CHPS">XTRACKERS SEMICONDUCTOR SELECT EQUITY ETF (CHPS)</a> · <a href="https://www.laohu8.com/stock/SOXX">iShares费城交易所半导体ETF (SOXX)</a> · <a href="https://www.laohu8.com/stock/XNTK">SPDR NYSE Technology ETF (XNTK)</a> · <a href="https://www.laohu8.com/stock/ARTY">ISHARES FUTURE AI &amp; TECH ETF (ARTY)</a> · <a href="https://www.laohu8.com/stock/SMHX">VanEck Fabless Semiconductor ETF (SMHX)</a> · <a href="https://www.laohu8.com/stock/TRFK">PACER DATA AND DIGITAL REVOLUTION ETF (TRFK)</a> · <a href="https://www.laohu8.com/stock/TEK">iShares Technology Opportunities Active ETF (TEK)</a> · <a href="https://www.laohu8.com/stock/BAI">iShares A.I. Innovation and Tech Active ETF (BAI)</a> · <a href="https://www.laohu8.com/stock/SOXY">YieldMax Target 12 Semiconductor Option Income ETF (SOXY)</a> · <a href="https://www.laohu8.com/stock/AMDD">1倍做空AMD ETF-Direxion (AMDD)</a> · <a href="https://www.laohu8.com/stock/WISE">THEMES GENERATIVE ARTIFICIAL INTELLIGENCE ETF (WISE)</a> · <a href="https://www.laohu8.com/stock/AMDW">Roundhill AMD WeeklyPay ETF (AMDW)</a> · <a href="https://www.laohu8.com/stock/WUGI">AXS Esoterica NextG Economy ETF (WUGI)</a> · <a href="https://www.laohu8.com/stock/AIS">VistaShares Artificial Intelligence Supercycle ETF (AIS)</a> · <a href="https://www.laohu8.com/stock/SMH">半导体指数ETF-HOLDRs (SMH)</a> · <a href="https://www.laohu8.com/stock/CHAT">ROUNDHILL GENERATIVE AI &amp; TECHNOLOGY ETF (CHAT)</a> · <a href="https://www.laohu8.com/stock/AMDL">2倍做多AMD ETF-GraniteShares (AMDL)</a> · <a href="https://www.laohu8.com/stock/AMYY">GraniteShares YieldBOOST AMD ETF (AMYY)</a> · <a href="https://www.laohu8.com/stock/FTXL">First Trust Nasdaq Semiconductor ETF (FTXL)</a> · <a href="https://www.laohu8.com/stock/FAI">First Trust Bloomberg Artificial Intelligence ETF (FAI)</a> · <a href="https://www.laohu8.com/stock/ILDR">First Trust Innovation Leaders ETF (ILDR)</a> · <a href="https://www.laohu8.com/stock/SAMD0main">美国超微公司主连 2612 (SAMD0main)</a> · <a href="https://www.laohu8.com/stock/AIQ">Global X Artificial Intelligence &amp; Technology ETF (AIQ)</a> · <a href="https://www.laohu8.com/stock/USXF">iShares ESG Advanced MSCI USA ETF (USXF)</a> · <a href="https://www.laohu8.com/stock/AMUU">2倍做多AMD ETF-Direxion (AMUU)</a> · <a href="https://www.laohu8.com/stock/DAMD">2倍做空AMD ETF-Defiance (DAMD)</a> · <a href="https://www.laohu8.com/stock/PSI">INVESCO SEMICONDUCTORS ETF (PSI)</a> · <a href="https://www.laohu8.com/stock/IETC">iShares U.S. Tech Independence Focused ETF (IETC)</a> · <a href="https://www.laohu8.com/stock/AMDG">2倍做多AMD ETF- Leverage Shares (AMDG)</a></small></p>]]></content:encoded>
         </item>
     </channel>
 </rss>
