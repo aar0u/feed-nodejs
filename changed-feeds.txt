@@ -1,1 +1,5 @@
 8world.xml
+bohaishibei.xml
+hackernews.xml
+xueqiu-hots.xml
+zaobao.xml
