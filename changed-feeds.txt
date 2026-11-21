@@ -1,2 +1,2 @@
-8world.xml
 laohu8-news.xml
+xueqiu-hots.xml
