@@ -33,37 +33,52 @@ export function extractItems(document) {
   );
 }
 
-/** @type {import("../source.d.ts").Source} */
-const source = {
-  id: "gamer520-gameswitch",
-  title: "Gamer520 游戏下载",
-  link: `${baseUrl}/`,
-  description: "Gamer520 首页游戏下载更新",
-  requestDelay: 2_000,
-  contentFetchConcurrency: 1,
-  async fetchItems(signal) {
-    const document = await fetchDocument(
-      proxyUrl(source.link),
-      undefined,
-      signal,
-    );
-    const items = extractItems(document);
-    if (!items.length)
-      throw new Error("Proxy response contains no game articles");
-    return items;
-  },
-  async fetchContent(candidate, signal) {
-    const url = candidate.contentUrl || candidate.link;
-    if (!url) throw new Error("Missing Gamer520 article URL");
-    const document = await fetchDocument(proxyUrl(url), undefined, signal);
-    if (!document.querySelector(".entry-content")?.innerHTML.trim())
-      throw new Error("Proxy article response has no entry content");
-    return extractContent(document, url, source, signal);
-  },
-  extract(document) {
-    const content = document.querySelector(".entry-content")?.innerHTML;
-    return content?.trim() ? { content } : null;
-  },
-};
+/** @param {Pick<import("../source.d.ts").Source, "id" | "title" | "link" | "description">} fields @returns {import("../source.d.ts").Source} */
+function createSource(fields) {
+  /** @type {import("../source.d.ts").Source} */
+  const source = {
+    ...fields,
+    requestDelay: 2_000,
+    contentFetchConcurrency: 1,
+    async fetchItems(signal) {
+      const document = await fetchDocument(
+        proxyUrl(source.link),
+        undefined,
+        signal,
+      );
+      const items = extractItems(document);
+      if (!items.length)
+        throw new Error("Proxy response contains no game articles");
+      return items;
+    },
+    async fetchContent(candidate, signal) {
+      const url = candidate.contentUrl || candidate.link;
+      if (!url) throw new Error("Missing Gamer520 article URL");
+      const document = await fetchDocument(proxyUrl(url), undefined, signal);
+      if (!document.querySelector(".entry-content")?.innerHTML.trim())
+        throw new Error("Proxy article response has no entry content");
+      return extractContent(document, url, source, signal);
+    },
+    extract(document) {
+      const content = document.querySelector(".entry-content")?.innerHTML;
+      return content?.trim() ? { content } : null;
+    },
+  };
+  return source;
+}
 
-export default source;
+export const switchSource = createSource({
+  id: "gamer520-gameswitch",
+  title: "Switch游戏下载",
+  link: `${baseUrl}/gameswitch`,
+  description: "Gamer520 Switch 游戏下载更新",
+});
+
+export const pcSource = createSource({
+  id: "gamer520-pcplay",
+  title: "PC游戏下载",
+  link: `${baseUrl}/pcplay`,
+  description: "Gamer520 PC 游戏下载更新",
+});
+
+export default [switchSource, pcSource];

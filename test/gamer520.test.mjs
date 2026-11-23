@@ -1,9 +1,14 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { parseHTML } from "linkedom";
-import source, { extractItems, proxyUrl } from "../src/sources/gamer520.mjs";
+import sources, {
+  extractItems,
+  pcSource,
+  proxyUrl,
+  switchSource as source,
+} from "../src/sources/gamer520.mjs";
 
-test("gamer520 extracts game entries from the home page", () => {
+test("gamer520 extracts game entries from a category page", () => {
   const { document } = parseHTML(`
     <div class="posts-wrapper">
       <article class="post post-grid">
@@ -74,10 +79,29 @@ test("gamer520 proxies list and article fetches while preserving original URLs a
   assert.doesNotMatch(captured.content, /spotjoy/);
   assert.equal(captured.date.toISOString(), "2026-10-18T19:00:00.000Z");
   assert.deepEqual(requests, [
-    "https://www.gamer520.com/",
+    "https://www.gamer520.com/gameswitch",
     "https://www.gamer520.com/123.html",
   ]);
   assert.equal(source.contentFetchConcurrency, 1);
+});
+
+test("gamer520 exposes separate Switch and PC feeds", async (t) => {
+  assert.deepEqual(
+    sources.map(({ id, link }) => [id, link]),
+    [
+      ["gamer520-gameswitch", "https://www.gamer520.com/gameswitch"],
+      ["gamer520-pcplay", "https://www.gamer520.com/pcplay"],
+    ],
+  );
+  const requests = [];
+  t.mock.method(globalThis, "fetch", async (input) => {
+    requests.push(new URL(input).searchParams.get("url"));
+    return new Response(
+      '<div class="posts-wrapper"><article><h2 class="entry-title"><a href="https://www.gamer520.com/1.html">PC</a></h2></article></div>',
+    );
+  });
+  await pcSource.fetchItems(AbortSignal.timeout(1000));
+  assert.deepEqual(requests, ["https://www.gamer520.com/pcplay"]);
 });
 
 test("gamer520 rejects proxy responses without expected content", async (t) => {
