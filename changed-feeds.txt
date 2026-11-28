@@ -1,4 +1,0 @@
-8world.xml
-hackernews.xml
-xueqiu-hots.xml
-zaobao.xml
